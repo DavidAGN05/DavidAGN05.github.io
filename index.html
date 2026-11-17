@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Leadership Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme: dark;
+  --bg:#13151d; --panel:#1b1e2a; --line:#2c3042; --text:#e9e7f1; --muted:#9a9cb3;
+  --accent:#a99bff; --warm:#f0b27a;
+  --serif:"Newsreader",Georgia,"Times New Roman",serif;
+  --sans:"DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 24px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--text);font:400 1rem/1.7 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--warm);outline-offset:3px;border-radius:4px}
+.layout{display:grid;grid-template-columns:260px minmax(0,1fr);max-width:1180px;margin:0 auto}
+nav{position:sticky;top:env(safe-area-inset-top,0px);height:100vh;padding:48px 28px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:32px}
+nav .name{font:500 1.35rem/1.2 var(--serif)}
+nav .name small{display:block;margin-top:6px;font:400 .85rem var(--sans);color:var(--muted)}
+nav ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:4px}
+nav a{display:block;padding:8px 12px;margin:0 -12px;border-radius:8px;color:var(--muted);text-decoration:none;font-size:.95rem;transition:color .2s,background .2s}
+nav a:hover,nav a.on{color:var(--text);background:var(--panel)}
+nav a.on{box-shadow:inset 3px 0 0 var(--accent)}
+main{padding:0 clamp(20px,5vw,64px) 96px}
+.hero{padding:clamp(56px,12vh,120px) 0 64px;border-bottom:1px solid var(--line)}
+.hero h1{font:400 clamp(2.6rem,6.5vw,5rem)/1.04 var(--serif);letter-spacing:-.02em;margin:0 0 24px;max-width:14ch}
+.hero h1 em{color:var(--warm)}
+.hero p{max-width:52ch;color:var(--muted);font-size:1.1rem;margin:0}
+section{padding:72px 0;border-bottom:1px solid var(--line)}
+section>h2{font:400 clamp(2rem,4vw,2.9rem)/1.1 var(--serif);letter-spacing:-.01em;margin:0 0 12px}
+.lede{color:var(--muted);max-width:58ch;margin:0 0 40px}
+h3{font:500 1.4rem/1.3 var(--serif);margin:40px 0 10px}
+p{max-width:66ch;margin:0 0 1em}
+.ph{color:var(--muted);font-style:italic}
+.sub{padding-left:20px;border-left:2px solid var(--line);margin-bottom:8px}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 20px}
+.tabs button{font:500 .9rem var(--sans);color:var(--muted);background:transparent;border:1px solid var(--line);border-radius:999px;padding:8px 18px;cursor:pointer;transition:all .2s}
+.tabs button[aria-selected=true]{background:var(--accent);border-color:var(--accent);color:#16142b}
+.video{aspect-ratio:16/9;max-width:640px;border:1px dashed var(--line);border-radius:14px;background:var(--panel);display:grid;place-items:center;color:var(--muted);font-size:.95rem;text-align:center;padding:16px;margin:0 0 20px}
+.theme{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:28px 32px;margin-top:40px;max-width:760px}
+.theme h3{margin-top:0;color:var(--warm)}
+.refs{margin-top:48px;padding-top:20px;border-top:1px dashed var(--line);max-width:760px}
+.refs h4{margin:0 0 10px;font:600 .95rem var(--sans);color:var(--text)}
+.refs ol{margin:0;padding-left:1.2em;color:var(--muted);font-size:.92rem}
+.refs li{margin-bottom:6px}
+.fig{margin:0 0 20px;max-width:360px}.fig .img{aspect-ratio:4/3;border:1px dashed var(--line);border-radius:14px;background:var(--panel);display:grid;place-items:center;color:var(--muted);font-size:.9rem;text-align:center;padding:12px}.fig figcaption{margin-top:8px;color:var(--muted);font-size:.88rem}
+.bio{display:grid;grid-template-columns:minmax(0,240px) minmax(0,1fr);gap:24px;align-items:start;margin-bottom:12px}
+.prompts{color:var(--muted);font-size:.92rem;margin:0 0 16px;padding-left:1.2em;max-width:66ch}
+.wrap{overflow-x:auto;max-width:760px}table{border-collapse:collapse;width:100%;margin:0 0 20px;font-size:.95rem}th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line)}th{color:var(--muted);font-weight:500}
+@media(max-width:700px){.bio{grid-template-columns:1fr}}
+footer{padding:40px 0 0;color:var(--muted);font-size:.9rem}
+@media(max-width:860px){
+  .layout{display:block}
+  nav{position:static;height:auto;border:0;border-bottom:1px solid var(--line);padding:24px 20px;gap:16px}
+  nav ul{flex-direction:row;flex-wrap:wrap;gap:6px}
+  nav a{margin:0;padding:6px 12px;border:1px solid var(--line)}
+  nav a.on{box-shadow:none;border-color:var(--accent)}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div class="layout">
+<nav aria-label="Sections">
+  <div class="name">David<small>Leadership portfolio</small></div>
+  <ul>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#interviews">Interviews</a></li>
+    <li><a href="#assessment">Assessment reflection</a></li>
+    <li><a href="#theory">My leadership theory</a></li>
+    <li><a href="#growth">Growth</a></li>
+  </ul>
+</nav>
+
+<main>
+<header class="hero">
+  <h1>Learning to lead, one story at a <em>time</em>.</h1>
+  <p>A record of what I heard, what I learned about myself, and the leader I’m becoming.</p>
+</header>
+
+<section id="introduction">
+  <h2>Introduction</h2>
+  <p class="lede">Who I am, why this site exists, and the project behind it.</p>
+  <div class="sub"><h3>Self-introduction</h3>
+  <figure class="fig"><div class="img">Add your own photo (no stock photos)</div><figcaption>[Caption: who and where, and why this photo represents you.]</figcaption></figure>
+  <p>Hi! I’m David, a 21-year-old Mexican American, Catholic, first-generation college fourth-year student in the Whiting School of Engineering. I get my energy from being around friends and family. I grew up in Ohio in a Mexican household with two immigrant parents, two older sisters, and a bunch of cousins, aunts, and uncles. We played soccer together all the time, which is where my love of soccer came from and later grew into my love of the gym in high school. That is also when my self-development journey started, where I try to become a better version of myself every day. People are the most important part of my life, so I try to bring community into that journey.</p>
+  <p>Moving from Ohio to Baltimore was tough because I’m so family-oriented. I did not know a single person when I came to Hopkins, and I have traveled more here than in my entire life before. I like exploring new places, meeting new people, and trying new things. When I can, I make plans with friends, because that is where I get to let loose and be myself.</p>
+  <p>I was admitted as an Electrical Engineering major and I’m looking to enter the workforce with a B.S. in Electrical Engineering. I’m really interested in the semiconductor industry, which designs, tests, and manufactures the chips in so many of today’s devices. I hope to work at a semiconductor company for many years, earn my master’s in ECE with a concentration in Microelectronics, and eventually become a design engineer who implements chips on devices.</p>
+  </div>
+  <div class="sub"><h3>Purpose of this website</h3>
+  <p>This website lets me reflect on where I have been, where I am, and where I want to be. I do that by interviewing people who know me, examining my own leadership experiences, and presenting my own leadership theory. Its significance is that it makes me look closely at my character, think about who I am in the eyes of others, and see how I can improve.</p></div>
+  <div class="sub"><h3>Project context and significance</h3>
+  <p>This site is my Best Self Portfolio, the largest assignment in my leadership course <span class="ph">[add course name]</span>. It asks me to interview two people about a time I was at my best, reflect on my 16P and conflict assessments, build an original leadership theory, and set one growth goal. Together these pieces show how I lead now and how I want to lead next.</p></div>
+  <div class="refs"><h4>References</h4><ol><li class="ph">Add references for this section.</li></ol></div>
+</section>
+
+<section id="interviews">
+  <h2>Interviews</h2>
+  <p class="lede">Best Self stories from the people I interviewed, and what they showed me.</p>
+
+  <h3>Best Self stories</h3>
+  <div class="tabs" role="tablist" aria-label="Interviewees">
+    <button role="tab" aria-selected="true" data-i="0">Interviewee 1</button>
+    <button role="tab" aria-selected="false" data-i="1">Interviewee 2</button>
+  </div>
+  <div id="stories">
+    <div class="story">
+      <div class="video">Embed your recorded video here (YouTube, Vimeo, or an uploaded file).</div>
+      <div class="bio"><figure class="fig" style="margin:0"><div class="img">Interviewee photo</div><figcaption>[Caption: name and relationship to you.]</figcaption></figure><div><p class="ph">[Small bio: name, relationship (family member, mentor, supervisor, or friend), and what they do.]</p></div></div>
+      <p class="ph">[Their Best Self story: the specific time, the situation, what you did, and details they shared. If they could not give a concrete example, ask follow-up questions.]</p>
+    </div>
+    <div class="story" hidden>
+      <div class="video">Embed your recorded video here (YouTube, Vimeo, or an uploaded file).</div>
+      <div class="bio"><figure class="fig" style="margin:0"><div class="img">Interviewee photo</div><figcaption>[Caption: name and relationship to you.]</figcaption></figure><div><p class="ph">[Small bio. Choose someone from a different group than Interviewee 1.]</p></div></div>
+      <p class="ph">[Their Best Self story.]</p>
+    </div>
+  </div>
+
+  <h3>Reflection on their responses</h3>
+  <p class="ph">[Reflect on each response: what stood out, where the stories overlapped or differed, and what surprised you.]</p>
+
+  <div class="theme">
+    <h3>A theme about myself</h3>
+    <p class="ph">[Name one theme about yourself that appears across both stories, then support it with specific details from what you heard.]</p>
+  </div>
+  <div class="refs"><h4>References</h4><ol><li class="ph">Add references for this section.</li></ol></div>
+</section>
+
+<section id="assessment">
+  <h2>Assessment reflection</h2>
+  <p class="lede">What my assessment results say about me, and how I respond to them.</p>
+  <h3>16P personality results</h3>
+  <p>My result is <strong>ESFJ-T</strong>: extraverted, observant, feeling, judging, and turbulent. The 16P framework describes personality along five aspects, and I reflect on each one below. Several of my scores sit close to the middle, especially Judging and Turbulent at 51%, so I see these as tendencies rather than fixed traits.</p>
+  <div class="wrap"><table><thead><tr><th>Aspect</th><th>My result</th><th>What it means for me</th></tr></thead><tbody>
+  <tr><td>Mind</td><td>Extraverted 67%</td><td>I get energy from friends and family. Making plans with friends is where I let loose, and leaving my large family in Ohio was the hardest part of moving to Baltimore.</td></tr>
+  <tr><td>Energy</td><td>Observant 61%</td><td>I notice the people and details around me. On my project team I saw right away that we were all Hispanic, which made connecting easy.</td></tr>
+  <tr><td>Nature</td><td>Feeling 54%</td><td>I put people’s feelings first. I did not want teammates to feel bad about themselves, so I kept the group’s morale positive.</td></tr>
+  <tr><td>Tactics</td><td>Judging 51%</td><td>I’m decisive, thorough, and organized. I assigned roles, set weekly meetings, and made the call to finish the project when the deadline got close.</td></tr>
+  <tr><td>Identity</td><td>Turbulent 51%</td><td>I’m self-conscious, sensitive to stress, success-driven, and eager to improve. That matches the self-development journey I started in high school.</td></tr></tbody></table></div>
+  <h3>Personality in a leadership experience</h3>
+  <p>In my second semester at Hopkins, I took my first electrical engineering course with a final group project. We got to pick our partners, so I formed the team, but nobody else knew each other. My extraversion mattered right away: I introduced everyone and led by assigning roles and setting weekly meetings. We were all Hispanic, which made conversation easy, since I grew up around people with similar backgrounds.</p>
+  <p>At nearly every meeting, some members did not show up or had made little progress. Even though I was leading, I never called anyone out or got upset, because I did not want anyone to feel bad and I wanted to keep morale up. As the deadline got close and we were still not done, I finished the project on my own so we would not get a bad grade and would have a working demo for the professor. It worked, and our team got full credit.</p>
+  <p class="ph">[Add what this taught you about how your personality helped and hurt you as a leader.]</p>
+  <h3>Conflict assessment results</h3>
+  <p>My highest score is <strong>Collaborating (9)</strong>, the “owl,” someone who values both their goals and their relationships. Accommodating (8, the “teddy bear”) and Compromising (8, the “fox”) follow, then Competing (6, the “shark”) and Avoiding (5, the “turtle”). Accommodating is a close second, and it fits my habit of putting others first. Accommodators often seem agreeable and easygoing, but putting others’ needs first all the time can build resentment, so they benefit from saying what they need.<sup>2</sup></p>
+  <p>I think being an owl is a recent change. I used to be more of a shark who put goals ahead of relationships. Growing up in a Mexican, family-centered household, I was born into my relationships and never had to work to build them. They just happened. Leaving for college meant creating relationships on purpose, and that moved me from valuing goals over people to valuing both. I now actively spend time with the people in my life.</p>
+  <div class="wrap"><table><thead><tr><th>Conflict style</th><th>Score</th></tr></thead><tbody>
+  <tr><td>Competing (shark)</td><td>6</td></tr><tr><td>Collaborating (owl)</td><td>9</td></tr><tr><td>Compromising (fox)</td><td>8</td></tr><tr><td>Avoiding (turtle)</td><td>5</td></tr><tr><td>Accommodating (teddy bear)</td><td>8</td></tr></tbody></table></div>
+  
+  <h3>A conflict style on a team</h3>
+  <p>Collaborating showed up this past semester at the Society of Hispanic Professional Engineers (SHPE) National Convention in Indianapolis, where I went with several members of our school’s chapter. The conference is about professional development: networking, company workshops, and talking with employers to find job opportunities. I was this year’s National Convention chair, which meant Hopkins SHPE members looked to me for advice on how to succeed there.</p>
+  <p>It was my third national convention, so before we left I laid the groundwork by sharing a roadmap of how I landed my last two internships. Once we arrived, I had to balance my own goal with the chapter’s. My goal was to get a full-time engineering role with one of the attending companies. The chapter’s goal was for everyone to feel prepared to approach recruiters and pitch themselves, as I had in past years. I also shared what I had learned with students from other schools I had never met. By the end, everyone in my chapter had a great time and felt prepared. That is how I put my goals and my relationships on equal footing.</p>
+  <div class="refs"><h4>References</h4><ol><li>16Personalities. <a href="https://www.16personalities.com/">Theory and framework</a>.</li><li>Harvard Program on Negotiation. <a href="https://www.pon.harvard.edu/daily/conflict-resolution/conflict-management-styles-pitfalls-and-best-practices/">Conflict management styles, pitfalls, and best practices</a>.</li></ol></div>
+</section>
+
+<section id="theory">
+  <h2>My leadership theory</h2>
+  <p class="lede">The beliefs and principles that guide how I lead.</p>
+  <p class="ph">[Optional: replace this section with a 3-5 minute video that explains your visual and cites sources aloud.]</p>
+  <h3>Name and origin</h3>
+  <p><strong>Leading by example and creating a positive team atmosphere.</strong> My theory comes from a current example in sport: Pep Guardiola and FC Barcelona. Guardiola captained Barcelona as a player and won six Spanish league titles and the 1991/92 European Cup with the club. He returned as coach in 2008, and his 2008/09 team, set up in a 4-3-3, won the treble of La Liga, the Copa del Rey, and the Champions League. That squad is often ranked among the best in football history.<sup>3</sup> I think it worked because he had already done the work he asked of others, and he built an environment where players wanted to push each other.</p>
+  <p>It also comes from my own experience on my electrical engineering project team, where I led by example but did not build the accountability that would have made the team share the work.</p>
+  <p><strong>What I want to be known for:</strong> someone who cares about the people around me, works hard, brings positive energy everywhere I go, and inspires people to be the best version of themselves.</p>
+  <h3>The visual</h3>
+  <figure class="fig" style="max-width:640px"><svg viewBox="0 0 640 400" role="img" aria-label="A 4-3-3 football formation with the back line labeled foundation, the midfield labeled connection, and the front line labeled drive" style="width:100%;height:auto;border:1px solid var(--line);border-radius:14px;background:var(--panel)"><text x="320" y="30" text-anchor="middle" fill="var(--warm)" font-size="15">The pitch: a positive team atmosphere</text><line x1="320" y1="46" x2="320" y2="346" stroke="var(--line)"/><g fill="var(--accent)"><circle cx="60" cy="200" r="14" fill="var(--muted)"/><circle cx="170" cy="80" r="14"/><circle cx="170" cy="160" r="14"/><circle cx="170" cy="240" r="14"/><circle cx="170" cy="320" r="14"/><circle cx="330" cy="110" r="14" fill="var(--warm)"/><circle cx="330" cy="200" r="14" fill="var(--warm)"/><circle cx="330" cy="290" r="14" fill="var(--warm)"/><circle cx="520" cy="90" r="14"/><circle cx="520" cy="200" r="14"/><circle cx="520" cy="310" r="14"/></g><g fill="var(--text)" font-size="15" text-anchor="middle"><text x="170" y="376">Foundation</text><text x="330" y="376">Connection</text><text x="520" y="376">Drive</text></g></svg><figcaption>Barcelona’s 2008/09 4-3-3 as a framework for how I lead.</figcaption></figure>
+  <p><strong>The pitch</strong> is the team atmosphere. Nothing else works if people don’t feel positive and supported. <strong>The back line, foundation:</strong> I show up and do the work I ask of others, in plain view. <strong>The midfield, connection:</strong> I read each teammate and adjust how I lead, as the squad’s midfielders linked every part of the team. <strong>The front line, drive:</strong> I push myself and the people around me to be better, and I celebrate the results together. <span class="ph">[Edit this mapping so it matches your thinking.]</span></p>
+  <h3>Leadership and followership</h3>
+  <p><strong>Leaders:</strong> Situational Leadership says effective leaders adapt their approach to each follower’s competence and commitment, moving among telling, selling, participating, and delegating.<sup>1</sup> The Blake Mouton Grid describes five leadership styles based on concern for people and concern for results.<sup>2</sup> My theory aims for high concern on both: leading by example drives results, and a positive atmosphere shows concern for people.</p>
+  <p><strong>Followers:</strong> Followers take cues from what leaders actually do, so visible effort sets the standard, and a positive climate makes it safe to ask for help. <span class="ph">[Add a study or data point on role modeling, team climate, or followership.]</span></p>
+  <h3>Putting it into practice</h3>
+  <ol style="max-width:66ch"><li>Do your part first and let the team see it.</li><li>Open each meeting with a quick check-in so everyone feels heard.</li><li>Match your style to each teammate: more direction for someone new, more trust for someone experienced.</li><li>Give kind, direct feedback early instead of absorbing the work yourself.</li><li>Celebrate progress out loud.</li></ol>
+  <h3>Limitations and nuances</h3>
+  <p>Leading by example can turn into doing everyone’s work, which is what happened on my project. A positive atmosphere can also avoid hard conversations. And Barcelona’s squad was full of exceptional talent, so results will not transfer one-to-one to a student team. <span class="ph">[Add how you checked that this differs from established theories.]</span></p>
+  <div class="refs"><h4>References</h4><ol><li>Hersey, P., &amp; Blanchard, K. Situational Leadership Theory. <span class="ph">[Add link.]</span></li><li>Blake, R., &amp; Mouton, J. The Managerial Grid. <span class="ph">[Add link.]</span></li><li class="ph">[Add the source for Guardiola’s playing and coaching titles.]</li></ol></div>
+</section>
+
+<section id="growth">
+  <h2>Growth</h2>
+  <p class="lede">Where I’m headed and how I plan to get there.</p>
+  <h3>My area of growth</h3>
+  <p>I want to grow at holding teammates accountable. On my project team I avoided calling anyone out and ended up doing the work myself.</p>
+  <h3>One concrete behavior change</h3>
+  <p>When a teammate has not made progress by our weekly check-in, I will message them privately within 24 hours, ask what is blocking them, and agree on one specific task with a date. I will not take the task over unless we have agreed on that together.</p>
+  <h3>How this helps a current team</h3>
+  <p class="ph">[Name one current team and explain how this change will help it, for example by sharing the workload and keeping deadlines on track.]</p>
+  <div class="refs"><h4>References</h4><ol><li class="ph">Add references for this section.</li></ol></div>
+  <footer>© David</footer>
+</section>
+</main>
+</div>
+<script>
+(function(){
+  var tabs=document.querySelectorAll('.tabs button'),stories=document.querySelectorAll('.story');
+  tabs.forEach(function(b){b.addEventListener('click',function(){
+    var i=+b.dataset.i;
+    tabs.forEach(function(t,j){t.setAttribute('aria-selected',j===i)});
+    stories.forEach(function(s,j){s.hidden=j!==i});
+  })});
+  var links=document.querySelectorAll('nav a'),secs=document.querySelectorAll('section');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){
+      if(e.isIntersecting){links.forEach(function(a){a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id)})}
+    })},{rootMargin:'-30% 0px -60% 0px'});
+    secs.forEach(function(s){io.observe(s)});
+  }
+})();
+</script>
+</body>
+</html>
