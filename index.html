@@ -3,241 +3,653 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Leadership Portfolio</title>
+<title>David Garcia · Leadership Portfolio</title>
+<meta name="description" content="David Garcia's Best Self leadership portfolio: where he comes from, what others see in him, and how he leads.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Schibsted+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  color-scheme: dark;
-  --bg:#13151d; --panel:#1b1e2a; --line:#2c3042; --text:#e9e7f1; --muted:#9a9cb3;
-  --accent:#a99bff; --warm:#f0b27a;
-  --serif:"Newsreader",Georgia,"Times New Roman",serif;
-  --sans:"DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
-  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:dark;
+  --ink:#18211b; --surface:#212c24; --line:#35433a;
+  --text:#f1f5ea; --muted:#b7c2ac; --lime:#e4f7b5; --lime-2:#c9ec7f; --moss:#56634a; --on-lime:#12140f;
+  --sans:"Schibsted Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --serif:"Instrument Serif",Georgia,"Times New Roman",serif;
+  --gut:clamp(16px,5vw,64px); --ease:cubic-bezier(.2,.7,.2,1);
 }
-html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 24px)}
-*,*::before,*::after{box-sizing:inherit}
-body{margin:0;background:var(--bg);color:var(--text);font:400 1rem/1.7 var(--sans);-webkit-font-smoothing:antialiased}
-a{color:var(--accent)}
-:focus-visible{outline:2px solid var(--warm);outline-offset:3px;border-radius:4px}
-.layout{display:grid;grid-template-columns:260px minmax(0,1fr);max-width:1180px;margin:0 auto}
-nav{position:sticky;top:env(safe-area-inset-top,0px);height:100vh;padding:48px 28px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:32px}
-nav .name{font:500 1.35rem/1.2 var(--serif)}
-nav .name small{display:block;margin-top:6px;font:400 .85rem var(--sans);color:var(--muted)}
-nav ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:4px}
-nav a{display:block;padding:8px 12px;margin:0 -12px;border-radius:8px;color:var(--muted);text-decoration:none;font-size:.95rem;transition:color .2s,background .2s}
-nav a:hover,nav a.on{color:var(--text);background:var(--panel)}
-nav a.on{box-shadow:inset 3px 0 0 var(--accent)}
-main{padding:0 clamp(20px,5vw,64px) 96px}
-.hero{padding:clamp(56px,12vh,120px) 0 64px;border-bottom:1px solid var(--line)}
-.hero h1{font:400 clamp(2.6rem,6.5vw,5rem)/1.04 var(--serif);letter-spacing:-.02em;margin:0 0 24px;max-width:14ch}
-.hero h1 em{color:var(--warm)}
-.hero p{max-width:52ch;color:var(--muted);font-size:1.1rem;margin:0}
-section{padding:72px 0;border-bottom:1px solid var(--line)}
-section>h2{font:400 clamp(2rem,4vw,2.9rem)/1.1 var(--serif);letter-spacing:-.01em;margin:0 0 12px}
-.lede{color:var(--muted);max-width:58ch;margin:0 0 40px}
-h3{font:500 1.4rem/1.3 var(--serif);margin:40px 0 10px}
-p{max-width:66ch;margin:0 0 1em}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-padding-top:84px}
+body{margin:0;background:var(--ink);color:var(--text);font:400 1.0625rem/1.7 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:clip}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--lime);text-underline-offset:3px}
+:focus-visible{outline:2px solid var(--lime);outline-offset:3px;border-radius:2px}
+.skip{position:absolute;left:12px;top:-60px;z-index:100;background:var(--lime);color:var(--on-lime);padding:10px 14px;font-weight:600}
+.skip:focus{top:12px}
+.wrap{max-width:1180px;margin:0 auto}
+
+/* ---------- header ---------- */
+.top{position:fixed;inset:0 0 auto;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:16px var(--gut);transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
+.top.scrolled{background:rgba(24,33,27,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-color:var(--line)}
+.brand{color:var(--text);text-decoration:none;font-weight:600;font-size:1.05rem;letter-spacing:-.01em}
+.top nav ul{display:flex;gap:4px;list-style:none;margin:0;padding:0}
+.top nav a{display:block;padding:8px 12px;color:var(--muted);text-decoration:none;font-size:.92rem;transition:color .2s,box-shadow .3s}
+.top nav a:hover,.top nav a.on{color:var(--text)}
+.top nav a.on{box-shadow:inset 0 -2px 0 var(--lime)}
+.menu-btn{display:none;min-height:44px;padding:0 16px;background:transparent;color:var(--text);border:1px solid var(--line);border-radius:999px;font:500 .9rem var(--sans);cursor:pointer}
+@media(max-width:760px){
+  .menu-btn{display:block}
+  .top nav{position:absolute;top:100%;left:0;right:0;background:rgba(24,33,27,.96);border-bottom:1px solid var(--line);display:none;padding:8px var(--gut) 16px}
+  .top nav.open{display:block}
+  .top nav ul{flex-direction:column}
+  .top nav a{padding:12px 0;font-size:1rem}
+  .top nav a.on{box-shadow:none;color:var(--lime)}
+}
+
+/* ---------- hero ---------- */
+.hero{position:relative;height:200vh}
+.hero-pin{position:sticky;top:0;height:100svh;min-height:520px;display:flex;flex-direction:column;justify-content:space-between;padding:120px var(--gut) 40px;overflow:hidden;isolation:isolate}
+.hero-media{position:absolute;inset:0;z-index:-1;overflow:hidden}
+.hero-bg{width:100%;height:100%;object-fit:cover;object-position:50% 48%;transform:scale(var(--z,1.45));transform-origin:50% 58%;will-change:transform}
+.hero-bg.alt{position:absolute;inset:0;opacity:var(--o,0)}
+.hero-media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(24,33,27,.5) 0%,rgba(24,33,27,.35) 45%,rgba(24,33,27,.85) 100%)}
+.blobs{position:absolute;inset:-10%;z-index:-3;pointer-events:none;opacity:.8}
+.blob{position:absolute;border-radius:50%;filter:blur(80px);will-change:transform}
+.b1{width:60vw;height:60vw;left:-12vw;top:-18vw;background:radial-gradient(circle,#1d5f4c 0%,transparent 66%);animation:d1 26s ease-in-out infinite alternate}
+.b2{width:44vw;height:44vw;right:-10vw;top:2vh;background:radial-gradient(circle,rgba(201,236,127,.42) 0%,transparent 64%);animation:d2 22s ease-in-out infinite alternate}
+.b3{width:55vw;height:55vw;left:12vw;bottom:-30vw;background:radial-gradient(circle,#3a5a27 0%,transparent 64%);animation:d3 30s ease-in-out infinite alternate}
+.b4{width:38vw;height:38vw;right:14vw;bottom:-6vw;background:radial-gradient(circle,#0f4a47 0%,transparent 66%);animation:d4 24s ease-in-out infinite alternate}
+@keyframes d1{to{transform:translate(18vw,14vh) scale(1.15)}}
+@keyframes d2{to{transform:translate(-22vw,26vh) scale(.85)}}
+@keyframes d3{to{transform:translate(20vw,-22vh) scale(1.2)}}
+@keyframes d4{to{transform:translate(-26vw,-18vh) scale(1.1)}}
+.grain{position:absolute;inset:0;z-index:-2;pointer-events:none;opacity:.22;mix-blend-mode:soft-light;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+.hero-pin::after{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse at 50% 55%,transparent 30%,rgba(24,33,27,.55) 100%);pointer-events:none}
+.stage{position:relative;margin:auto 0}
+.hl{margin:0;display:grid;grid-template-columns:auto auto;justify-content:start;font:600 clamp(4rem,15vw,13.5rem)/.88 var(--sans);letter-spacing:-.05em;color:var(--text)}
+.hl .w1{grid-row:1;grid-column:1}
+.hl .acc{grid-row:1;grid-column:2;justify-self:start;align-self:end;margin-left:.35em;font:400 italic clamp(2rem,5.8vw,5.6rem)/1 var(--serif);letter-spacing:-.01em;color:var(--lime);transform:translateY(.42em);white-space:nowrap}
+.hl .w2{grid-row:2;grid-column:1/-1;justify-self:start;padding-left:.55em}
+.lens{position:absolute;top:0;left:0;width:clamp(120px,15vw,220px);aspect-ratio:1;border-radius:50%;overflow:hidden;pointer-events:none;
+  backdrop-filter:blur(12px) brightness(1.18);-webkit-backdrop-filter:blur(12px) brightness(1.18);
+  background:radial-gradient(circle at 32% 28%,rgba(255,255,255,.2),rgba(255,255,255,.04) 55%,rgba(255,255,255,.08));
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.38),inset 0 -14px 30px rgba(255,255,255,.08),0 24px 48px rgba(0,0,0,.35);will-change:transform}
+.lens-inner{position:absolute;top:0;left:0;transform-origin:0 0;will-change:transform}
+.hl.ab{text-shadow:-.035em 0 0 rgba(255,64,129,.7),.035em 0 0 rgba(64,214,255,.7)}
+.hl.ab .acc{text-shadow:-.03em 0 0 rgba(255,64,129,.6),.03em 0 0 rgba(64,214,255,.6)}
+.meta{display:flex;gap:clamp(24px,6vw,96px);align-items:flex-end;font-size:.82rem;line-height:1.45;color:var(--muted)}
+.meta p{margin:0}.meta strong{display:block;color:var(--text);font-weight:600}
+.cue{margin-left:auto;display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--text);text-decoration:none;font-size:.8rem;min-width:44px;min-height:44px}
+.cue span{display:block;width:1px;height:64px;background:linear-gradient(var(--text),transparent)}
+@media(max-width:700px){
+  .hl{grid-template-columns:1fr}
+  .hl .acc{grid-row:3;grid-column:1;justify-self:start;transform:none;margin:.3em 0 0}
+  .hl .w2{padding-left:.3em}
+  .meta{flex-wrap:wrap;gap:16px 28px}.cue{display:none}
+}
+
+/* ---------- chapters ---------- */
+.chapter{position:relative;isolation:isolate;overflow:clip;padding:clamp(96px,14vh,160px) var(--gut);border-top:1px solid var(--line)}
+h2::after{content:"";display:inline-block;width:.22em;height:.22em;margin-left:.12em;border-radius:50%;background:var(--lime);vertical-align:.05em}
+.decor{position:absolute;inset:0;z-index:-1;pointer-events:none}
+.decor i{position:absolute;display:block;border-radius:50%}
+.decor i:nth-child(1){width:22px;height:22px;top:7%;right:7%;background:var(--lime);box-shadow:0 0 0 10px rgba(228,247,181,.14),0 0 40px rgba(228,247,181,.35)}
+.decor i:nth-child(2){width:clamp(220px,26vw,380px);aspect-ratio:1;top:14%;right:-9%;border:2px solid rgba(228,247,181,.2)}
+.decor i:nth-child(3){width:12px;height:12px;top:38%;left:2.5%;background:var(--lime-2)}
+.decor i:nth-child(4){width:clamp(260px,32vw,460px);aspect-ratio:1;top:50%;left:-12%;background:radial-gradient(circle,rgba(201,236,127,.16),transparent 66%)}
+.decor i:nth-child(5){width:16px;height:16px;top:72%;right:4%;border:2px solid var(--lime)}
+.decor i:nth-child(6){width:clamp(120px,14vw,200px);aspect-ratio:1;bottom:4%;right:16%;border:2px dashed rgba(228,247,181,.16)}
+.decor i:nth-child(7){width:8px;height:8px;bottom:12%;left:8%;background:var(--lime)}
+#interviews .decor,#theory .decor{transform:scaleX(-1)}
+.decor i:nth-child(odd){animation:bob 7s ease-in-out infinite}
+.decor i:nth-child(3){animation-delay:-2s}.decor i:nth-child(5){animation-delay:-4s}.decor i:nth-child(7){animation-delay:-1s}
+@keyframes bob{50%{translate:0 -14px}}
+h2{font:600 clamp(2.1rem,4.6vw,3.8rem)/1.04 var(--sans);letter-spacing:-.035em;margin:0 0 48px;max-width:18ch;text-wrap:balance}
+h3{font:600 1.45rem/1.25 var(--sans);letter-spacing:-.015em;margin:56px 0 12px}
+.chapter h3{display:table;font-size:1.1rem;letter-spacing:-.01em;background:var(--lime);color:var(--on-lime);padding:.5em 1.1em;border-radius:999px;margin-bottom:20px}
+h2+.prose>h3:first-child{margin-top:0}
+.prose{max-width:68ch}
+p{max-width:68ch;margin:0 0 1em}
 .ph{color:var(--muted);font-style:italic}
-.sub{padding-left:20px;border-left:2px solid var(--line);margin-bottom:8px}
-.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 20px}
-.tabs button{font:500 .9rem var(--sans);color:var(--muted);background:transparent;border:1px solid var(--line);border-radius:999px;padding:8px 18px;cursor:pointer;transition:all .2s}
-.tabs button[aria-selected=true]{background:var(--accent);border-color:var(--accent);color:#16142b}
-.video{aspect-ratio:16/9;max-width:640px;border:1px dashed var(--line);border-radius:14px;background:var(--panel);display:grid;place-items:center;color:var(--muted);font-size:.95rem;text-align:center;padding:16px;margin:0 0 20px}
-.theme{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:28px 32px;margin-top:40px;max-width:760px}
-.theme h3{margin-top:0;color:var(--warm)}
-.refs{margin-top:48px;padding-top:20px;border-top:1px dashed var(--line);max-width:760px}
-.refs h4{margin:0 0 10px;font:600 .95rem var(--sans);color:var(--text)}
-.refs ol{margin:0;padding-left:1.2em;color:var(--muted);font-size:.92rem}
-.refs li{margin-bottom:6px}
-.fig{margin:0 0 20px;max-width:360px}.fig .img{aspect-ratio:4/3;border:1px dashed var(--line);border-radius:14px;background:var(--panel);display:grid;place-items:center;color:var(--muted);font-size:.9rem;text-align:center;padding:12px}.fig figcaption{margin-top:8px;color:var(--muted);font-size:.88rem}
-.bio{display:grid;grid-template-columns:minmax(0,240px) minmax(0,1fr);gap:24px;align-items:start;margin-bottom:12px}
-.prompts{color:var(--muted);font-size:.92rem;margin:0 0 16px;padding-left:1.2em;max-width:66ch}
-.wrap{overflow-x:auto;max-width:760px}table{border-collapse:collapse;width:100%;margin:0 0 20px;font-size:.95rem}th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line)}th{color:var(--muted);font-weight:500}
-.intro-photo{display:block;width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:14px;border:1px solid var(--line)}
-.photo{display:block;width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:14px;border:1px solid var(--line)}
-.who{margin:0;font:500 1.4rem/1.2 var(--serif)}
-.role{margin:4px 0 14px;color:var(--warm);font-size:.9rem}
-.quote{margin:8px 0 0;padding:24px 28px;max-width:760px;background:var(--panel);border-left:3px solid var(--accent);border-radius:0 14px 14px 0;font:400 1.08rem/1.75 var(--serif)}
-.quote p{max-width:none}
-.quote footer{padding:0;margin-top:8px;font:500 .9rem var(--sans);color:var(--muted)}
-.quote footer::before{content:"— "}
-@media(max-width:700px){.bio{grid-template-columns:1fr}.bio .fig{max-width:240px}.quote{padding:20px}}
-footer{padding:40px 0 0;color:var(--muted);font-size:.9rem}
-@media(max-width:860px){
-  .layout{display:block}
-  nav{position:static;height:auto;border:0;border-bottom:1px solid var(--line);padding:24px 20px;gap:16px}
-  nav ul{flex-direction:row;flex-wrap:wrap;gap:6px}
-  nav a{margin:0;padding:6px 12px;border:1px solid var(--line)}
-  nav a.on{box-shadow:none;border-color:var(--accent)}
+.refs{margin-top:72px;padding-top:20px;border-top:1px solid var(--line);max-width:760px;font-size:.9rem;color:var(--muted)}
+.refs h4{margin:0 0 10px;font:600 .9rem var(--sans);color:var(--text)}
+.refs ol{margin:0;padding-left:1.2em}.refs li{margin-bottom:6px}
+
+/* ---------- photos beside text ---------- */
+.media{display:grid;grid-template-columns:minmax(0,64ch) 340px;gap:clamp(40px,6vw,96px);align-items:start;margin:0 0 112px}
+.media.flip{grid-template-columns:340px minmax(0,64ch)}
+.media.flip>.pics{order:-1}
+.media>.txt>h3:first-child{margin-top:0}
+.media .tbl{max-width:100%}
+.pics{display:flex;flex-direction:column;gap:56px;padding-top:6px}
+.strip{display:flex;gap:clamp(24px,3.5vw,44px);max-width:1010px;margin:40px 0 96px}
+.strip>*{flex-basis:0;flex-shrink:1;min-width:0}
+.chapter h3{margin-top:72px}
+@media(max-width:900px){
+  .media,.media.flip{grid-template-columns:1fr;gap:28px}
+  .media.flip>.pics{order:0}
+  .pics{max-width:460px}
+  .strip{flex-direction:column;gap:36px;max-width:460px}
+  .strip>*{flex:none!important}
 }
-@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+@media(max-width:520px){.pics{max-width:none}}
+
+/* photos float up and settle as they scroll into view */
+html.js .shot.rise{opacity:0;transform:translateY(70px) scale(.97);transition:opacity .55s ease-in,transform .6s cubic-bezier(.5,0,.75,0)}
+html.js .shot.rise.above{transform:translateY(-70px) scale(.97)}
+html.js .shot.rise.in{opacity:1;transform:none;transition:opacity .8s ease,transform 1.3s cubic-bezier(.3,1.6,.55,1);transition-delay:var(--d,0s)}
+
+/* every photo has a visible caption underneath */
+.shot{position:relative;margin:0}
+.shot img{width:100%;height:auto;border-radius:4px;background:var(--surface)}
+.shot figcaption{margin-top:12px;font-size:.92rem;line-height:1.5;color:var(--muted);text-wrap:pretty}
+.shot.diagram{margin:28px 0 36px}
+.shot.wide{max-width:1010px;margin:0 0 96px}
+details.raw{margin:24px 0 8px}
+details.raw summary{display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:0 18px;border:1px solid var(--line);border-radius:999px;cursor:pointer;font-weight:500;font-size:.95rem;list-style:none}
+details.raw summary::-webkit-details-marker{display:none}
+details.raw summary::before{content:"+";color:var(--lime);font-weight:700;font-size:1.1rem}
+details.raw[open] summary::before{content:"−"}
+details.raw summary:hover{border-color:var(--lime)}
+details.raw .shot{margin-top:18px;max-width:560px}
+.shot.diagram img{background:#fff}
+.hero-cap{max-width:34ch;font-style:italic}
+
+/* 16P spectrum sliders */
+.traits{display:flex;flex-direction:column;gap:30px;margin:28px 0 8px}
+.trait p{margin:10px 0 0;font-size:.98rem}
+.tr-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:10px}
+.tr-aspect{font-weight:600;color:var(--muted);font-size:.9rem}
+.tr-val{font-weight:600;font-size:1.05rem}.tr-val b{color:var(--lime);font-size:1.25rem}
+.tr-bar{position:relative;height:12px;border-radius:999px;background:var(--line)}
+.tr-fill{position:absolute;top:0;bottom:0;left:var(--a);right:var(--b);border-radius:999px;background:linear-gradient(90deg,var(--lime-2),var(--lime))}
+.tr-mid{position:absolute;left:50%;top:-5px;bottom:-5px;width:2px;margin-left:-1px;background:rgba(241,245,234,.45)}
+.tr-dot{position:absolute;top:50%;left:var(--pos);width:22px;height:22px;margin:-11px 0 0 -11px;border-radius:50%;background:var(--ink);border:4px solid var(--lime);box-shadow:0 0 0 5px rgba(228,247,181,.18)}
+.tr-ends{display:flex;justify-content:space-between;margin-top:10px;font-size:.88rem;color:var(--muted)}
+.tr-ends .on{color:var(--text);font-weight:600}
+html.js .trait .tr-fill{transition:left 1.1s var(--ease),right 1.1s var(--ease)}
+html.js .trait .tr-dot{transition:left 1.1s cubic-bezier(.3,1.4,.5,1)}
+html.js .trait:not(.in) .tr-dot{left:50%}
+html.js .trait:not(.in) .tr-fill{left:50%;right:50%}
+
+/* interviews */
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 36px}
+.tabs button{min-height:44px;font:500 .95rem var(--sans);color:var(--text);background:transparent;border:1px solid var(--line);border-radius:999px;padding:0 20px;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.tabs button:hover{border-color:var(--muted)}
+.tabs button[aria-selected=true]{background:var(--lime);border-color:var(--lime);color:var(--on-lime)}
+.bio{display:grid;grid-template-columns:minmax(0,260px) minmax(0,1fr);gap:32px;align-items:center;margin-bottom:40px}
+.bio img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:4px}
+.bio .shot figcaption{margin-top:10px}
+.bio p{margin:0}
+.quote{margin:0;padding:8px 0 8px 28px;border-left:2px solid var(--lime);font:400 1.3rem/1.55 var(--serif)}
+.quote p{max-width:none}
+.theme{background:var(--lime);color:var(--on-lime);border-radius:4px;padding:clamp(24px,4vw,40px);margin-top:40px}
+.theme h3{margin-top:0;background:var(--on-lime);color:var(--lime)}.theme p{margin-bottom:0}
+@media(max-width:640px){.bio{grid-template-columns:1fr;gap:20px}.bio img{max-width:220px}.quote{padding-left:18px;font-size:1.18rem}}
+
+/* tables + theory */
+.tbl{overflow-x:auto;max-width:820px}
+table{border-collapse:collapse;width:100%;margin:8px 0 24px;font-size:.98rem}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--muted);font-weight:500}
+td:first-child{white-space:nowrap}
+.pitch-wrap{max-width:860px;margin:8px 0 96px}
+.pitch{margin:0}
+.pitch svg{width:100%;height:auto;display:block;overflow:visible}
+.pitch figcaption{margin-top:12px;color:var(--muted);font-size:.88rem}
+.zl text{fill:var(--muted);font:500 14px var(--sans);text-anchor:middle}
+.pl{cursor:pointer;outline:none}
+.pl .ball{transform-box:fill-box;transform-origin:50% 100%}
+.pl .sh{fill:rgba(0,0,0,.35);transform-box:fill-box;transform-origin:center}
+.pl .ball circle{stroke:rgba(241,245,234,.85);stroke-width:2;transition:stroke .2s}
+.pl.zf .ball circle{fill:var(--moss)}.pl.zc .ball circle{fill:var(--lime-2)}.pl.zd .ball circle{fill:var(--lime)}
+.pl .hit{fill:transparent}
+.pl .ball text{font:700 15px var(--sans);text-anchor:middle;fill:var(--on-lime)}
+.pl.zf .ball text{fill:var(--text)}
+.pl .nm{font:600 13px var(--sans);text-anchor:middle;fill:var(--text);opacity:0;transition:opacity .2s;paint-order:stroke;stroke:rgba(24,33,27,.8);stroke-width:4px}
+.pl:hover .ball,.pl:focus .ball,.pl.on .ball{animation:bounce .8s cubic-bezier(.33,0,.4,1) infinite}
+.pl:hover .sh,.pl:focus .sh,.pl.on .sh{animation:shade .8s cubic-bezier(.33,0,.4,1) infinite}
+.pl:hover .nm,.pl:focus .nm,.pl.on .nm{opacity:1}
+.pl:focus-visible .ball circle{stroke:var(--lime);stroke-width:4}
+@keyframes bounce{0%,100%{transform:translateY(0) scale(1.14,.84)}12%,88%{transform:translateY(-2px) scale(1)}50%{transform:translateY(-22px) scale(.97,1.04)}}
+@keyframes shade{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(.55);opacity:.45}}
+@media(prefers-reduced-motion:reduce){.pl .ball,.pl .sh{animation:none!important}}
+ul.styles{padding-left:1.2em;margin:0 0 1em}ul.styles li{margin-bottom:8px}
+ol.steps{max-width:66ch;padding-left:1.3em}ol.steps li{margin-bottom:6px}
+
+
+@media(prefers-reduced-motion:reduce){
+  .blob,.decor i{animation:none!important}
+  .hero{height:auto}.hero-pin{position:relative;min-height:100svh;height:auto}
+  *{transition:none!important}
+}
 </style>
 </head>
 <body>
-<div class="layout">
-<nav aria-label="Sections">
-  <div class="name">David<small>Leadership portfolio</small></div>
-  <ul>
-    <li><a href="#introduction">Introduction</a></li>
-    <li><a href="#interviews">Interviews</a></li>
-    <li><a href="#assessment">Assessment reflection</a></li>
-    <li><a href="#theory">My leadership theory</a></li>
-    <li><a href="#growth">Growth</a></li>
-  </ul>
-</nav>
+<a class="skip" href="#main">Skip to content</a>
 
-<main>
-<header class="hero">
-  <h1>Learning to lead, one story at a <em>time</em>.</h1>
-  <p>A record of what I heard, what I learned about myself, and the leader I’m becoming.</p>
+<header class="top" id="top">
+  <a class="brand" href="#hero">David Garcia</a>
+  <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="siteNav">Menu</button>
+  <nav id="siteNav" aria-label="Sections">
+    <ul>
+      <li><a href="#introduction">Introduction</a></li>
+      <li><a href="#interviews">Interviews</a></li>
+      <li><a href="#assessment">Assessment</a></li>
+      <li><a href="#theory">Theory</a></li>
+      <li><a href="#growth">Growth</a></li>
+    </ul>
+  </nav>
 </header>
 
-<section id="introduction">
+<section class="hero" id="hero" aria-label="Welcome">
+<div class="hero-pin">
+  <div class="hero-media" id="heroMedia"><img class="hero-bg" src="images/voyagers.jpeg" width="1400" height="1050" alt="A large group of friends standing together inside a giant shark jaw exhibit"><img class="hero-bg alt" src="images/voyagers_rawr.jpeg" width="1400" height="1050" alt="The same group making claw hands inside the shark jaw exhibit"></div>
+  <div class="blobs" aria-hidden="true"><span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span><span class="blob b4"></span></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="stage" id="stage">
+    <h1 class="hl" id="hl"><span class="w1">David</span> <span class="acc">leading by example</span> <span class="w2">Garcia</span></h1>
+    <div class="lens" id="lens" aria-hidden="true"><div class="lens-inner" id="lensInner"></div></div>
+  </div>
+  <div class="meta">
+    <p><strong>Electrical Engineering</strong>Johns Hopkins University</p>
+    <p><strong>Best Self Portfolio</strong>EN.660.332 Leadership Theory</p>
+    <p class="hero-cap">Leading “The Voyagers,” my HopkinsLEAD pre-orientation group of incoming freshmen, at the National Aquarium in Baltimore.</p>
+    <a class="cue" href="#introduction" aria-label="Scroll to the introduction">Scroll<span></span></a>
+  </div>
+</div>
+</section>
+
+<main id="main">
+
+<!-- ============ INTRODUCTION ============ -->
+<section class="chapter" id="introduction">
+<div class="decor" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<div class="wrap">
   <h2>Introduction</h2>
-  <p class="lede">Who I am, why this site exists, and the project behind it.</p>
-  <div class="sub"><h3>Self-introduction</h3>
-  <figure class="fig"><img class="intro-photo" src="images/david_santiago_back.jpg" alt="Selfie of David in a cap and backpack on a hilltop, with the city of Santiago, Chile and mountains behind him"><figcaption>Me overlooking Santiago, Chile. I have traveled more since coming to Hopkins than in my entire life before, and this photo captures how much I love exploring new places and trying new things.</figcaption></figure>
-  <p>Hi! I’m David, a 21-year-old Mexican American, Catholic, first-generation college fourth-year student in the Whiting School of Engineering. I get my energy from being around friends and family. I grew up in Ohio in a Mexican household with two immigrant parents, two older sisters, and a bunch of cousins, aunts, and uncles. We played soccer together all the time, which is where my love of soccer came from and later grew into my love of the gym in high school. That is also when my self-development journey started, where I try to become a better version of myself every day. People are the most important part of my life, so I try to bring community into that journey.</p>
-  <p>Moving from Ohio to Baltimore was tough because I’m so family-oriented. I did not know a single person when I came to Hopkins, and I have traveled more here than in my entire life before. I like exploring new places, meeting new people, and trying new things. When I can, I make plans with friends, because that is where I get to let loose and be myself.</p>
-  <p>I was admitted as an Electrical Engineering major and I’m looking to enter the workforce with a B.S. in Electrical Engineering. I’m really interested in the semiconductor industry, which designs, tests, and manufactures the chips in so many of today’s devices. I hope to work at a semiconductor company for many years, earn my master’s in ECE with a concentration in Microelectronics, and eventually become a design engineer who implements chips on devices.</p>
+<div class="media">
+<div class="txt">
+    <h3>Who I am</h3>
+    <p>I’m David Garcia, a 21-year-old Mexican American from Columbus, Ohio, and a first-generation college student. I grew up with two immigrant parents, two older sisters, a younger brother, and more cousins, aunts, and uncles than I can count. My Catholic faith and my Mexican roots shape a lot of how I see the world, starting with the belief that family comes first.</p>
+    <h3>What matters to me</h3>
+    <p>People are at the center of my life. I get my energy from the people around me, and I’m most myself when I’m making plans with friends and family and getting to let loose.</p>
+    <p>I’m also always working on myself. Since high school, I’ve followed a self-development journey of trying to become a slightly better version of myself every day, and I try to bring the people around me along with me.</p>
+</div>
+<div class="pics"><figure class="shot"><img src="images/david_santiago_back.jpg" width="1200" height="1600" loading="lazy" alt="Selfie of David in a cap and backpack on a hilltop, with the city of Santiago, Chile and mountains behind him"><figcaption>On a hill overlooking the city of Santiago, Chile, during intersession.</figcaption></figure></div>
+</div>
+  <div class="strip"><figure class="shot" style="flex-grow:0.750"><img src="images/family_christmas.jpg" width="1050" height="1400" loading="lazy" alt="David and his family posing together in a kitchen decorated with Christmas garland"><figcaption>Christmas with my family at my cousins’ house, right next door to ours.</figcaption></figure><figure class="shot" style="flex-grow:1.333"><img src="images/cbus_food.jpeg" width="1400" height="1050" loading="lazy" alt="Four friends smiling at a table with plates of food in a dim restaurant"><figcaption>Fall break in Columbus with my friends from Hopkins.</figcaption></figure></div>
+<div class="media flip">
+<div class="txt">
+    <h3>What I enjoy</h3>
+    <p>Soccer has been part of my life for as long as I can remember. I grew up playing it with my family, and I still play whenever I can. In high school, it also pulled me into the gym.</p>
+    <p>I love exploring: new places, new people, and new experiences. I’ve traveled more since starting college than in the rest of my life combined, and almost every trip has been with friends.</p>
+</div>
+<div class="pics"><figure class="shot"><img src="images/crew_game.jpeg" width="1400" height="1050" loading="lazy" alt="David and two friends standing in the stands of a soccer stadium with the field behind them"><figcaption>At a Columbus Crew game with friends and teammates from my high school soccer team.</figcaption></figure></div>
+</div>
+  <div class="strip"><figure class="shot" style="flex-grow:0.750"><img src="images/chile_group.jpg" width="1200" height="1600" loading="lazy" alt="Four friends on a garden path with mountains behind them in Chile"><figcaption>In the mountains of Chile with friends I made on the Clark Scholars intersession trip.</figcaption></figure><figure class="shot" style="flex-grow:0.750"><img src="images/hocking_hills.jpeg" width="1050" height="1400" loading="lazy" alt="Four friends standing by a creek under a stone arch bridge in the woods"><figcaption>Hiking through Hocking Hills with friends.</figcaption></figure><figure class="shot" style="flex-grow:0.666"><img src="images/stairs_jamaica.jpeg" width="933" height="1400" loading="lazy" alt="Two people climbing a steep stone staircase through dense green jungle"><figcaption>Climbing a staircase through the forest in Jamaica with a friend I made on the Clark Scholars spring trip.</figcaption></figure></div>
+  <div class="prose">
+    <h3>Career goals</h3>
+    <p>Today I’m a fourth-year Electrical Engineering student in the Whiting School of Engineering. The field that pulls me in most is semiconductors: designing, testing, and manufacturing the chips inside so many of today’s devices. After graduating, I plan to join a semiconductor company, earn a master’s in ECE with a concentration in microelectronics, and eventually work as a design engineer who brings new chips into the devices people use every day.</p>
   </div>
-  <div class="sub"><h3>Purpose of this website</h3>
-  <p>This website lets me reflect on where I have been, where I am, and where I want to be. I do that by interviewing people who know me, examining my own leadership experiences, and presenting my own leadership theory. Its significance is that it makes me look closely at my character, think about who I am in the eyes of others, and see how I can improve.</p></div>
-  <div class="sub"><h3>Project context and significance</h3>
-  <p>This site is my Best Self Portfolio, the largest assignment in my leadership course <span class="ph">[add course name]</span>. It asks me to interview two people about a time I was at my best, reflect on my 16P and conflict assessments, build an original leadership theory, and set one growth goal. Together these pieces show how I lead now and how I want to lead next.</p></div>
-  <div class="refs"><h4>References</h4><ol><li class="ph">Add references for this section.</li></ol></div>
+  <div class="strip"><figure class="shot" style="flex-grow:0.750"><img src="images/load_board.jpeg" width="1050" height="1400" loading="lazy" alt="A green semiconductor load board mounted in a test system next to lab monitors"><figcaption>A load board I worked with during my internship at Texas Instruments.</figcaption></figure><figure class="shot" style="flex-grow:1.333"><img src="images/test_bench.jpeg" width="1400" height="1050" loading="lazy" alt="An internship lab bench with monitors, an oscilloscope, a microscope, and a circuit board under test"><figcaption>My bench setup during my internship at Milwaukee Tool.</figcaption></figure><figure class="shot" style="flex-grow:0.750"><img src="images/micron_bunny_suit.jpeg" width="1050" height="1400" loading="lazy" alt="David in a suit taking a selfie beside a person in a white cleanroom bunny suit at a Micron booth"><figcaption>A selfie at Micron’s “Chip or Treat” booth during a conference on Halloween.</figcaption></figure></div>
+  <div class="prose">
+    <h3>Purpose of this portfolio</h3>
+    <p>This site is my Best Self Portfolio, the largest assignment in my leadership course EN.660.332 Leadership Theory. For it, I interviewed two people about a time I was at my best, reflected on my 16P and conflict assessments, built my own leadership theory, and set one goal for growth. Putting it together pushed me to look closely at my character and at how others see me, so I can understand where I have been, where I am now, and the leader I want to become.</p>
+  </div>
+</div>
 </section>
 
-<section id="interviews">
+<!-- ============ INTERVIEWS ============ -->
+<section class="chapter" id="interviews">
+<div class="decor" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<div class="wrap">
   <h2>Interviews</h2>
-  <p class="lede">Best Self stories from the people I interviewed, and what they showed me.</p>
-
-  <h3>Best Self stories</h3>
-  <p>I asked two people from different parts of my life, my sister and my best friend, the same question: <em>“Can you tell me one time when I was at my best self and be as descriptive, honest, and share as much detail as possible?”</em> Their answers are below in their own words.</p>
+  <div class="prose">
+    <p>I asked two people who know me from different parts of my life the same question: <em>“Can you tell me one time when I was at my best self and be as descriptive, honest, and share as much detail as possible?”</em> Here are their answers, in their own words.</p>
+  </div>
   <div class="tabs" role="tablist" aria-label="Interviewees">
-    <button role="tab" aria-selected="true" data-i="0">Adriana Garcia · Sister</button>
-    <button role="tab" aria-selected="false" data-i="1">Mahmoud Radwan · Best friend</button>
-  </div>
-  <div id="stories">
-    <div class="story">
-      <div class="bio"><figure class="fig" style="margin:0"><img class="photo" src="images/adriana.png" alt="Portrait of Adriana Garcia smiling in a light blue cardigan"><figcaption>Adriana Garcia, my sister and a Civil Engineering Analyst at Kimley-Horn.</figcaption></figure><div>
-        <h4 class="who">Adriana Garcia</h4>
-        <p class="role">My sister · Civil Engineering Analyst, Kimley-Horn</p>
-        <p>Adriana is a Civil Engineering Analyst at Kimley-Horn and Associates, Inc. in the Chicagoland area. She is originally from Columbus, Ohio, and graduated from the University of Dayton in 2024 with a degree in Civil Engineering focused on infrastructure. She works on Kimley-Horn’s Land Development team on residential, commercial, educational, medical, retail, and mixed-use projects, and she serves on the Scholarship Committee of the Commercial Real Estate Women (CREW) Chicago Chapter. Outside of work, she enjoys exploring Chicago’s food and architecture, fitness, walking, traveling, and watching shows and movies.</p>
-      </div></div>
-      <blockquote class="quote">
-        <p>A time when David was at his best was during high school. Throughout those years, he demonstrated ambition, leadership, and strategic thinking. From his freshman year onward, David was not only academically successful but also worked on improving his skills in soccer and band while maintaining strong connections with his peers, family, and community. These qualities remained consistent through his senior year, when he graduated and moved away for college.</p>
-        <p>During soccer season, David went beyond the expectations of scheduled school practices. He organized scrimmages and games at a local community park, creating additional opportunities for himself and others to develop their skills. He also practiced independently during his free time to maintain his endurance and continue improving as a player. His initiative demonstrated not only his dedication to personal growth, but also his ability to bring people together. His peers respected him as a young leader and saw him as someone who created an inclusive and supportive environment.</p>
-        <p>At the same time, David was also a dedicated member of the school band, where he played the trumpet. He consistently set aside time on weekends to rehearse independently and would even offer to perform for his family. His ability to balance these commitments demonstrated a strong sense of responsibility and maturity. Even at a young age, David understood the importance of following through on his responsibilities and honoring the commitments he made.</p>
-        <p>Above all, David prioritized his academic growth. His curiosity was one of the qualities that set him apart from his peers. He studied every day and frequently went beyond the expectations of his coursework by exploring subjects and topics outside of his required curriculum. David held himself to high standards, set meaningful goals for himself, and consistently worked toward achieving them.</p>
-        <p>Overall, David’s high school years demonstrated what he is capable of when he is focused, motivated, and at his best. He showed discipline, initiative, emotional intelligence, curiosity, and analytical thinking. Not only did he demonstrate these qualities in only one area of his life, but he applied them consistently across academics, athletics, music, relationships, and his community. His ability to pursue his goals while remaining connected to and supportive to those around him was one of the clearest examples of David at his best.</p>
-        <footer>Adriana Garcia</footer>
-      </blockquote>
-    </div>
-    <div class="story" hidden>
-      <div class="bio"><figure class="fig" style="margin:0"><img class="photo" src="images/mahmoud.png" alt="Close-up selfie of Mahmoud Radwan outdoors with trees and rocks behind him"><figcaption>Mahmoud Radwan, my best friend and a fellow Hopkins SHPE member.</figcaption></figure><div>
-        <h4 class="who">Mahmoud Radwan</h4>
-        <p class="role">My best friend · Electrical Engineering, Johns Hopkins University</p>
-        <p>Mahmoud is a senior studying Electrical Engineering at Johns Hopkins University. He is my best friend and a fellow member of our school’s Society of Hispanic Professional Engineers (SHPE) chapter, and he was one of the members I drove to this year’s SHPE National Convention in Indianapolis.</p>
-      </div></div>
-      <blockquote class="quote">
-        <p>One time you were your best self is when we were at the SHPE national convention this year. This year’s convention was in Indiana, and the chapter was only able to cover for people’s registration and hotel, not travel. Because of this, members had to pay for their own flights however to help support those who couldn’t afford it, David offered to drive them in his own car. I was one of those people David brought and he never asked for anything in return. Because of how far the drive was, we decided to depart from Hopkins the day before the convention started. But since the hotel was booked for the first day of the convention, David let everyone crash at his house in Ohio the night before the convention. When we got to his house, it was nothing but welcoming. His mom cooked us beef broth and let me sleep in a guest room.</p>
-        <p>Once we were at the convention, I felt that David was super focused on getting done what he needed to get done, but especially outside convention time I felt that he was genuinely concerned about the people we were talking to. I also felt like he was supporting people in terms of his experience at the convention, but by also just being a positive presence. While we were waiting in lines during the company expos, David would talk with others and give them advice on how to succeed at the SHPE National convention, like how he did for me during my first time at last year’s convention.</p>
-        <footer>Mahmoud Radwan</footer>
-      </blockquote>
-    </div>
+    <button role="tab" id="tab-0" aria-selected="true" aria-controls="story-0" data-i="0">Adriana Garcia</button>
+    <button role="tab" id="tab-1" aria-selected="false" aria-controls="story-1" data-i="1" tabindex="-1">Mahmoud Radwan</button>
   </div>
 
-  <h3>Reflection on their responses</h3>
-  <p>Hearing my sister and best friend talk about me in this manner means a lot to me because I often feel that my actions go unnoticed. This doesn’t mean that I yearn for people’s praise every time I support others, because for me, helping others comes naturally. I don’t need recognition. However, whenever someone does take note of and compliment my actions of support, it makes me feel good about myself.</p>
-  <p>For me, character is a huge part of my identity, and I want to be known as a person who constantly brings positive energy and helps those around me. This can be done through a small gesture or a large contribution.</p>
+  <div class="story" id="story-0" role="tabpanel" aria-labelledby="tab-0">
+    <div class="bio">
+      <figure class="shot"><img src="images/adriana.png" width="975" height="650" alt="Portrait of Adriana Garcia smiling in a light blue cardigan"><figcaption>My sister, Adriana.</figcaption></figure>
+      <p>Adriana is my older sister and a Civil Engineering Analyst on Kimley-Horn’s Land Development team in the Chicago area, where she works on residential, commercial, educational, medical, retail, and mixed-use projects. She graduated from the University of Dayton in 2024 with a civil engineering degree focused on infrastructure and serves on the Scholarship Committee of Commercial Real Estate Women (CREW) Chicago. Outside of work, she explores the city’s food and architecture, stays active, travels, and catches up on shows and movies.</p>
+    </div>
+<div class="media">
+<div class="txt">
+    <blockquote class="quote">
+      <p>A time when David was at his best was during high school. Throughout those years, he demonstrated ambition, leadership, and strategic thinking. From his freshman year onward, David was not only academically successful but also worked on improving his skills in soccer and band while maintaining strong connections with his peers, family, and community. These qualities remained consistent through his senior year, when he graduated and moved away for college.</p>
+      <p>During soccer season, David went beyond the expectations of scheduled school practices. He organized scrimmages and games at a local community park, creating additional opportunities for himself and others to develop their skills. He also practiced independently during his free time to maintain his endurance and continue improving as a player. His initiative demonstrated not only his dedication to personal growth, but also his ability to bring people together. His peers respected him as a young leader and saw him as someone who created an inclusive and supportive environment.</p>
+      <p>At the same time, David was also a dedicated member of the school band, where he played the trumpet. He consistently set aside time on weekends to rehearse independently and would even offer to perform for his family. His ability to balance these commitments demonstrated a strong sense of responsibility and maturity. Even at a young age, David understood the importance of following through on his responsibilities and honoring the commitments he made.</p>
+      <p>Above all, David prioritized his academic growth. His curiosity was one of the qualities that set him apart from his peers. He studied every day and frequently went beyond the expectations of his coursework by exploring subjects and topics outside of his required curriculum. David held himself to high standards, set meaningful goals for himself, and consistently worked toward achieving them.</p>
+      <p>Overall, David’s high school years demonstrated what he is capable of when he is focused, motivated, and at his best. He showed discipline, initiative, emotional intelligence, curiosity, and analytical thinking. Not only did he demonstrate these qualities in only one area of his life, but he applied them consistently across academics, athletics, music, relationships, and his community. His ability to pursue his goals while remaining connected to and supportive to those around him was one of the clearest examples of David at his best.</p>
+    </blockquote>
+</div>
+<div class="pics"><figure class="shot"><img src="images/seniors_soccer.jpg" width="1200" height="1600" loading="lazy" alt="Four soccer players in black jerseys with their arms around each other on a field"><figcaption>With friends from my high school soccer team.</figcaption></figure><figure class="shot"><img src="images/david_dribbling.jpg" width="504" height="338" loading="lazy" alt="David in a Briggs jersey dribbling a soccer ball past a defender"><figcaption>Taking on a defender during a high school game.</figcaption></figure><figure class="shot"><img src="images/award_typo.jpg" width="828" height="638" loading="lazy" alt="All-Star Award certificate presented to David for trumpet with the CAHS Jazz Ensemble at the 45th Annual Ohio State University Jazz Festival, March 26, 2022"><figcaption>My All-Star Award for trumpet from the 2022 Ohio State University Jazz Festival, typo in my name and all.</figcaption></figure></div>
+</div>
+  </div>
 
+  <div class="story" id="story-1" role="tabpanel" aria-labelledby="tab-1" hidden>
+    <div class="bio">
+      <figure class="shot"><img src="images/mahmoud.png" width="598" height="678" alt="Close-up selfie of Mahmoud Radwan outdoors with trees and rocks behind him"><figcaption>My best friend, Mahmoud.</figcaption></figure>
+      <p>Mahmoud is my best friend and a senior studying Electrical Engineering at Johns Hopkins. We are both members of our school’s chapter of the Society of Hispanic Professional Engineers (SHPE).</p>
+    </div>
+<div class="media">
+<div class="txt">
+    <blockquote class="quote">
+      <p>One time you were your best self is when we were at the SHPE national convention this year. This year’s convention was in Indiana, and the chapter was only able to cover for people’s registration and hotel, not travel. Because of this, members had to pay for their own flights however to help support those who couldn’t afford it, David offered to drive them in his own car. I was one of those people David brought and he never asked for anything in return. Because of how far the drive was, we decided to depart from Hopkins the day before the convention started. But since the hotel was booked for the first day of the convention, David let everyone crash at his house in Ohio the night before the convention. When we got to his house, it was nothing but welcoming. His mom cooked us beef broth and let me sleep in a guest room.</p>
+      <p>Once we were at the convention, I felt that David was super focused on getting done what he needed to get done, but especially outside convention time I felt that he was genuinely concerned about the people we were talking to. I also felt like he was supporting people in terms of his experience at the convention, but by also just being a positive presence. While we were waiting in lines during the company expos, David would talk with others and give them advice on how to succeed at the SHPE National convention, like how he did for me during my first time at last year’s convention.</p>
+    </blockquote>
+</div>
+<div class="pics"><figure class="shot"><img src="images/shpe_dinner.jpeg" width="1400" height="1050" loading="lazy" alt="Friends around a restaurant table smiling over plates of food"><figcaption>Dinner with fellow Hopkins SHPE members.</figcaption></figure><figure class="shot"><img src="images/shpe_group.jpeg" width="1050" height="1400" loading="lazy" alt="A large group of SHPE members in business attire posing in front of an industry partnership banner"><figcaption>A group picture at the convention center.</figcaption></figure></div>
+</div>
+  </div>
+
+<div class="prose">
+    <h3>Reflection on their responses</h3>
+    <p>Hearing my sister and my best friend describe me this way meant a lot. I often feel that my actions go unnoticed, and I’m okay with that: helping others comes naturally to me, and I don’t do it for recognition. Still, when someone notices, it feels good to know that the small things I do for people actually matter to them.</p>
+    <p>Character is a big part of my identity. Whether it is a small gesture or a big contribution, I want the way I treat people to be what they remember about me.</p>
   <div class="theme">
-    <h3>A theme about myself: supporting others while pursuing my goals</h3>
-    <p>One theme I see in these stories is supporting others while pursuing goals. The story of me organizing scrimmages outside of soccer practice and the story of me helping others during the SHPE National Convention both demonstrate my best self: supporting others along the way to my own goals of becoming a better soccer player and getting a job, respectively.</p>
+    <h3>A theme about myself: I create the opportunity, then bring people with me</h3>
+    <p>Both stories show the same pattern. In high school, I didn’t wait for more practice time; I organized scrimmages at the park, which made me a better player and gave my teammates more time on the ball. At the SHPE National Convention, the chapter couldn’t cover travel, so I drove members there myself, let them stay at my family’s house, and shared the roadmap behind my internships while I pursued a full-time job. At my best, I create an opportunity and then make sure the people around me can take it too.</p>
   </div>
-  <div class="refs"><h4>References</h4><ol><li class="ph">Add references for this section.</li></ol></div>
+</div>
+</div>
 </section>
 
-<section id="assessment">
-  <h2>Assessment reflection</h2>
-  <p class="lede">What my assessment results say about me, and how I respond to them.</p>
-  <h3>16P personality results</h3>
-  <p>My result is <strong>ESFJ-T</strong>: extraverted, observant, feeling, judging, and turbulent. The 16P framework describes personality along five aspects, and I reflect on each one below. Several of my scores sit close to the middle, especially Judging and Turbulent at 51%, so I see these as tendencies rather than fixed traits.</p>
-  <div class="wrap"><table><thead><tr><th>Aspect</th><th>My result</th><th>What it means for me</th></tr></thead><tbody>
-  <tr><td>Mind</td><td>Extraverted 67%</td><td>I get energy from friends and family. Making plans with friends is where I let loose, and leaving my large family in Ohio was the hardest part of moving to Baltimore.</td></tr>
-  <tr><td>Energy</td><td>Observant 61%</td><td>I notice the people and details around me. On my project team I saw right away that we were all Hispanic, which made connecting easy.</td></tr>
-  <tr><td>Nature</td><td>Feeling 54%</td><td>I put people’s feelings first. I did not want teammates to feel bad about themselves, so I kept the group’s morale positive.</td></tr>
-  <tr><td>Tactics</td><td>Judging 51%</td><td>I’m decisive, thorough, and organized. I assigned roles, set weekly meetings, and made the call to finish the project when the deadline got close.</td></tr>
-  <tr><td>Identity</td><td>Turbulent 51%</td><td>I’m self-conscious, sensitive to stress, success-driven, and eager to improve. That matches the self-development journey I started in high school.</td></tr></tbody></table></div>
-  <h3>Personality in a leadership experience</h3>
-  <p>In my second semester at Hopkins, I took my first electrical engineering course with a final group project. We got to pick our partners, so I formed the team, but nobody else knew each other. My extraversion mattered right away: I introduced everyone and led by assigning roles and setting weekly meetings. We were all Hispanic, which made conversation easy, since I grew up around people with similar backgrounds.</p>
-  <p>At nearly every meeting, some members did not show up or had made little progress. Even though I was leading, I never called anyone out or got upset, because I did not want anyone to feel bad and I wanted to keep morale up. As the deadline got close and we were still not done, I finished the project on my own so we would not get a bad grade and would have a working demo for the professor. It worked, and our team got full credit.</p>
-  <p class="ph">[Add what this taught you about how your personality helped and hurt you as a leader.]</p>
-  <h3>Conflict assessment results</h3>
-  <p>My highest score is <strong>Collaborating (9)</strong>, the “owl,” someone who values both their goals and their relationships. Accommodating (8, the “teddy bear”) and Compromising (8, the “fox”) follow, then Competing (6, the “shark”) and Avoiding (5, the “turtle”). Accommodating is a close second, and it fits my habit of putting others first. Accommodators often seem agreeable and easygoing, but putting others’ needs first all the time can build resentment, so they benefit from saying what they need.<sup>2</sup></p>
-  <p>I think being an owl is a recent change. I used to be more of a shark who put goals ahead of relationships. Growing up in a Mexican, family-centered household, I was born into my relationships and never had to work to build them. They just happened. Leaving for college meant creating relationships on purpose, and that moved me from valuing goals over people to valuing both. I now actively spend time with the people in my life.</p>
-  <div class="wrap"><table><thead><tr><th>Conflict style</th><th>Score</th></tr></thead><tbody>
-  <tr><td>Competing (shark)</td><td>6</td></tr><tr><td>Collaborating (owl)</td><td>9</td></tr><tr><td>Compromising (fox)</td><td>8</td></tr><tr><td>Avoiding (turtle)</td><td>5</td></tr><tr><td>Accommodating (teddy bear)</td><td>8</td></tr></tbody></table></div>
-  
-  <h3>A conflict style on a team</h3>
-  <p>Collaborating showed up this past semester at the Society of Hispanic Professional Engineers (SHPE) National Convention in Indianapolis, where I went with several members of our school’s chapter. The conference is about professional development: networking, company workshops, and talking with employers to find job opportunities. I was this year’s National Convention chair, which meant Hopkins SHPE members looked to me for advice on how to succeed there.</p>
-  <p>It was my third national convention, so before we left I laid the groundwork by sharing a roadmap of how I landed my last two internships. Once we arrived, I had to balance my own goal with the chapter’s. My goal was to get a full-time engineering role with one of the attending companies. The chapter’s goal was for everyone to feel prepared to approach recruiters and pitch themselves, as I had in past years. I also shared what I had learned with students from other schools I had never met. By the end, everyone in my chapter had a great time and felt prepared. That is how I put my goals and my relationships on equal footing.</p>
+<!-- ============ ASSESSMENT ============ -->
+<section class="chapter" id="assessment">
+<div class="decor" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<div class="wrap">
+  <h2>Assessment Reflection</h2>
+<div class="media">
+<div class="txt">
+    <h3>16P personality results</h3>
+    <p>16Personalities measures personality across five aspects. Each one is a spectrum between two opposite traits: Mind (Extraverted or Introverted), Energy (Intuitive or Observant), Nature (Thinking or Feeling), Tactics (Judging or Prospecting), and Identity (Assertive or Turbulent).<sup>1</sup> My result is <strong>ESFJ-T</strong>. A few of my scores sit close to the middle, especially Judging and Turbulent at 51%, so I read them as tendencies rather than fixed traits. Here is where I land on each spectrum and how it shows up in my life.</p>
+  <div class="traits">
+    <div class="trait" style="--pos:33%;--a:0%;--b:67%">
+      <div class="tr-top"><span class="tr-aspect">Mind</span><span class="tr-val"><b>67%</b> Extraverted</span></div>
+      <div class="tr-bar" role="img" aria-label="Mind: 67% Extraverted, 33% Introverted"><span class="tr-fill"></span><span class="tr-mid"></span><span class="tr-dot"></span></div>
+      <div class="tr-ends"><span class="on">Extraverted</span><span>Introverted</span></div>
+      <p>Time with friends and family recharges me, so I make plans with people whenever I can.</p>
+    </div>
+    <div class="trait" style="--pos:61%;--a:61%;--b:0%">
+      <div class="tr-top"><span class="tr-aspect">Energy</span><span class="tr-val"><b>61%</b> Observant</span></div>
+      <div class="tr-bar" role="img" aria-label="Energy: 61% Observant, 39% Intuitive"><span class="tr-fill"></span><span class="tr-mid"></span><span class="tr-dot"></span></div>
+      <div class="tr-ends"><span>Intuitive</span><span class="on">Observant</span></div>
+      <p>I pick up on the people and details around me, which helps me read a room and connect quickly.</p>
+    </div>
+    <div class="trait" style="--pos:54%;--a:54%;--b:0%">
+      <div class="tr-top"><span class="tr-aspect">Nature</span><span class="tr-val"><b>54%</b> Feeling</span></div>
+      <div class="tr-bar" role="img" aria-label="Nature: 54% Feeling, 46% Thinking"><span class="tr-fill"></span><span class="tr-mid"></span><span class="tr-dot"></span></div>
+      <div class="tr-ends"><span>Thinking</span><span class="on">Feeling</span></div>
+      <p>I put people’s feelings first and work to keep a group’s morale up.</p>
+    </div>
+    <div class="trait" style="--pos:49%;--a:0%;--b:51%">
+      <div class="tr-top"><span class="tr-aspect">Tactics</span><span class="tr-val"><b>51%</b> Judging</span></div>
+      <div class="tr-bar" role="img" aria-label="Tactics: 51% Judging, 49% Prospecting"><span class="tr-fill"></span><span class="tr-mid"></span><span class="tr-dot"></span></div>
+      <div class="tr-ends"><span class="on">Judging</span><span>Prospecting</span></div>
+      <p>I’m decisive, thorough, and organized. I like setting roles, schedules, and deadlines early.</p>
+    </div>
+    <div class="trait" style="--pos:51%;--a:51%;--b:0%">
+      <div class="tr-top"><span class="tr-aspect">Identity</span><span class="tr-val"><b>51%</b> Turbulent</span></div>
+      <div class="tr-bar" role="img" aria-label="Identity: 51% Turbulent, 49% Assertive"><span class="tr-fill"></span><span class="tr-mid"></span><span class="tr-dot"></span></div>
+      <div class="tr-ends"><span>Assertive</span><span class="on">Turbulent</span></div>
+      <p>I’m self-conscious and sensitive to stress, but also driven to succeed and improve, which keeps my self-development journey going.</p>
+    </div>
+  </div>
+  <details class="raw"><summary>View my original 16Personalities results</summary><figure class="shot"><img src="images/16P_results.png" width="778" height="676" loading="lazy" alt="Screenshot of David’s 16Personalities results: 67% Extraverted, 61% Observant, 54% Feeling, 51% Judging, 51% Turbulent"><figcaption>My 16Personalities results, as shown on the 16Personalities site.<sup>1</sup></figcaption></figure></details>
+</div>
+<div class="pics"><figure class="shot"><img src="images/brewers.jpeg" width="1050" height="1400" loading="lazy" alt="A large group of friends posing in the stands of a baseball stadium"><figcaption>A Brewers game with my fellow interns.</figcaption></figure><figure class="shot"><img src="images/concert.jpg" width="1200" height="1600" loading="lazy" alt="David and a friend standing on a city street at night"><figcaption>Leaving a Junior H concert, my favorite artist, with a friend in New Jersey.</figcaption></figure></div>
+</div>
+<div class="media flip">
+<div class="txt">
+    <h3>Personality in a leadership experience</h3>
+    <p>In my second semester at Hopkins, my first electrical engineering course ended with a group project. We could choose our own partners, so I formed a team of classmates who didn’t know each other. My extraversion helped right away: I introduced everyone, assigned roles, and set up weekly meetings. We were all Hispanic, which made it easy to connect, since I grew up around people with similar backgrounds.</p>
+    <p>The work itself was harder. At almost every meeting, someone was missing or had made little progress. Even as the leader, I never called anyone out or got upset, because I didn’t want anyone to feel bad and I wanted to keep morale up. As the deadline closed in and the project still wasn’t finished, I completed it myself so we would have a working demo for the professor and avoid a bad grade. It worked, and our team got full credit.</p>
+    <p>Looking back, every part of my personality played a role. Being extraverted helped me form the team and lead it, and being observant helped me build good relationships within it, because I knew each person’s strengths and weaknesses. Being Feeling made things harder: I prioritized everyone’s feelings over the team being productive, so I put more of the work on myself. Being Judging is what let us finish on time, since I set up scheduled meetings and deliverables for us, and being Turbulent drove my motivation to see it through.</p>
+</div>
+<div class="pics"><figure class="shot"><img src="images/old_electrical_engineering_building.jpg" width="1200" height="1600" loading="lazy" alt="David with arms raised on the steps of a brick building with white columns"><figcaption>Doing a scavenger hunt during my Clark Scholars pre-orientation.</figcaption></figure></div>
+</div>
+<div class="media">
+<div class="txt">
+    <h3>Conflict assessment results</h3>
+    <p>The conflict assessment measures how I respond to conflict along two dimensions: how much I care about reaching my own goals, and how much I care about keeping the relationship. Where someone falls on those two dimensions places them in one of five styles, each represented by an animal: the shark (competing), owl (collaborating), fox (compromising), turtle (avoiding), and teddy bear (accommodating).<sup>2</sup></p>
+    <p>My highest conflict score is <strong>Collaborating</strong>, the “owl,” which describes someone who values both their goals and their relationships. Accommodating and Compromising are close behind. Accommodating fits my habit of putting others first. Accommodators tend to come across as agreeable and easygoing, but always putting others’ needs ahead of their own can build resentment, so they benefit from saying what they need.<sup>2</sup></p>
+  <div class="tbl"><table><thead><tr><th>Conflict style</th><th>Score</th></tr></thead><tbody>
+  <tr><td>Collaborating (owl)</td><td>9</td></tr><tr><td>Accommodating (teddy bear)</td><td>8</td></tr><tr><td>Compromising (fox)</td><td>8</td></tr><tr><td>Competing (shark)</td><td>6</td></tr><tr><td>Avoiding (turtle)</td><td>5</td></tr></tbody></table></div>
+  <details class="raw"><summary>View my original conflict assessment result</summary><figure class="shot"><img src="images/conflict_assessment_results.png" width="1213" height="280" loading="lazy" alt="Screenshot of David’s conflict assessment result: Owl, Collaborating. Owls highly value both their goals and their relationships."><figcaption>My conflict assessment result: the owl, or Collaborating style.</figcaption></figure></details>
+    <p>Being an owl is fairly new for me. I used to be more of a shark who put goals ahead of relationships. In my family-centered Mexican household, relationships were simply there; I never had to work to build them. Leaving for college changed that. Building relationships on purpose taught me to value people as much as goals, and now I actively make time for the people in my life.</p>
+</div>
+<div class="pics"><figure class="shot"><img src="images/formal.jpg" width="1600" height="1200" loading="lazy" alt="Four friends in formal clothes posing by a river at night"><figcaption>High school formal with friends.</figcaption></figure><figure class="shot"><img src="images/plant.jpeg" width="828" height="622" loading="lazy" alt="David with his arm around a friend at night"><figcaption>A good time with a friend.</figcaption></figure></div>
+</div>
+<div class="media flip">
+<div class="txt">
+    <h3>A conflict style on a team</h3>
+    <p>Collaborating showed up this past semester at the SHPE National Convention in Indianapolis. The convention is built around professional development: networking, company workshops, and conversations with employers about jobs. As this year’s National Convention chair, I was the person Hopkins SHPE members turned to for advice on how to make the most of it.</p>
+    <p>It was my third national convention, so before we left, I shared a roadmap of how I had landed my last two internships. At the convention, I balanced two goals. Mine was to land a full-time engineering role with one of the attending companies. The chapter’s was for every member to feel ready to approach recruiters and pitch themselves. I also passed what I had learned on to students from other schools I had just met. By the end, everyone in our chapter felt prepared and had a great time. That is what putting my goals and my relationships on equal footing looks like.</p>
+</div>
+<div class="pics"><figure class="shot"><img src="images/shpe_big4.jpg" width="1400" height="1050" loading="lazy" alt="Five students in suits with convention badges standing in an expo hall"><figcaption>With friends from other schools’ SHPE chapters while waiting in the Apple line to talk to recruiters.</figcaption></figure><figure class="shot"><img src="images/NILA.jpeg" width="1050" height="1400" loading="lazy" alt="A group of students posing in front of a SHPE step-and-repeat backdrop"><figcaption>Region 4 (DMV area) leaders at SHPE’s NILA.</figcaption></figure></div>
+</div>
   <div class="refs"><h4>References</h4><ol><li>16Personalities. <a href="https://www.16personalities.com/">Theory and framework</a>.</li><li>Harvard Program on Negotiation. <a href="https://www.pon.harvard.edu/daily/conflict-resolution/conflict-management-styles-pitfalls-and-best-practices/">Conflict management styles, pitfalls, and best practices</a>.</li></ol></div>
+</div>
 </section>
 
-<section id="theory">
-  <h2>My leadership theory</h2>
-  <p class="lede">The beliefs and principles that guide how I lead.</p>
-  <p class="ph">[Optional: replace this section with a 3-5 minute video that explains your visual and cites sources aloud.]</p>
-  <h3>Name and origin</h3>
-  <p><strong>Leading by example and creating a positive team atmosphere.</strong> My theory comes from a current example in sport: Pep Guardiola and FC Barcelona. Guardiola captained Barcelona as a player and won six Spanish league titles and the 1991/92 European Cup with the club. He returned as coach in 2008, and his 2008/09 team, set up in a 4-3-3, won the treble of La Liga, the Copa del Rey, and the Champions League. That squad is often ranked among the best in football history.<sup>3</sup> I think it worked because he had already done the work he asked of others, and he built an environment where players wanted to push each other.</p>
-  <p>It also comes from my own experience on my electrical engineering project team, where I led by example but did not build the accountability that would have made the team share the work.</p>
-  <p><strong>What I want to be known for:</strong> someone who cares about the people around me, works hard, brings positive energy everywhere I go, and inspires people to be the best version of themselves.</p>
-  <h3>The visual</h3>
-  <figure class="fig" style="max-width:640px"><svg viewBox="0 0 640 400" role="img" aria-label="A 4-3-3 football formation with the back line labeled foundation, the midfield labeled connection, and the front line labeled drive" style="width:100%;height:auto;border:1px solid var(--line);border-radius:14px;background:var(--panel)"><text x="320" y="30" text-anchor="middle" fill="var(--warm)" font-size="15">The pitch: a positive team atmosphere</text><line x1="320" y1="46" x2="320" y2="346" stroke="var(--line)"/><g fill="var(--accent)"><circle cx="60" cy="200" r="14" fill="var(--muted)"/><circle cx="170" cy="80" r="14"/><circle cx="170" cy="160" r="14"/><circle cx="170" cy="240" r="14"/><circle cx="170" cy="320" r="14"/><circle cx="330" cy="110" r="14" fill="var(--warm)"/><circle cx="330" cy="200" r="14" fill="var(--warm)"/><circle cx="330" cy="290" r="14" fill="var(--warm)"/><circle cx="520" cy="90" r="14"/><circle cx="520" cy="200" r="14"/><circle cx="520" cy="310" r="14"/></g><g fill="var(--text)" font-size="15" text-anchor="middle"><text x="170" y="376">Foundation</text><text x="330" y="376">Connection</text><text x="520" y="376">Drive</text></g></svg><figcaption>Barcelona’s 2008/09 4-3-3 as a framework for how I lead.</figcaption></figure>
-  <p><strong>The pitch</strong> is the team atmosphere. Nothing else works if people don’t feel positive and supported. <strong>The back line, foundation:</strong> I show up and do the work I ask of others, in plain view. <strong>The midfield, connection:</strong> I read each teammate and adjust how I lead, as the squad’s midfielders linked every part of the team. <strong>The front line, drive:</strong> I push myself and the people around me to be better, and I celebrate the results together. <span class="ph">[Edit this mapping so it matches your thinking.]</span></p>
-  <h3>Leadership and followership</h3>
-  <p><strong>Leaders:</strong> Situational Leadership says effective leaders adapt their approach to each follower’s competence and commitment, moving among telling, selling, participating, and delegating.<sup>1</sup> The Blake Mouton Grid describes five leadership styles based on concern for people and concern for results.<sup>2</sup> My theory aims for high concern on both: leading by example drives results, and a positive atmosphere shows concern for people.</p>
-  <p><strong>Followers:</strong> Followers take cues from what leaders actually do, so visible effort sets the standard, and a positive climate makes it safe to ask for help. <span class="ph">[Add a study or data point on role modeling, team climate, or followership.]</span></p>
-  <h3>Putting it into practice</h3>
-  <ol style="max-width:66ch"><li>Do your part first and let the team see it.</li><li>Open each meeting with a quick check-in so everyone feels heard.</li><li>Match your style to each teammate: more direction for someone new, more trust for someone experienced.</li><li>Give kind, direct feedback early instead of absorbing the work yourself.</li><li>Celebrate progress out loud.</li></ol>
-  <h3>Limitations and nuances</h3>
-  <p>Leading by example can turn into doing everyone’s work, which is what happened on my project. A positive atmosphere can also avoid hard conversations. And Barcelona’s squad was full of exceptional talent, so results will not transfer one-to-one to a student team. <span class="ph">[Add how you checked that this differs from established theories.]</span></p>
-  <div class="refs"><h4>References</h4><ol><li>Hersey, P., &amp; Blanchard, K. Situational Leadership Theory. <span class="ph">[Add link.]</span></li><li>Blake, R., &amp; Mouton, J. The Managerial Grid. <span class="ph">[Add link.]</span></li><li class="ph">[Add the source for Guardiola’s playing and coaching titles.]</li></ol></div>
+<!-- ============ THEORY ============ -->
+<section class="chapter" id="theory">
+<div class="decor" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<div class="wrap">
+  <h2>The Positive Pitch</h2>
+  <div class="pitch-wrap">
+  <figure class="pitch">
+    <svg viewBox="0 0 640 420" role="group" aria-label="Barcelona’s starting eleven in the 2009 Champions League final, set up in a 4-3-3. Hover over or select a number to see who started in that position.">
+      <defs><pattern id="mow" width="80" height="360" patternUnits="userSpaceOnUse"><rect width="40" height="360" fill="#1f3a27"/><rect x="40" width="40" height="360" fill="#234130"/></pattern></defs>
+      <rect x="10" y="20" width="620" height="360" rx="6" fill="url(#mow)"/>
+      <g fill="none" stroke="rgba(241,245,234,.35)" stroke-width="2">
+        <rect x="10" y="20" width="620" height="360" rx="6"/>
+        <line x1="320" y1="20" x2="320" y2="380"/><circle cx="320" cy="200" r="50"/>
+        <rect x="10" y="110" width="80" height="180"/><rect x="550" y="110" width="80" height="180"/>
+        <rect x="10" y="160" width="28" height="80"/><rect x="602" y="160" width="28" height="80"/>
+      </g>
+      <g class="zl"><text x="178" y="408">Foundation</text><text x="325" y="408">Connection</text><text x="525" y="408">Drive</text></g>
+      <g class="pl zf" tabindex="0" role="button" transform="translate(62 210)" data-n="1" data-pos="Goalkeeper" data-name="Víctor Valdés" data-zone="f" aria-label="Number 1, Goalkeeper: Víctor Valdés"><circle class="hit" r="28"/><ellipse class="sh" cx="0" cy="20" rx="13" ry="3.5"/><g class="ball"><circle r="17"/><text y="5.5">1</text></g><text class="nm" y="-48">Valdés</text></g><g class="pl zf" tabindex="0" role="button" transform="translate(178 78)" data-n="3" data-pos="Left back" data-name="Sylvinho" data-zone="f" aria-label="Number 3, Left back: Sylvinho"><circle class="hit" r="28"/><ellipse class="sh" cx="0" cy="20" rx="13" ry="3.5"/><g class="ball"><circle r="17"/><text y="5.5">3</text></g><text class="nm" y="-48">Sylvinho</text></g><g class="pl zf" tabindex="0" role="button" transform="translate(178 166)" data-n="4" data-pos="Centre-back" data-name="Yaya Touré" data-zone="f" aria-label="Number 4, Centre-back: Yaya Touré"><circle class="hit" r="28"/><ellipse class="sh" cx="0" cy="20" rx="13" ry="3.5"/><g class="ball"><circle r="17"/><text y="5.5">4</text></g><text class="nm" y="-48">Touré</text></g><g class="pl zf" tabindex="0" role="button" transform="translate(178 254)" data-n="5" data-pos="Centre-back" data-name="Gerard Piqué" data-zone="f" aria-label="Number 5, Centre-back: Gerard Piqué"><circle class="hit" r="28"/><ellipse class="sh" cx="0" cy="20" rx="13" ry="3.5"/><g class="ball"><circle r="17"/><text y="5.5">5</text></g><text class="nm" y="-48">Piqué</text></g><g class="pl zf" tabindex="0" role="button" transform="translate(178 342)" data-n="2" data-pos="Right back" data-name="Carles Puyol" data-zone="f" aria-label="Number 2, Right back: Carles Puyol"><circle class="hit" r="28"/><ellipse class="sh" cx="0" cy="20" rx="13" ry="3.5"/><g class="ball"><circle r="17"/><text y="5.5">2</text></g><text class="nm" y="-48">Puyol</text></g><g class="pl zc" tabindex="0" role="button" transform="translate(338 120)" data-n="10" data-pos="Central midfielder" data-name="Andrés Iniesta" data-zone="c" aria-label="Number 10, Central midfielder: Andrés Iniesta"><circle class="hit" r="28"/><ellipse class="sh" cx="0" cy="20" rx="13" ry="3.5"/><g class="ball"><circle r="17"/><text y="5.5">10</text></g><text class="nm" y="-48">Iniesta</text></g><g class="pl zc" tabindex="0" role="button" transform="translate(312 210)" data-n="6" data-pos="Defensive midfielder" data-name="Sergio Busquets" data-zone="c" aria-label="Number 6, Defensive midfielder: Sergio Busquets"><circle class="hit" r="28"/><ellipse class="sh" cx="0" cy="20" rx="13" ry="3.5"/><g class="ball"><circle r="17"/><text y="5.5">6</text></g><text class="nm" y="-48">Busquets</text></g><g class="pl zc" tabindex="0" role="button" transform="translate(338 300)" data-n="8" data-pos="Central midfielder" data-name="Xavi Hernández" data-zone="c" aria-label="Number 8, Central midfielder: Xavi Hernández"><circle class="hit" r="28"/><ellipse class="sh" cx="0" cy="20" rx="13" ry="3.5"/><g class="ball"><circle r="17"/><text y="5.5">8</text></g><text class="nm" y="-48">Xavi</text></g><g class="pl zd" tabindex="0" role="button" transform="translate(512 96)" data-n="11" data-pos="Left winger" data-name="Thierry Henry" data-zone="d" aria-label="Number 11, Left winger: Thierry Henry"><circle class="hit" r="28"/><ellipse class="sh" cx="0" cy="20" rx="13" ry="3.5"/><g class="ball"><circle r="17"/><text y="5.5">11</text></g><text class="nm" y="-48">Henry</text></g><g class="pl zd" tabindex="0" role="button" transform="translate(538 210)" data-n="9" data-pos="Centre forward" data-name="Lionel Messi" data-zone="d" aria-label="Number 9, Centre forward: Lionel Messi"><circle class="hit" r="28"/><ellipse class="sh" cx="0" cy="20" rx="13" ry="3.5"/><g class="ball"><circle r="17"/><text y="5.5">9</text></g><text class="nm" y="-48">Messi</text></g><g class="pl zd" tabindex="0" role="button" transform="translate(512 324)" data-n="7" data-pos="Right winger" data-name="Samuel Eto’o" data-zone="d" aria-label="Number 7, Right winger: Samuel Eto’o"><circle class="hit" r="28"/><ellipse class="sh" cx="0" cy="20" rx="13" ry="3.5"/><g class="ball"><circle r="17"/><text y="5.5">7</text></g><text class="nm" y="-48">Eto’o</text></g>
+    </svg>
+    <figcaption>Barcelona’s starting XI in the 2009 Champions League final, in Guardiola’s 4-3-3. Hover over or tap a number to see who started there. Numbers are the traditional position numbers.</figcaption>
+  </figure>
+  </div>
+<div class="media">
+<div class="txt">
+    <h3>Name and origin</h3>
+    <p>I call my theory <strong>The Positive Pitch</strong>: leading by example and creating a positive team atmosphere. It comes from Pep Guardiola and FC Barcelona. As a player, Guardiola captained Barcelona and won six Spanish league titles and the 1991/92 European Cup with the club. He returned as coach in 2008, and his 2008/09 team, set up in a 4-3-3, won the treble: La Liga, the Copa del Rey, and the Champions League. That squad is often ranked among the best in football history.<sup>2</sup> I think it worked because Guardiola had already done the work he asked of his players, and he built an environment where they wanted to push each other.</p>
+    <p>The theory also comes from my own project team, where I led by example but never built the accountability that would have made the team share the work.</p>
+    <p><strong>What I want to be known for:</strong> someone who cares about the people around me, works hard, brings positive energy everywhere I go, and inspires people to be the best version of themselves.</p>
+</div>
+<div class="pics"><figure class="shot"><img src="images/soccer_solo.jpeg" width="1400" height="933" loading="lazy" alt="David running with the ball on a turf field at night"><figcaption>Playing intramural soccer.</figcaption></figure></div>
+</div>
+<div class="media">
+<div class="txt">
+    <p><strong>The pitch is the team atmosphere.</strong> Nothing else works unless people feel positive and supported, the same way no formation works on a bad pitch. <strong>The goalkeeper and back line are the foundation:</strong> I show up first and do the work I ask of others, in plain view, so the team has something solid to build from. <strong>The midfield is connection:</strong> just as Busquets, Xavi, and Iniesta linked every part of Barcelona’s team, I read each teammate, learn their strengths, and adjust how I lead them. <strong>The front line is drive:</strong> once the foundation and connections are in place, I push myself and the people around me to be better, and we celebrate the results together. Like Barcelona building every attack out from the back, the order matters. Drive only works once the foundation and connection are there.</p>
+    <h3>Why it’s needed</h3>
+    <p>Research backs up the idea that a team’s atmosphere matters as much as its talent. In a study of 51 work teams at a manufacturing company, Harvard professor Amy Edmondson found that teams with more psychological safety, a shared belief that it is safe to take interpersonal risks like asking a question or admitting a mistake, engaged in more learning behavior, and that learning behavior led to better team performance.<sup>3</sup> Google reached a similar conclusion in Project Aristotle, a study of 180 of its own teams. Psychological safety ranked first among the five dynamics that set its effective teams apart, and how a team worked together mattered more than who was on it.<sup>4</sup> That is the pitch in my theory: without it, even a team of talented people can’t perform, which is part of what I saw on my own project team.</p>
+    <h3>Leadership and followership</h3>
+    <p><strong>Leaders:</strong> My theory builds on Hersey and Blanchard’s Situational Leadership model, which says there is no single best way to lead. Instead, a leader balances two kinds of behavior: <em>task behavior</em>, such as giving direction and organizing the work, and <em>relationship behavior</em>, such as engaging, communicating with, and supporting people.<sup>1</sup> Combining the two creates four leadership styles:</p>
+    <ul class="styles">
+      <li><strong>Telling (S1):</strong> high task, low relationship. The leader gives clear instructions and closely supervises the work.</li>
+      <li><strong>Selling (S2):</strong> high task, high relationship. The leader still directs the work, but explains decisions and encourages the team along the way.</li>
+      <li><strong>Participating (S3):</strong> low task, high relationship. The leader shares decisions and supports the team while it does the work.</li>
+      <li><strong>Delegating (S4):</strong> low task, low relationship. The leader hands off responsibility and trusts the team to deliver.</li>
+    </ul>
+    <figure class="shot diagram"><img src="images/SL_Model.png" width="711" height="541" loading="lazy" alt="The Situational Leadership model: a curve through four quadrants of task behavior and relationship behavior, labeled Telling, Selling, Participating, and Delegating"><figcaption>The four leadership styles, plotted by task and relationship behavior. Image: The Decision Lab.<sup>1</sup></figcaption></figure>
+    <p><strong>Followers:</strong> Which style works best depends on the followers, who in my theory are my teammates. Situational Leadership describes each follower’s maturity level, a mix of their competence and commitment, from M1 (low competence, low commitment) to M4 (high competence, high commitment), and matches each level with the style it needs.<sup>1</sup> When a team first forms, most teammates are around M2: they have some competence but haven’t fully committed to the team yet, so they need a Selling leader who gives direction and builds relationships at the same time. That is exactly where The Positive Pitch starts. I lead by example (high task) while building a positive atmosphere (high relationship). As the team matures toward M4, I can step back into a Delegating role and trust my teammates to run the play themselves.</p>
+    <figure class="shot diagram"><img src="images/maturity_level.png" width="1185" height="514" loading="lazy" alt="Table matching follower maturity levels M1 through M4 to the Telling, Selling, Participating, and Delegating leadership styles"><figcaption>Each follower maturity level and the leadership style it calls for. Image: The Decision Lab.<sup>1</sup></figcaption></figure>
+</div>
+<div class="pics"><figure class="shot"><img src="images/mex_vs_col.jpeg" width="1400" height="1050" loading="lazy" alt="Friends in Mexico and Colombia jerseys cheering in a packed stadium"><figcaption>Watching Mexico vs. Colombia with friends at M&amp;T Bank Stadium.</figcaption></figure><figure class="shot"><img src="images/shpe_mexican_flag.jpg" width="1200" height="1600" loading="lazy" alt="David holding a large Mexican flag in a convention hall"><figcaption>Holding the Mexican flag at the 2025 SHPE National Convention in Anaheim, California.</figcaption></figure></div>
+</div>
+<div class="media flip">
+<div class="txt">
+    <h3>Putting it into practice</h3>
+    <ol class="steps"><li>Do your part first, and let the team see it.</li><li>Open each meeting with a quick check-in so everyone feels heard.</li><li>Match your style to each teammate: more direction for someone new, more trust for someone experienced.</li><li>Give kind, direct feedback early instead of absorbing the work yourself.</li><li>Celebrate progress out loud.</li></ol>
+</div>
+<div class="pics"><figure class="shot"><img src="images/dmv_shpe_speaker.jpeg" width="1400" height="933" loading="lazy" alt="David speaking into a microphone at a podium in a conference room"><figcaption>Speaking at the SHPE DMV alumni event I organized: a multi-chapter alumni-student mixer that brought together five SHPE chapters and 50+ attendees to build professional connections for Hispanics in STEM.</figcaption></figure></div>
+</div>
+  <figure class="shot wide"><img src="images/shpe_dmv_group.jpeg" width="1400" height="542" loading="lazy" alt="A large group of students and alumni in business attire posing together at the front of a conference room"><figcaption>Everyone who came out to the SHPE DMV alumni event.</figcaption></figure>
+  <div class="prose">
+    <h3>When to use it</h3>
+    <p>The Positive Pitch works best on new, small teams of peers who share a goal, like student project groups, club boards, or intramural teams, where no one has formal authority and the leader has to earn buy-in by example. It fits the start of a team’s life, when teammates are still around M2 and need both direction and connection, and it adapts as the team matures by shifting toward a delegating style. It is less suited to emergencies or large organizations that need one person to make fast, top-down decisions.</p>
+    <h3>Limitations and nuances</h3>
+    <p>Leading by example can turn into doing everyone’s work, which is exactly what happened on my project. A positive atmosphere can also become a way to avoid hard conversations. And Barcelona’s squad was full of exceptional talent, so its results won’t transfer one-to-one to a student team. I know this theory differs from established ones because it takes a tactical approach that mirrors a sport, while most leadership theories are abstract or built on corporate and real-world examples.</p>
+  </div>
+  <div class="refs"><h4>References</h4><ol><li>The Decision Lab. <a href="https://thedecisionlab.com/reference-guide/management/situational-leadership-theory">Situational Leadership Theory</a>.</li><li>Transfermarkt. <a href="https://www.transfermarkt.co.uk/pep-guardiola/erfolge/spieler/5950">Pep Guardiola: titles and honours</a>.</li><li>Edmondson, A. (1999). <a href="https://doi.org/10.2307/2666999">Psychological safety and learning behavior in work teams</a>. <em>Administrative Science Quarterly, 44</em>(2), 350–383.</li><li>Google re:Work. <a href="https://rework.withgoogle.com/intl/en/guides/understand-team-effectiveness">Understand team effectiveness</a>.</li></ol></div>
+</div>
 </section>
 
-<section id="growth">
+<!-- ============ GROWTH ============ -->
+<section class="chapter" id="growth">
+<div class="decor" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<div class="wrap">
   <h2>Growth</h2>
-  <p class="lede">Where I’m headed and how I plan to get there.</p>
-  <h3>My area of growth</h3>
-  <p>I want to grow at holding teammates accountable. On my project team I avoided calling anyone out and ended up doing the work myself.</p>
-  <h3>One concrete behavior change</h3>
-  <p>When a teammate has not made progress by our weekly check-in, I will message them privately within 24 hours, ask what is blocking them, and agree on one specific task with a date. I will not take the task over unless we have agreed on that together.</p>
-  <h3>How this helps a current team</h3>
-  <p class="ph">[Name one current team and explain how this change will help it, for example by sharing the workload and keeping deadlines on track.]</p>
-  <div class="refs"><h4>References</h4><ol><li class="ph">Add references for this section.</li></ol></div>
-  <footer>© David</footer>
+<div class="media">
+<div class="txt">
+    <h3>My area of growth</h3>
+    <p>I want to get better at holding teammates accountable instead of quietly taking on their work.</p>
+    <p>This goal ties the rest of this portfolio together. My Feeling and Accommodating sides lead me to put other people’s feelings first, which is why I finished my project team’s work alone instead of calling anyone out. It is also the first limitation of The Positive Pitch: leading by example can turn into doing everyone’s work.</p>
+    <h3>One concrete behavior change</h3>
+    <p>When a teammate hasn’t made progress by our weekly check-in, I will message them privately within 24 hours, ask what is blocking them, and agree on one specific task with a due date. I won’t take the task over unless we decide that together.</p>
+</div>
+<div class="pics"><figure class="shot"><img src="images/zipline.jpeg" width="1050" height="1400" loading="lazy" alt="Friends in helmets reflected in a round mirror above autumn trees"><figcaption>A selfie before getting on the zipline.</figcaption></figure></div>
+</div>
+<div class="media flip">
+<div class="txt">
+    <h3>How this helps a current team</h3>
+    <p>My current team is my final presentation group in EN.660.332 Leadership Theory. We all had different schedules and couldn’t meet in person, but we still found a way to work together, and we became close friends in the process. No one person did the whole presentation; we all contributed, and it turned out really well. This change would help a team like this one, because if someone started to fall behind, I would hold them accountable instead of staying quiet and picking up their part.</p>
+</div>
+<div class="pics"><figure class="shot"><img src="images/cahs_osu_tour.jpeg" width="1050" height="1400" loading="lazy" alt="David taking a selfie with a group of high school classmates on a campus tour"><figcaption>A selfie with everyone during our high school tour of Ohio State.</figcaption></figure></div>
+</div>
+  <div class="strip"><figure class="shot" style="flex-grow:1.333"><img src="images/plane.jpeg" width="1400" height="1050" loading="lazy" alt="Two friends posing on top of a fighter jet monument at night"><figcaption>Posing with a friend on an airplane monument.</figcaption></figure><figure class="shot" style="flex-grow:0.750"><img src="images/snow_machine.jpeg" width="1050" height="1400" loading="lazy" alt="David in a winter jacket and snow pants standing in front of a large snow groomer"><figcaption>Next to a snow groomer on a ski trip.</figcaption></figure></div>
+</div>
 </section>
 </main>
-</div>
+
+
 <script>
 (function(){
-  var tabs=document.querySelectorAll('.tabs button'),stories=document.querySelectorAll('.story');
-  tabs.forEach(function(b){b.addEventListener('click',function(){
-    var i=+b.dataset.i;
-    tabs.forEach(function(t,j){t.setAttribute('aria-selected',j===i)});
-    stories.forEach(function(s,j){s.hidden=j!==i});
-  })});
-  var links=document.querySelectorAll('nav a'),secs=document.querySelectorAll('section');
-  if('IntersectionObserver' in window){
-    var io=new IntersectionObserver(function(es){es.forEach(function(e){
-      if(e.isIntersecting){links.forEach(function(a){a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id)})}
-    })},{rootMargin:'-30% 0px -60% 0px'});
-    secs.forEach(function(s){io.observe(s)});
+  var $=function(s,c){return (c||document).querySelector(s)}, $$=function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s))};
+  var rm=matchMedia('(prefers-reduced-motion: reduce)');
+  var clamp=function(v,a,b){return Math.max(a,Math.min(b,v))};
+  var smooth=function(x){x=clamp(x,0,1);return x*x*(3-2*x)};
+
+  /* menu */
+  var menuBtn=$('#menuBtn'), nav=$('#siteNav');
+  function closeMenu(){menuBtn.setAttribute('aria-expanded','false');nav.classList.remove('open')}
+  menuBtn.addEventListener('click',function(){var o=menuBtn.getAttribute('aria-expanded')==='true';menuBtn.setAttribute('aria-expanded',String(!o));nav.classList.toggle('open',!o)});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMenu()});
+
+  /* eased scrolling for in-page links */
+  var anim=0;
+  function ease(t){return t<.5?8*t*t*t*t:1-Math.pow(-2*t+2,4)/2}
+  function glideTo(el){
+    var start=scrollY, offset=parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop)||0;
+    var end=clamp(el.getBoundingClientRect().top+scrollY-(el.id==='hero'?0:offset),0,document.documentElement.scrollHeight-innerHeight);
+    var dist=end-start; cancelAnimationFrame(anim);
+    if(rm.matches||Math.abs(dist)<2){scrollTo({top:end,behavior:'instant'});return}
+    var dur=clamp(450+Math.abs(dist)*.09,650,1500), t0=performance.now();
+    (function step(now){var p=clamp((now-t0)/dur,0,1);scrollTo({top:start+dist*ease(p),behavior:'instant'});if(p<1)anim=requestAnimationFrame(step)})(t0);
   }
+  ['wheel','touchstart','keydown'].forEach(function(ev){addEventListener(ev,function(e){if(ev!=='keydown'||['ArrowUp','ArrowDown','PageUp','PageDown','Home','End',' '].indexOf(e.key)>-1)cancelAnimationFrame(anim)},{passive:true})});
+  document.addEventListener('click',function(e){
+    var a=e.target.closest&&e.target.closest('a[href^="#"]'); if(!a||a.classList.contains('skip'))return;
+    var id=a.getAttribute('href').slice(1), el=id&&document.getElementById(id); if(!el)return;
+    e.preventDefault(); closeMenu(); glideTo(el);
+    history.pushState(null,'','#'+id);
+    var h=el.querySelector('h2'); if(h){h.setAttribute('tabindex','-1');h.focus({preventScroll:true})}
+  });
+
+  /* interview tabs */
+  var tabs=$$('.tabs button'), stories=$$('.story');
+  function selectTab(i,focus){tabs.forEach(function(t,j){t.setAttribute('aria-selected',String(j===i));t.tabIndex=j===i?0:-1});stories.forEach(function(s,j){s.hidden=j!==i});if(focus)tabs[i].focus()}
+  tabs.forEach(function(b,i){
+    b.addEventListener('click',function(){selectTab(i)});
+    b.addEventListener('keydown',function(e){if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();selectTab((i+(e.key==='ArrowRight'?1:tabs.length-1))%tabs.length,true)}});
+  });
+
+
+  /* float-and-settle photos */
+  if('IntersectionObserver' in window && !rm.matches){
+    document.documentElement.classList.add('js');
+    var shots=$$('main .shot');
+    /* every time a photo comes into view it floats up and settles; as it leaves, it drifts out the way it is going and fades */
+    var rio=new IntersectionObserver(function(es){es.forEach(function(e){
+      var f=e.target, show=e.isIntersecting&&e.intersectionRatio>=.12;
+      if(f.classList.contains('trait')){f.classList.toggle('in',show);return}
+      if(show){f.classList.remove('above');f.classList.add('in')}
+      else if(f.classList.contains('in')||!e.isIntersecting){f.classList.remove('in');f.classList.toggle('above',e.boundingClientRect.top<innerHeight/2)}
+    })},{rootMargin:'-6% 0px -6% 0px',threshold:[0,.12,.25]});
+    $$('.trait').forEach(function(t){rio.observe(t)});
+    shots.forEach(function(f){
+      var sib=Array.prototype.indexOf.call(f.parentNode.children,f);
+      f.style.setProperty('--d',(sib%3*0.12)+'s');
+      f.classList.add('rise'); rio.observe(f);
+    });
+  }
+
+  /* hero: the photo starts small and widens to reveal the jaws */
+  var heroEl=$('#hero'), heroMedia=$('#heroMedia'), mqSm=matchMedia('(max-width:700px)');
+  function heroUpdate(){
+    if(rm.matches){heroMedia.style.setProperty('--z','1');heroMedia.style.setProperty('--o','0');return}
+    var r=heroEl.getBoundingClientRect(), d=r.height-innerHeight, p=d>0?clamp(-r.top/d,0,1):1, e=smooth(p);
+    var z0=mqSm.matches?1.2:1.45;
+    heroMedia.style.setProperty('--z',(z0-(z0-1)*e).toFixed(3));
+    heroMedia.style.setProperty('--o',smooth((p-.4)/.6).toFixed(3));
+  }
+
+  /* interactive pitch */
+  var pls=$$('.pl');
+  function showPlayer(g){pls.forEach(function(o){o.classList.toggle('on',o===g)})}
+  pls.forEach(function(g){
+    g.addEventListener('mouseenter',function(){showPlayer(g)});
+    g.addEventListener('click',function(){showPlayer(g)});
+    g.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();showPlayer(g)}});
+    g.addEventListener('mouseleave',function(){g.classList.remove('on')});
+    g.addEventListener('blur',function(){g.classList.remove('on')});
+  });
+
+  /* hero glass lens */
+  var hero=$('#hero'), stage=$('#stage'), hl=$('#hl'), lens=$('#lens'), inner=$('#lensInner');
+  var clone=hl.cloneNode(true); clone.removeAttribute('id'); clone.classList.add('ab'); inner.appendChild(clone);
+  var W=0,H=0,R=0,S=1.5,lx=null,ly=null,tx=0,ty=0,pointer=false,raf=0,heroOn=true,t0=performance.now();
+  var x0=0,x1=0,y0=0,y1=0;
+  function measure(){
+    W=stage.offsetWidth;H=stage.offsetHeight;R=lens.offsetWidth/2;inner.style.width=W+'px';inner.style.height=H+'px';
+    var sr=stage.getBoundingClientRect(),a=$('.w1',hl).getBoundingClientRect(),b=$('.w2',hl).getBoundingClientRect();
+    x0=a.left-sr.left+R*.6; x1=b.right-sr.left-R*.6; y0=a.top-sr.top+a.height*.55; y1=b.top-sr.top+b.height*.55;
+    if(lx===null){lx=x0+(x1-x0)*.15;ly=y0;tx=lx;ty=ly}
+    place();
+  }
+  function place(){lens.style.transform='translate('+(lx-R)+'px,'+(ly-R)+'px)';inner.style.transform='translate('+(R-lx*S)+'px,'+(R-ly*S)+'px) scale('+S+')'}
+  function loop(now){
+    raf=0; if(!heroOn||rm.matches)return;
+    if(!pointer){var t=(now-t0)/1000,u=(Math.sin(t*.3)+1)/2;tx=x0+(x1-x0)*u;ty=y0+(y1-y0)*smooth(u)+Math.sin(t*1.1)*R*.25}
+    lx+=(tx-lx)*.05; ly+=(ty-ly)*.05; place(); raf=requestAnimationFrame(loop);
+  }
+  function startLens(){if(!raf&&heroOn&&!rm.matches)raf=requestAnimationFrame(loop)}
+  hero.addEventListener('pointermove',function(e){if(e.pointerType!=='mouse')return;var r=stage.getBoundingClientRect();pointer=true;tx=clamp(e.clientX-r.left,0,W);ty=clamp(e.clientY-r.top,0,H)});
+  hero.addEventListener('pointerleave',function(){pointer=false});
+  if('IntersectionObserver' in window){new IntersectionObserver(function(es){heroOn=es[0].isIntersecting;if(heroOn)startLens()}).observe(hero)}
+
+  /* scroll: header state, active nav link, footer wordmark */
+  var top=$('#top'), secs=$$('main section[id]'), navLinks=$$('#siteNav a'), ticking=false;
+  function update(){
+    var y=scrollY, vh=innerHeight;
+    top.classList.toggle('scrolled',y>40); heroUpdate();
+    var cur=null; secs.forEach(function(s){if(s.getBoundingClientRect().top<=vh*.4)cur=s.id});
+    navLinks.forEach(function(a){a.classList.toggle('on',a.getAttribute('href')==='#'+cur)});
+  }
+  addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(function(){ticking=false;update()})}},{passive:true});
+  addEventListener('resize',function(){measure();update()});
+  rm.addEventListener&&rm.addEventListener('change',startLens);
+  measure(); update(); startLens();
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(measure);
 })();
 </script>
 </body>
