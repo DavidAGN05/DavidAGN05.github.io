@@ -55,7 +55,15 @@ p{max-width:66ch;margin:0 0 1em}
 .bio{display:grid;grid-template-columns:minmax(0,240px) minmax(0,1fr);gap:24px;align-items:start;margin-bottom:12px}
 .prompts{color:var(--muted);font-size:.92rem;margin:0 0 16px;padding-left:1.2em;max-width:66ch}
 .wrap{overflow-x:auto;max-width:760px}table{border-collapse:collapse;width:100%;margin:0 0 20px;font-size:.95rem}th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line)}th{color:var(--muted);font-weight:500}
-@media(max-width:700px){.bio{grid-template-columns:1fr}}
+.intro-photo{display:block;width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:14px;border:1px solid var(--line)}
+.photo{display:block;width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:14px;border:1px solid var(--line)}
+.who{margin:0;font:500 1.4rem/1.2 var(--serif)}
+.role{margin:4px 0 14px;color:var(--warm);font-size:.9rem}
+.quote{margin:8px 0 0;padding:24px 28px;max-width:760px;background:var(--panel);border-left:3px solid var(--accent);border-radius:0 14px 14px 0;font:400 1.08rem/1.75 var(--serif)}
+.quote p{max-width:none}
+.quote footer{padding:0;margin-top:8px;font:500 .9rem var(--sans);color:var(--muted)}
+.quote footer::before{content:"— "}
+@media(max-width:700px){.bio{grid-template-columns:1fr}.bio .fig{max-width:240px}.quote{padding:20px}}
 footer{padding:40px 0 0;color:var(--muted);font-size:.9rem}
 @media(max-width:860px){
   .layout{display:block}
@@ -90,7 +98,7 @@ footer{padding:40px 0 0;color:var(--muted);font-size:.9rem}
   <h2>Introduction</h2>
   <p class="lede">Who I am, why this site exists, and the project behind it.</p>
   <div class="sub"><h3>Self-introduction</h3>
-  <figure class="fig"><div class="img">Add your own photo (no stock photos)</div><figcaption>[Caption: who and where, and why this photo represents you.]</figcaption></figure>
+  <figure class="fig"><img class="intro-photo" src="images/david_santiago_back.jpg" alt="Selfie of David in a cap and backpack on a hilltop, with the city of Santiago, Chile and mountains behind him"><figcaption>Me overlooking Santiago, Chile. I have traveled more since coming to Hopkins than in my entire life before, and this photo captures how much I love exploring new places and trying new things.</figcaption></figure>
   <p>Hi! I’m David, a 21-year-old Mexican American, Catholic, first-generation college fourth-year student in the Whiting School of Engineering. I get my energy from being around friends and family. I grew up in Ohio in a Mexican household with two immigrant parents, two older sisters, and a bunch of cousins, aunts, and uncles. We played soccer together all the time, which is where my love of soccer came from and later grew into my love of the gym in high school. That is also when my self-development journey started, where I try to become a better version of myself every day. People are the most important part of my life, so I try to bring community into that journey.</p>
   <p>Moving from Ohio to Baltimore was tough because I’m so family-oriented. I did not know a single person when I came to Hopkins, and I have traveled more here than in my entire life before. I like exploring new places, meeting new people, and trying new things. When I can, I make plans with friends, because that is where I get to let loose and be myself.</p>
   <p>I was admitted as an Electrical Engineering major and I’m looking to enter the workforce with a B.S. in Electrical Engineering. I’m really interested in the semiconductor industry, which designs, tests, and manufactures the chips in so many of today’s devices. I hope to work at a semiconductor company for many years, earn my master’s in ECE with a concentration in Microelectronics, and eventually become a design engineer who implements chips on devices.</p>
@@ -107,29 +115,48 @@ footer{padding:40px 0 0;color:var(--muted);font-size:.9rem}
   <p class="lede">Best Self stories from the people I interviewed, and what they showed me.</p>
 
   <h3>Best Self stories</h3>
+  <p>I asked two people from different parts of my life, my sister and my best friend, the same question: <em>“Can you tell me one time when I was at my best self and be as descriptive, honest, and share as much detail as possible?”</em> Their answers are below in their own words.</p>
   <div class="tabs" role="tablist" aria-label="Interviewees">
-    <button role="tab" aria-selected="true" data-i="0">Interviewee 1</button>
-    <button role="tab" aria-selected="false" data-i="1">Interviewee 2</button>
+    <button role="tab" aria-selected="true" data-i="0">Adriana Garcia · Sister</button>
+    <button role="tab" aria-selected="false" data-i="1">Mahmoud Radwan · Best friend</button>
   </div>
   <div id="stories">
     <div class="story">
-      <div class="video">Embed your recorded video here (YouTube, Vimeo, or an uploaded file).</div>
-      <div class="bio"><figure class="fig" style="margin:0"><div class="img">Interviewee photo</div><figcaption>[Caption: name and relationship to you.]</figcaption></figure><div><p class="ph">[Small bio: name, relationship (family member, mentor, supervisor, or friend), and what they do.]</p></div></div>
-      <p class="ph">[Their Best Self story: the specific time, the situation, what you did, and details they shared. If they could not give a concrete example, ask follow-up questions.]</p>
+      <div class="bio"><figure class="fig" style="margin:0"><img class="photo" src="images/adriana.png" alt="Portrait of Adriana Garcia smiling in a light blue cardigan"><figcaption>Adriana Garcia, my sister and a Civil Engineering Analyst at Kimley-Horn.</figcaption></figure><div>
+        <h4 class="who">Adriana Garcia</h4>
+        <p class="role">My sister · Civil Engineering Analyst, Kimley-Horn</p>
+        <p>Adriana is a Civil Engineering Analyst at Kimley-Horn and Associates, Inc. in the Chicagoland area. She is originally from Columbus, Ohio, and graduated from the University of Dayton in 2024 with a degree in Civil Engineering focused on infrastructure. She works on Kimley-Horn’s Land Development team on residential, commercial, educational, medical, retail, and mixed-use projects, and she serves on the Scholarship Committee of the Commercial Real Estate Women (CREW) Chicago Chapter. Outside of work, she enjoys exploring Chicago’s food and architecture, fitness, walking, traveling, and watching shows and movies.</p>
+      </div></div>
+      <blockquote class="quote">
+        <p>A time when David was at his best was during high school. Throughout those years, he demonstrated ambition, leadership, and strategic thinking. From his freshman year onward, David was not only academically successful but also worked on improving his skills in soccer and band while maintaining strong connections with his peers, family, and community. These qualities remained consistent through his senior year, when he graduated and moved away for college.</p>
+        <p>During soccer season, David went beyond the expectations of scheduled school practices. He organized scrimmages and games at a local community park, creating additional opportunities for himself and others to develop their skills. He also practiced independently during his free time to maintain his endurance and continue improving as a player. His initiative demonstrated not only his dedication to personal growth, but also his ability to bring people together. His peers respected him as a young leader and saw him as someone who created an inclusive and supportive environment.</p>
+        <p>At the same time, David was also a dedicated member of the school band, where he played the trumpet. He consistently set aside time on weekends to rehearse independently and would even offer to perform for his family. His ability to balance these commitments demonstrated a strong sense of responsibility and maturity. Even at a young age, David understood the importance of following through on his responsibilities and honoring the commitments he made.</p>
+        <p>Above all, David prioritized his academic growth. His curiosity was one of the qualities that set him apart from his peers. He studied every day and frequently went beyond the expectations of his coursework by exploring subjects and topics outside of his required curriculum. David held himself to high standards, set meaningful goals for himself, and consistently worked toward achieving them.</p>
+        <p>Overall, David’s high school years demonstrated what he is capable of when he is focused, motivated, and at his best. He showed discipline, initiative, emotional intelligence, curiosity, and analytical thinking. Not only did he demonstrate these qualities in only one area of his life, but he applied them consistently across academics, athletics, music, relationships, and his community. His ability to pursue his goals while remaining connected to and supportive to those around him was one of the clearest examples of David at his best.</p>
+        <footer>Adriana Garcia</footer>
+      </blockquote>
     </div>
     <div class="story" hidden>
-      <div class="video">Embed your recorded video here (YouTube, Vimeo, or an uploaded file).</div>
-      <div class="bio"><figure class="fig" style="margin:0"><div class="img">Interviewee photo</div><figcaption>[Caption: name and relationship to you.]</figcaption></figure><div><p class="ph">[Small bio. Choose someone from a different group than Interviewee 1.]</p></div></div>
-      <p class="ph">[Their Best Self story.]</p>
+      <div class="bio"><figure class="fig" style="margin:0"><img class="photo" src="images/mahmoud.png" alt="Close-up selfie of Mahmoud Radwan outdoors with trees and rocks behind him"><figcaption>Mahmoud Radwan, my best friend and a fellow Hopkins SHPE member.</figcaption></figure><div>
+        <h4 class="who">Mahmoud Radwan</h4>
+        <p class="role">My best friend · Electrical Engineering, Johns Hopkins University</p>
+        <p>Mahmoud is a senior studying Electrical Engineering at Johns Hopkins University. He is my best friend and a fellow member of our school’s Society of Hispanic Professional Engineers (SHPE) chapter, and he was one of the members I drove to this year’s SHPE National Convention in Indianapolis.</p>
+      </div></div>
+      <blockquote class="quote">
+        <p>One time you were your best self is when we were at the SHPE national convention this year. This year’s convention was in Indiana, and the chapter was only able to cover for people’s registration and hotel, not travel. Because of this, members had to pay for their own flights however to help support those who couldn’t afford it, David offered to drive them in his own car. I was one of those people David brought and he never asked for anything in return. Because of how far the drive was, we decided to depart from Hopkins the day before the convention started. But since the hotel was booked for the first day of the convention, David let everyone crash at his house in Ohio the night before the convention. When we got to his house, it was nothing but welcoming. His mom cooked us beef broth and let me sleep in a guest room.</p>
+        <p>Once we were at the convention, I felt that David was super focused on getting done what he needed to get done, but especially outside convention time I felt that he was genuinely concerned about the people we were talking to. I also felt like he was supporting people in terms of his experience at the convention, but by also just being a positive presence. While we were waiting in lines during the company expos, David would talk with others and give them advice on how to succeed at the SHPE National convention, like how he did for me during my first time at last year’s convention.</p>
+        <footer>Mahmoud Radwan</footer>
+      </blockquote>
     </div>
   </div>
 
   <h3>Reflection on their responses</h3>
-  <p class="ph">[Reflect on each response: what stood out, where the stories overlapped or differed, and what surprised you.]</p>
+  <p>Hearing my sister and best friend talk about me in this manner means a lot to me because I often feel that my actions go unnoticed. This doesn’t mean that I yearn for people’s praise every time I support others, because for me, helping others comes naturally. I don’t need recognition. However, whenever someone does take note of and compliment my actions of support, it makes me feel good about myself.</p>
+  <p>For me, character is a huge part of my identity, and I want to be known as a person who constantly brings positive energy and helps those around me. This can be done through a small gesture or a large contribution.</p>
 
   <div class="theme">
-    <h3>A theme about myself</h3>
-    <p class="ph">[Name one theme about yourself that appears across both stories, then support it with specific details from what you heard.]</p>
+    <h3>A theme about myself: supporting others while pursuing my goals</h3>
+    <p>One theme I see in these stories is supporting others while pursuing goals. The story of me organizing scrimmages outside of soccer practice and the story of me helping others during the SHPE National Convention both demonstrate my best self: supporting others along the way to my own goals of becoming a better soccer player and getting a job, respectively.</p>
   </div>
   <div class="refs"><h4>References</h4><ol><li class="ph">Add references for this section.</li></ol></div>
 </section>
