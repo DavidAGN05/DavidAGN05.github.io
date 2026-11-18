@@ -118,6 +118,9 @@ p{max-width:68ch;margin:0 0 1em}
 .media{display:grid;grid-template-columns:minmax(0,64ch) 340px;gap:clamp(40px,6vw,96px);align-items:start;margin:0 0 112px}
 .media.flip{grid-template-columns:340px minmax(0,64ch)}
 .media.flip>.pics{order:-1}
+.media.half{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.mtable table{margin:0;font-size:.88rem}.mtable th,.mtable td{padding:10px 10px}.mtable td:first-child{white-space:nowrap}
+.mtable tr.hi td{background:rgba(228,247,181,.12);color:var(--text)}.mtable tr.hi td:first-child{box-shadow:inset 3px 0 0 var(--lime)}
 .media>.txt>h3:first-child{margin-top:0}
 .media .tbl{max-width:100%}
 .pics{display:flex;flex-direction:column;gap:56px;padding-top:6px}
@@ -283,7 +286,7 @@ ol.steps{max-width:66ch;padding-left:1.3em}ol.steps li{margin-bottom:6px}
     <p>Soccer has been part of my life for as long as I can remember. I grew up playing it with my family, and I still play whenever I can. In high school, it also pulled me into the gym.</p>
     <p>I love exploring: new places, new people, and new experiences. I’ve traveled more since starting college than in the rest of my life combined, and almost every trip has been with friends.</p>
 </div>
-<div class="pics"><figure class="shot"><img src="images/crew_game.jpeg" width="1400" height="1050" loading="lazy" alt="David and two friends standing in the stands of a soccer stadium with the field behind them"><figcaption>At a Columbus Crew game with friends and teammates from my high school soccer team.</figcaption></figure></div>
+<div class="pics"><figure class="shot"><img src="images/crew_game.jpeg" width="1400" height="1050" loading="lazy" alt="David and two friends standing in the stands of a soccer stadium with the field behind them"><figcaption>At a Columbus Crew game with friends and teammates from my high school soccer team.</figcaption></figure><figure class="shot"><img src="images/snow_machine.jpeg" width="1050" height="1400" loading="lazy" alt="David in a winter jacket and snow pants standing in front of a large snow groomer"><figcaption>Next to a snow groomer on the Clark Scholars ski trip.</figcaption></figure></div>
 </div>
   <div class="strip"><figure class="shot" style="flex-grow:0.750"><img src="images/chile_group.jpg" width="1200" height="1600" loading="lazy" alt="Four friends on a garden path with mountains behind them in Chile"><figcaption>In the mountains of Chile with friends I made on the Clark Scholars intersession trip.</figcaption></figure><figure class="shot" style="flex-grow:0.750"><img src="images/hocking_hills.jpeg" width="1050" height="1400" loading="lazy" alt="Four friends standing by a creek under a stone arch bridge in the woods"><figcaption>Hiking through Hocking Hills with friends.</figcaption></figure><figure class="shot" style="flex-grow:0.666"><img src="images/stairs_jamaica.jpeg" width="933" height="1400" loading="lazy" alt="Two people climbing a steep stone staircase through dense green jungle"><figcaption>Climbing a staircase through the forest in Jamaica with a friend I made on the Clark Scholars spring trip.</figcaption></figure></div>
   <div class="prose">
@@ -430,7 +433,7 @@ ol.steps{max-width:66ch;padding-left:1.3em}ol.steps li{margin-bottom:6px}
     <p>Collaborating showed up this past semester at the SHPE National Convention in Indianapolis. The convention is built around professional development: networking, company workshops, and conversations with employers about jobs. As this year’s National Convention chair, I was the person Hopkins SHPE members turned to for advice on how to make the most of it.</p>
     <p>It was my third national convention, so before we left, I shared a roadmap of how I had landed my last two internships. At the convention, I balanced two goals. Mine was to land a full-time engineering role with one of the attending companies. The chapter’s was for every member to feel ready to approach recruiters and pitch themselves. I also passed what I had learned on to students from other schools I had just met. By the end, everyone in our chapter felt prepared and had a great time. That is what putting my goals and my relationships on equal footing looks like.</p>
 </div>
-<div class="pics"><figure class="shot"><img src="images/shpe_big4.jpg" width="1400" height="1050" loading="lazy" alt="Five students in suits with convention badges standing in an expo hall"><figcaption>With friends from other schools’ SHPE chapters while waiting in the Apple line to talk to recruiters.</figcaption></figure><figure class="shot"><img src="images/NILA.jpeg" width="1050" height="1400" loading="lazy" alt="A group of students posing in front of a SHPE step-and-repeat backdrop"><figcaption>Region 4 (DMV area) leaders at SHPE’s NILA.</figcaption></figure></div>
+<div class="pics"><figure class="shot"><img src="images/shpe_big4.jpg" width="1400" height="1050" loading="lazy" alt="Five students in suits with convention badges standing in an expo hall"><figcaption>With friends from other schools’ SHPE chapters while waiting in the Apple line to talk to recruiters.</figcaption></figure><figure class="shot"><img src="images/NILA.jpeg" width="1050" height="1400" loading="lazy" alt="A group of students posing in front of a SHPE step-and-repeat backdrop"><figcaption>Region 4 (DMV area) leaders at SHPE’s NILA.</figcaption></figure><figure class="shot"><img src="images/plane.jpeg" width="1400" height="1050" loading="lazy" alt="Two friends posing on top of a fighter jet monument at night"><figcaption>Posing with a friend on an airplane monument at the 2024 SHPE National Convention in Anaheim, California.</figcaption></figure></div>
 </div>
   <div class="refs"><h4>References</h4><ol><li>16Personalities. <a href="https://www.16personalities.com/">Theory and framework</a>.</li><li>Harvard Program on Negotiation. <a href="https://www.pon.harvard.edu/daily/conflict-resolution/conflict-management-styles-pitfalls-and-best-practices/">Conflict management styles, pitfalls, and best practices</a>.</li></ol></div>
 </div>
@@ -472,6 +475,11 @@ ol.steps{max-width:66ch;padding-left:1.3em}ol.steps li{margin-bottom:6px}
     <p><strong>The pitch is the team atmosphere.</strong> Nothing else works unless people feel positive and supported, the same way no formation works on a bad pitch. <strong>The goalkeeper and back line are the foundation:</strong> I show up first and do the work I ask of others, in plain view, so the team has something solid to build from. <strong>The midfield is connection:</strong> just as Busquets, Xavi, and Iniesta linked every part of Barcelona’s team, I read each teammate, learn their strengths, and adjust how I lead them. <strong>The front line is drive:</strong> once the foundation and connections are in place, I push myself and the people around me to be better, and we celebrate the results together. Like Barcelona building every attack out from the back, the order matters. Drive only works once the foundation and connection are there.</p>
     <h3>Why it’s needed</h3>
     <p>Research backs up the idea that a team’s atmosphere matters as much as its talent. In a study of 51 work teams at a manufacturing company, Harvard professor Amy Edmondson found that teams with more psychological safety, a shared belief that it is safe to take interpersonal risks like asking a question or admitting a mistake, engaged in more learning behavior, and that learning behavior led to better team performance.<sup>3</sup> Google reached a similar conclusion in Project Aristotle, a study of 180 of its own teams. Psychological safety ranked first among the five dynamics that set its effective teams apart, and how a team worked together mattered more than who was on it.<sup>4</sup> That is the pitch in my theory: without it, even a team of talented people can’t perform, which is part of what I saw on my own project team.</p>
+</div>
+<div class="pics"><figure class="shot"><img src="images/mex_vs_col.jpeg" width="1400" height="1050" loading="lazy" alt="Friends in Mexico and Colombia jerseys cheering in a packed stadium"><figcaption>Watching Mexico vs. Colombia with friends at M&amp;T Bank Stadium.</figcaption></figure><figure class="shot"><img src="images/shpe_mexican_flag.jpg" width="1200" height="1600" loading="lazy" alt="David holding a large Mexican flag in a convention hall"><figcaption>Holding the Mexican flag at the 2025 SHPE National Convention in Anaheim, California.</figcaption></figure></div>
+</div>
+<div class="media half flip">
+<div class="txt">
     <h3>Leadership and followership</h3>
     <p><strong>Leaders:</strong> My theory builds on Hersey and Blanchard’s Situational Leadership model, which says there is no single best way to lead. Instead, a leader balances two kinds of behavior: <em>task behavior</em>, such as giving direction and organizing the work, and <em>relationship behavior</em>, such as engaging, communicating with, and supporting people.<sup>1</sup> Combining the two creates four leadership styles:</p>
     <ul class="styles">
@@ -480,11 +488,21 @@ ol.steps{max-width:66ch;padding-left:1.3em}ol.steps li{margin-bottom:6px}
       <li><strong>Participating (S3):</strong> low task, high relationship. The leader shares decisions and supports the team while it does the work.</li>
       <li><strong>Delegating (S4):</strong> low task, low relationship. The leader hands off responsibility and trusts the team to deliver.</li>
     </ul>
-    <figure class="shot diagram"><img src="images/SL_Model.png" width="711" height="541" loading="lazy" alt="The Situational Leadership model: a curve through four quadrants of task behavior and relationship behavior, labeled Telling, Selling, Participating, and Delegating"><figcaption>The four leadership styles, plotted by task and relationship behavior. Image: The Decision Lab.<sup>1</sup></figcaption></figure>
-    <p><strong>Followers:</strong> Which style works best depends on the followers, who in my theory are my teammates. Situational Leadership describes each follower’s maturity level, a mix of their competence and commitment, from M1 (low competence, low commitment) to M4 (high competence, high commitment), and matches each level with the style it needs.<sup>1</sup> When a team first forms, most teammates are around M2: they have some competence but haven’t fully committed to the team yet, so they need a Selling leader who gives direction and builds relationships at the same time. That is exactly where The Positive Pitch starts. I lead by example (high task) while building a positive atmosphere (high relationship). As the team matures toward M4, I can step back into a Delegating role and trust my teammates to run the play themselves.</p>
-    <figure class="shot diagram"><img src="images/maturity_level.png" width="1185" height="514" loading="lazy" alt="Table matching follower maturity levels M1 through M4 to the Telling, Selling, Participating, and Delegating leadership styles"><figcaption>Each follower maturity level and the leadership style it calls for. Image: The Decision Lab.<sup>1</sup></figcaption></figure>
 </div>
-<div class="pics"><figure class="shot"><img src="images/mex_vs_col.jpeg" width="1400" height="1050" loading="lazy" alt="Friends in Mexico and Colombia jerseys cheering in a packed stadium"><figcaption>Watching Mexico vs. Colombia with friends at M&amp;T Bank Stadium.</figcaption></figure><figure class="shot"><img src="images/shpe_mexican_flag.jpg" width="1200" height="1600" loading="lazy" alt="David holding a large Mexican flag in a convention hall"><figcaption>Holding the Mexican flag at the 2025 SHPE National Convention in Anaheim, California.</figcaption></figure></div>
+<div class="pics"><figure class="shot"><img src="images/SL_Model.png" width="711" height="541" loading="lazy" alt="The Situational Leadership model: a curve through four quadrants of task behavior and relationship behavior, labeled Telling, Selling, Participating, and Delegating"><figcaption>The four leadership styles, plotted by task and relationship behavior. Image: The Decision Lab.<sup>1</sup></figcaption></figure></div>
+</div>
+<div class="media half">
+<div class="txt">
+    <p><strong>Followers:</strong> Which style works best depends on the followers, who in my theory are my teammates. Situational Leadership describes each follower’s maturity level, a mix of their competence and commitment, from M1 (low competence, low commitment) to M4 (high competence, high commitment), and matches each level with the style it needs.<sup>1</sup> When a team first forms, most teammates are around M2: they have some competence but haven’t fully committed to the team yet, so they need a Selling leader who gives direction and builds relationships at the same time. That is exactly where The Positive Pitch starts. I lead by example (high task) while building a positive atmosphere (high relationship). As the team matures toward M4, I can step back into a Delegating role and trust my teammates to run the play themselves.</p>
+</div>
+<div class="pics"><figure class="shot mtable"><div class="tbl"><table>
+<thead><tr><th>Maturity level</th><th>Competence and commitment</th><th>Leadership style</th></tr></thead>
+<tbody>
+<tr><td>High (M4)</td><td>High competence, high commitment</td><td>Delegating (S4)</td></tr>
+<tr><td>Medium (M3)</td><td>High competence, variable commitment</td><td>Participating (S3)</td></tr>
+<tr class="hi"><td>Medium (M2)</td><td>Some competence, low commitment</td><td>Selling (S2)</td></tr>
+<tr><td>Low (M1)</td><td>Low competence, low commitment</td><td>Telling (S1)</td></tr>
+</tbody></table></div><figcaption>Each follower maturity level and the style it calls for. New teams usually start around M2 (highlighted). Adapted from The Decision Lab.<sup>1</sup></figcaption></figure></div>
 </div>
 <div class="media flip">
 <div class="txt">
@@ -493,10 +511,14 @@ ol.steps{max-width:66ch;padding-left:1.3em}ol.steps li{margin-bottom:6px}
 </div>
 <div class="pics"><figure class="shot"><img src="images/dmv_shpe_speaker.jpeg" width="1400" height="933" loading="lazy" alt="David speaking into a microphone at a podium in a conference room"><figcaption>Speaking at the SHPE DMV alumni event I organized: a multi-chapter alumni-student mixer that brought together five SHPE chapters and 50+ attendees to build professional connections for Hispanics in STEM.</figcaption></figure></div>
 </div>
-  <figure class="shot wide"><img src="images/shpe_dmv_group.jpeg" width="1400" height="542" loading="lazy" alt="A large group of students and alumni in business attire posing together at the front of a conference room"><figcaption>Everyone who came out to the SHPE DMV alumni event.</figcaption></figure>
-  <div class="prose">
+<div class="media flip">
+<div class="txt">
     <h3>When to use it</h3>
     <p>The Positive Pitch works best on new, small teams of peers who share a goal, like student project groups, club boards, or intramural teams, where no one has formal authority and the leader has to earn buy-in by example. It fits the start of a team’s life, when teammates are still around M2 and need both direction and connection, and it adapts as the team matures by shifting toward a delegating style. It is less suited to emergencies or large organizations that need one person to make fast, top-down decisions.</p>
+</div>
+<div class="pics"><figure class="shot"><img src="images/shpe_dmv_group.jpeg" width="1400" height="542" loading="lazy" alt="A large group of students and alumni in business attire posing together at the front of a conference room"><figcaption>Everyone who came out to the SHPE DMV alumni event, a student-run event like the ones this theory is built for.</figcaption></figure></div>
+</div>
+  <div class="prose">
     <h3>Limitations and nuances</h3>
     <p>Leading by example can turn into doing everyone’s work, which is exactly what happened on my project. A positive atmosphere can also become a way to avoid hard conversations. And Barcelona’s squad was full of exceptional talent, so its results won’t transfer one-to-one to a student team. I know this theory differs from established ones because it takes a tactical approach that mirrors a sport, while most leadership theories are abstract or built on corporate and real-world examples.</p>
   </div>
@@ -526,7 +548,6 @@ ol.steps{max-width:66ch;padding-left:1.3em}ol.steps li{margin-bottom:6px}
 </div>
 <div class="pics"><figure class="shot"><img src="images/cahs_osu_tour.jpeg" width="1050" height="1400" loading="lazy" alt="David taking a selfie with a group of high school classmates on a campus tour"><figcaption>A selfie with everyone during our high school tour of Ohio State.</figcaption></figure></div>
 </div>
-  <div class="strip"><figure class="shot" style="flex-grow:1.333"><img src="images/plane.jpeg" width="1400" height="1050" loading="lazy" alt="Two friends posing on top of a fighter jet monument at night"><figcaption>Posing with a friend on an airplane monument.</figcaption></figure><figure class="shot" style="flex-grow:0.750"><img src="images/snow_machine.jpeg" width="1050" height="1400" loading="lazy" alt="David in a winter jacket and snow pants standing in front of a large snow groomer"><figcaption>Next to a snow groomer on a ski trip.</figcaption></figure></div>
 </div>
 </section>
 </main>
