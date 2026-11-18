@@ -19,13 +19,13 @@
 }
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-padding-top:84px}
-body{margin:0;background:var(--ink);color:var(--text);font:400 1.0625rem/1.7 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:clip}
+body{margin:0;background:var(--ink);color:var(--text);font:400 1rem/1.7 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:clip}
 img{max-width:100%;height:auto;display:block}
 a{color:var(--lime);text-underline-offset:3px}
 :focus-visible{outline:2px solid var(--lime);outline-offset:3px;border-radius:2px}
 .skip{position:absolute;left:12px;top:-60px;z-index:100;background:var(--lime);color:var(--on-lime);padding:10px 14px;font-weight:600}
 .skip:focus{top:12px}
-.wrap{max-width:1180px;margin:0 auto}
+.wrap{max-width:1100px;margin:0 auto}
 
 /* ---------- header ---------- */
 .top{position:fixed;inset:0 0 auto;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:16px var(--gut);transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
@@ -88,7 +88,7 @@ a{color:var(--lime);text-underline-offset:3px}
 }
 
 /* ---------- chapters ---------- */
-.chapter{position:relative;isolation:isolate;overflow:clip;padding:clamp(96px,14vh,160px) var(--gut);border-top:1px solid var(--line)}
+.chapter{position:relative;isolation:isolate;overflow:clip;padding:0 var(--gut) clamp(96px,14vh,160px);border-top:1px solid var(--line)}
 h2::after{content:"";display:inline-block;width:.22em;height:.22em;margin-left:.12em;border-radius:50%;background:var(--lime);vertical-align:.05em}
 .decor{position:absolute;inset:0;z-index:-1;pointer-events:none}
 .decor i{position:absolute;display:block;border-radius:50%}
@@ -103,9 +103,10 @@ h2::after{content:"";display:inline-block;width:.22em;height:.22em;margin-left:.
 .decor i:nth-child(odd){animation:bob 7s ease-in-out infinite}
 .decor i:nth-child(3){animation-delay:-2s}.decor i:nth-child(5){animation-delay:-4s}.decor i:nth-child(7){animation-delay:-1s}
 @keyframes bob{50%{translate:0 -14px}}
-h2{font:600 clamp(2.1rem,4.6vw,3.8rem)/1.04 var(--sans);letter-spacing:-.035em;margin:0 0 48px;max-width:18ch;text-wrap:balance}
+h2{font:600 clamp(1.9rem,3.6vw,3rem)/1.06 var(--sans);letter-spacing:-.035em;margin:0 0 48px;max-width:18ch;text-wrap:balance}
 h3{font:600 1.45rem/1.25 var(--sans);letter-spacing:-.015em;margin:56px 0 12px}
-.chapter h3{display:table;font-size:1.1rem;letter-spacing:-.01em;background:var(--lime);color:var(--on-lime);padding:.5em 1.1em;border-radius:999px;margin-bottom:20px}
+.chapter h3 .ic{width:1.1em;height:1.1em;vertical-align:-.18em;margin-right:.45em}
+.chapter h3{display:table;font-size:.98rem;letter-spacing:-.01em;background:var(--lime);color:var(--on-lime);padding:.5em 1.1em;border-radius:999px;margin-bottom:20px}
 h2+.prose>h3:first-child{margin-top:0}
 .prose{max-width:68ch}
 p{max-width:68ch;margin:0 0 1em}
@@ -115,8 +116,8 @@ p{max-width:68ch;margin:0 0 1em}
 .refs ol{margin:0;padding-left:1.2em}.refs li{margin-bottom:6px}
 
 /* ---------- photos beside text ---------- */
-.media{display:grid;grid-template-columns:minmax(0,64ch) 340px;gap:clamp(40px,6vw,96px);align-items:start;margin:0 0 112px}
-.media.flip{grid-template-columns:340px minmax(0,64ch)}
+.media{display:grid;grid-template-columns:minmax(0,1fr) 290px;gap:clamp(36px,5vw,72px);align-items:start;margin:0 0 104px}
+.media.flip{grid-template-columns:290px minmax(0,1fr)}
 .media.flip>.pics{order:-1}
 .media.half{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
 .mtable table{margin:0;font-size:.88rem}.mtable th,.mtable td{padding:10px 10px}.mtable td:first-child{white-space:nowrap}
@@ -124,7 +125,7 @@ p{max-width:68ch;margin:0 0 1em}
 .media>.txt>h3:first-child{margin-top:0}
 .media .tbl{max-width:100%}
 .pics{display:flex;flex-direction:column;gap:56px;padding-top:6px}
-.strip{display:flex;gap:clamp(24px,3.5vw,44px);max-width:1010px;margin:40px 0 96px}
+.strip{display:flex;gap:clamp(20px,3vw,36px);max-width:860px;margin:40px auto 104px}
 .strip>*{flex-basis:0;flex-shrink:1;min-width:0}
 .strip.mini{margin:36px 0 0;max-width:none}
 .chapter h3{margin-top:72px}
@@ -144,8 +145,14 @@ html.js .shot.rise.in{opacity:1;transform:none;transition:opacity .8s ease,trans
 
 /* every photo has a visible caption underneath */
 .shot{position:relative;margin:0}
-.shot img{width:100%;height:auto;border-radius:4px;background:var(--surface)}
-.shot figcaption{margin-top:12px;font-size:.92rem;line-height:1.5;color:var(--muted);text-wrap:pretty}
+.shot img{display:block;width:100%;height:auto;background:var(--surface)}
+.frame{display:block;position:relative;overflow:hidden;border-radius:6px;transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) scale(var(--sc,1));transition:transform .5s var(--ease),box-shadow .4s var(--ease);will-change:transform}
+.frame.tilting{transition:transform .12s linear,box-shadow .4s var(--ease)}
+.frame::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .35s;background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(228,247,181,.38),transparent 55%);mix-blend-mode:screen}
+.shot:hover .frame{--sc:1.03;box-shadow:0 24px 50px rgba(0,0,0,.45),0 0 0 2px var(--lime)}
+.shot:hover .frame::after{opacity:1}
+.shot figcaption .ic,.road-label .ic{width:1.05em;height:1.05em;vertical-align:-.16em;margin-right:.4em;color:var(--lime)}
+.shot figcaption{margin-top:10px;font-size:.86rem;line-height:1.5;color:var(--muted);text-wrap:pretty}
 .shot.diagram{margin:28px 0 36px}
 .shot.wide{max-width:1010px;margin:0 0 96px}
 details.raw{margin:24px 0 8px}
@@ -157,6 +164,123 @@ details.raw summary:hover{border-color:var(--lime)}
 details.raw .shot{margin-top:18px;max-width:560px}
 .shot.diagram img{background:#fff}
 .hero-cap{max-width:34ch;font-style:italic}
+
+
+/* ---------- icons ---------- */
+.ic{display:inline-block;flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+/* ---------- floating colored icons ---------- */
+.floaty{position:absolute;top:var(--t);width:var(--sz);height:var(--h);transform:translate3d(0,var(--py,0px),0);will-change:transform}
+.floaty.l{left:max(6px,calc(50% - 550px - var(--sz) - 22px))}
+.floaty.r{right:max(6px,calc(50% - 550px - var(--sz) - 22px))}
+.floaty svg{display:block;width:100%;height:100%;filter:drop-shadow(0 10px 14px rgba(0,0,0,.45));animation:drift var(--dur,7s) ease-in-out infinite alternate}
+.floaty:nth-child(even) svg{animation-direction:alternate-reverse}
+@keyframes drift{0%{transform:translateY(-10px) rotate(-7deg)}100%{transform:translateY(10px) rotate(7deg)}}
+@media(max-width:1219px){.floaty{display:none}}
+
+/* ---------- roadside signs ---------- */
+.signrow .pics{align-items:center;padding-top:20px}
+.roadsign{display:flex;flex-direction:column;align-items:center;transform-origin:50% 100%}
+.roadsign:not(.diamond):hover .rsign{animation:swing 1s var(--ease)}
+.roadsign.diamond:hover .warn-in{animation:swing 1s var(--ease)}
+@keyframes swing{20%{transform:rotate(3deg)}45%{transform:rotate(-2deg)}70%{transform:rotate(1deg)}}
+.rsign{position:relative;width:100%;max-width:270px;padding:18px 20px;border-radius:12px;color:#fff;box-shadow:inset 0 0 0 3px #fff,0 16px 36px rgba(0,0,0,.35);transform-origin:50% 0}
+.rsign.green{background:#0b6b3a}.rsign.brown{background:#6b4423}
+.rsign .ic{width:30px;height:30px;margin-bottom:10px}
+.rsign .shield{width:42px;height:44px;margin-bottom:10px}
+.rsign small{display:block;font-size:.78rem;font-weight:600;letter-spacing:.02em;opacity:.9}
+.rsign b{display:block;font-size:1.22rem;line-height:1.15;margin:4px 0 6px}
+.rsign span{display:block;font-weight:600;font-size:.98rem}
+.rsign span+small{margin-top:10px}
+.signpost{display:block;width:9px;height:64px;background:linear-gradient(90deg,#7e857f,#b6bcb5,#7e857f);border-radius:2px}
+.roadsign.diamond{padding-top:24px}
+.rsign.warn{width:170px;height:170px;max-width:none;padding:0;background:#f2c230;color:#12140f;border-radius:14px;transform:rotate(45deg);transform-origin:center;box-shadow:inset 0 0 0 4px #12140f,inset 0 0 0 7px #f2c230,inset 0 0 0 9px #12140f,0 16px 36px rgba(0,0,0,.35);display:grid;place-items:center;margin:40px 0 38px}
+.warn-in{transform:rotate(-45deg);text-align:center}
+.warn-in b{font-size:1.35rem;margin:4px 0 2px}.warn-in span{font-size:.92rem}.warn-in .ic{width:30px;height:30px;margin:0 auto 4px}
+.skid{display:block;width:100%;max-width:320px;height:60px;margin-top:22px;opacity:.55}
+.skid path{fill:none;stroke:#0d110e;stroke-width:9;stroke-dasharray:3 2;stroke-linecap:butt}
+
+/* ---------- car card ---------- */
+.carcard{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px 22px 18px;box-shadow:0 18px 40px rgba(0,0,0,.3)}
+.carcard-car{display:block;width:100%;height:auto;margin:6px 0 10px;transition:transform .6s var(--ease)}
+.carcard:hover .carcard-car{transform:translateX(10px)}
+.plate{display:inline-block;margin-bottom:14px;padding:4px 10px;border-radius:6px;background:var(--lime);color:var(--on-lime);font-size:.75rem;font-weight:700;letter-spacing:.06em}
+.carcard dl{margin:0;display:grid;gap:10px}
+.carcard dt{font-size:.78rem;color:var(--muted)}.carcard dd{margin:0;font-weight:600}
+
+/* ---------- road bands ---------- */
+.road{position:relative;margin:0 calc(-1 * var(--gut)) clamp(64px,9vh,96px);height:210px;overflow:hidden;background:linear-gradient(180deg,transparent 0,transparent 118px,#1f2620 118px)}
+.road-side{position:absolute;left:0;right:0;top:0;height:118px;display:flex;align-items:flex-end;justify-content:space-between;padding:0 max(var(--gut),calc((100% - 1100px)/2))}
+.hwy{display:flex;align-items:center;gap:10px;margin-bottom:12px;padding:8px 14px 8px 10px;border-radius:10px;background:#0b6b3a;color:#fff;font-weight:700;box-shadow:inset 0 0 0 2px #fff}
+.hwy.merge{background:#f2c230;color:#12140f;box-shadow:inset 0 0 0 2px #12140f}
+.hwy .shield{width:34px;height:36px}
+.hwy small{display:block;font-size:.7rem;font-weight:600;opacity:.85}
+.road-stop{width:170px;margin-right:6%}.stop-art{display:block;width:100%;height:auto;overflow:visible}
+.road-way{position:absolute;left:0;right:0;top:118px;bottom:0;border-top:3px solid #c9cfc6;border-bottom:3px solid #c9cfc6}
+.lane{position:absolute;left:0;right:0;top:50%;height:4px;margin-top:-2px;background:repeating-linear-gradient(90deg,#f2c230 0 34px,transparent 34px 64px);background-position-x:var(--dash,0px)}
+.road-way .skid{position:absolute;left:18%;top:8px;width:260px;height:40px;margin:0;opacity:.6}
+.road-car{position:absolute;left:0;bottom:6px;width:200px;will-change:transform}
+.road-car svg{display:block;width:100%;height:auto}
+.road-label{position:absolute;left:max(var(--gut),calc((100% - 1100px)/2));bottom:8px;margin:0;display:flex;gap:10px;align-items:center;font-size:.82rem;color:#e7ebe1;pointer-events:none}
+.road-label b{color:var(--lime)}.road-label .mi{opacity:.75}
+.road.final{margin-top:40px;margin-bottom:0}
+@media(max-width:700px){.road{height:180px;background:linear-gradient(180deg,transparent 0,transparent 100px,#1f2620 100px)}.road-side{height:100px}.road-way{top:100px}.road-stop{width:120px;margin-right:0}.road-car{width:140px}.hwy{font-size:.8rem}.road-label{font-size:.74rem;flex-wrap:wrap;gap:6px;max-width:70%}.road-way .skid{display:none}}
+
+/* ---------- open ending ---------- */
+.road.unknown{margin-top:72px;margin-bottom:28px}
+.hwy.unknown-sign{background:#f2c230;color:#12140f;box-shadow:inset 0 0 0 2px #12140f}
+.qmark{display:grid;place-items:center;width:84px!important;height:84px;margin:0 8% 14px 0!important;border-radius:14px;background:#f2c230;color:#12140f;font:800 3.4rem/1 var(--sans);box-shadow:inset 0 0 0 3px #12140f,0 12px 26px rgba(0,0,0,.4);animation:bob 3.5s ease-in-out infinite}
+.the-end{max-width:46ch;margin:0 auto;text-align:center;font:400 clamp(1.2rem,2.2vw,1.6rem)/1.45 var(--serif);color:var(--text)}
+.dash-end{position:absolute;inset:0 -3px 8px;border-radius:9px;z-index:500;display:none;place-items:center;align-content:center;gap:4px;background:#1c231e;text-align:center}
+.dash-end b{font:800 2.6rem/1 var(--sans);color:var(--lime)}
+.dash-end span{font-size:.72rem;color:var(--muted)}
+.dash.unknown .dash-end{display:grid}
+
+/* ---------- dashboard ---------- */
+.dash{position:fixed;right:14px;bottom:14px;z-index:45;width:232px;padding:9px 11px 8px;font-size:.74rem;border-radius:16px;background:rgba(17,23,19,.9);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--line);box-shadow:0 18px 40px rgba(0,0,0,.4);font-size:.8rem;transform:translateY(140%);transition:transform .5s var(--ease);pointer-events:none}
+.dash.show{transform:none}
+.dash-toggle{pointer-events:auto;position:absolute;top:-32px;right:0;min-height:28px;padding:0 12px;border-radius:999px;border:1px solid var(--line);background:rgba(17,23,19,.92);color:var(--text);font:600 .72rem var(--sans);cursor:pointer}
+.dash-toggle:hover{border-color:var(--lime)}
+.dash.mini .dash-map,.dash.mini .dash-map-wrap{display:none}
+.dash-map{position:relative;height:118px;margin:-1px -3px 8px;border-radius:9px;overflow:hidden;background:#2a2a2a}
+.dash-map .leaflet-container,.dash-map.leaflet-container{background:#2a2a2a}
+.dash-map .leaflet-tile{filter:none}
+.dash-map .leaflet-control-attribution{font-size:8px;background:rgba(11,14,12,.7);color:#8f988a}
+.dash-map .leaflet-control-attribution a{color:#b7c2ac}
+.map-veh{background:none;border:0}
+.veh{width:48px;height:48px;display:grid;place-items:center;will-change:transform}
+.veh svg{display:block;filter:drop-shadow(0 2px 3px rgba(0,0,0,.55))}
+.veh.walk svg{width:18px;height:26px}
+.veh.walk.moving .leg-a{animation:stride .5s ease-in-out infinite alternate}
+.veh.walk.moving .leg-b{animation:stride .5s ease-in-out infinite alternate-reverse}
+.veh.walk.moving .arm-a{animation:stride .5s ease-in-out infinite alternate-reverse}
+.veh.walk.moving .arm-b{animation:stride .5s ease-in-out infinite alternate}
+@keyframes stride{from{transform:rotate(-24deg)}to{transform:rotate(24deg)}}
+.veh.car svg{width:15px;height:30px}
+.veh.plane svg{width:26px;height:43px}
+.dash-route{position:relative;height:30px;margin:0 6px 8px}
+.dash-track{position:absolute;left:0;right:0;top:22px;height:3px;border-radius:3px;background:var(--line)}
+.dash-done{position:absolute;left:0;top:0;bottom:0;width:0;border-radius:3px;background:var(--lime)}
+.dash-route i{position:absolute;top:19px;width:9px;height:9px;margin-left:-4.5px;border-radius:50%;background:#18211b;border:2px solid var(--muted)}
+.dash-route i.gas{border-color:var(--lime)}.dash-route i.site{border-color:#c98b5a}.dash-route i.end{background:var(--lime);border-color:var(--lime)}
+.dash-car{position:absolute;top:0;left:0;width:46px;height:20px;margin-left:-23px}
+.dash-row{display:flex;align-items:center;gap:10px}
+.odo{display:flex;align-items:baseline;gap:4px;padding:4px 8px;border-radius:6px;background:#0b0e0c;font-variant-numeric:tabular-nums}
+.odo span{font:700 .95rem/1 var(--sans);color:var(--lime);letter-spacing:.06em}.odo small{color:var(--muted)}
+.fuel{display:flex;align-items:center;gap:5px;flex:1;color:var(--muted)}
+.fuel .ic{width:15px;height:15px}
+.fuel-bar{position:relative;flex:1;height:8px;border-radius:8px;background:#0b0e0c;overflow:hidden}
+#fuelFill{position:absolute;left:0;top:0;bottom:0;width:100%;border-radius:8px;background:linear-gradient(90deg,#e8a93a,var(--lime-2) 35%,var(--lime))}
+.fuel-bar.refill #fuelFill{transition:width .9s var(--ease)}
+.f-e,.f-f{font-size:.68rem;font-weight:700}
+.lite{display:grid;place-items:center;width:22px;height:22px;border-radius:50%;color:#3a4038}
+.lite .ic{width:14px;height:14px}
+.lite.low.on{color:#f2a93a;animation:blink 1s steps(2) infinite}
+.lite.sig.on{color:var(--lime);animation:blink .7s steps(2) infinite}
+@keyframes blink{50%{opacity:.25}}
+.dash-here,.dash-next{margin:6px 0 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dash-here{color:#f1f5ea;font-weight:600;margin-top:8px}.dash-next{color:var(--lime)}
+@media(max-width:700px){.dash{left:auto;right:10px;bottom:10px;width:236px;padding:8px 12px}.dash-map,.dash-map-wrap,.dash-next,.dash-toggle{display:none}.dash-here{font-size:.74rem;margin-top:6px}}
 
 /* 16P spectrum sliders */
 .traits{display:flex;flex-direction:column;gap:30px;margin:28px 0 8px}
@@ -180,23 +304,23 @@ html.js .trait:not(.in) .tr-fill{left:50%;right:50%}
 .tabs button{min-height:44px;font:500 .95rem var(--sans);color:var(--text);background:transparent;border:1px solid var(--line);border-radius:999px;padding:0 20px;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
 .tabs button:hover{border-color:var(--muted)}
 .tabs button[aria-selected=true]{background:var(--lime);border-color:var(--lime);color:var(--on-lime)}
-.bio{display:grid;grid-template-columns:minmax(0,260px) minmax(0,1fr);gap:32px;align-items:center;margin-bottom:40px}
+.bio{display:grid;grid-template-columns:minmax(0,190px) minmax(0,1fr);gap:32px;align-items:center;margin-bottom:40px}
 .bio img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:4px}
 .bio .shot figcaption{margin-top:10px}
 .bio p{margin:0}
-.quote{margin:0;padding:8px 0 8px 28px;border-left:2px solid var(--lime);font:400 1.3rem/1.55 var(--serif)}
+.quote{margin:0;padding:8px 0 8px 28px;border-left:2px solid var(--lime);font:400 1.14rem/1.6 var(--serif)}
 .quote p{max-width:none}
 .theme{background:var(--lime);color:var(--on-lime);border-radius:4px;padding:clamp(24px,4vw,40px);margin-top:40px}
 .theme h3{margin-top:0;background:var(--on-lime);color:var(--lime)}.theme p{margin-bottom:0}
 @media(max-width:640px){.bio{grid-template-columns:1fr;gap:20px}.bio img{max-width:220px}.quote{padding-left:18px;font-size:1.18rem}}
 
 /* tables + theory */
-.tbl{overflow-x:auto;max-width:820px}
+.tbl{overflow-x:auto;max-width:100%}
 table{border-collapse:collapse;width:100%;margin:8px 0 24px;font-size:.98rem}
 th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top}
 th{color:var(--muted);font-weight:500}
 td:first-child{white-space:nowrap}
-.pitch-wrap{max-width:860px;margin:8px 0 96px}
+.pitch-wrap{max-width:740px;margin:8px auto 96px}
 .pitch{margin:0}
 .pitch svg{width:100%;height:auto;display:block;overflow:visible}
 .pitch figcaption{margin-top:12px;color:var(--muted);font-size:.88rem}
@@ -222,14 +346,94 @@ ol.steps{max-width:66ch;padding-left:1.3em}ol.steps li{margin-bottom:6px}
 
 
 @media(prefers-reduced-motion:reduce){
-  .blob,.decor i{animation:none!important}
+  .blob,.decor i,.lite.on,.roadsign *,.floaty svg{animation:none!important}
+  .frame{transform:none!important}
   .hero{height:auto}.hero-pin{position:relative;min-height:100svh;height:auto}
   *{transition:none!important}
 }
 </style>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+<symbol id="i-ball" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7.6l3.7 2.7-1.4 4.4H9.7l-1.4-4.4z"/><path d="M12 7.6V3.2M15.7 10.3l4.1-1.4M14.3 14.7l2.6 3.6M9.7 14.7l-2.6 3.6M8.3 10.3L4.2 8.9"/></symbol>
+<symbol id="i-dumbbell" viewBox="0 0 24 24"><path d="M6.5 6.5v11M17.5 6.5v11M3.5 9v6M20.5 9v6M6.5 12h11"/></symbol>
+<symbol id="i-plane" viewBox="0 0 24 24"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></symbol>
+<symbol id="i-car" viewBox="0 0 24 24"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></symbol>
+<symbol id="i-chip" viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></symbol>
+<symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+<symbol id="i-music" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></symbol>
+<symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M19 10v1a7 7 0 0 1-14 0v-1M12 18v4M8 22h8"/></symbol>
+<symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.4"/></symbol>
+<symbol id="i-message" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></symbol>
+<symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"/></symbol>
+<symbol id="i-gauge" viewBox="0 0 24 24"><path d="M12 14l4-4"/><path d="M3.3 19a10 10 0 1 1 17.4 0"/></symbol>
+<symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M16.2 7.8l-2.1 6.3-6.3 2.1 2.1-6.3z"/></symbol>
+<symbol id="i-list" viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11"/><path d="M3.5 6l1 1 2-2M3.5 12l1 1 2-2M3.5 18l1 1 2-2"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></symbol>
+<symbol id="i-warning" viewBox="0 0 24 24"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></symbol>
+<symbol id="i-chart" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></symbol>
+<symbol id="i-scale" viewBox="0 0 24 24"><path d="M12 3v18M7 21h10M5 7h14"/><path d="M5 7l-3 6a3 3 0 0 0 6 0zM19 7l-3 6a3 3 0 0 0 6 0z"/></symbol>
+<symbol id="i-book" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></symbol>
+<symbol id="i-binoculars" viewBox="0 0 24 24"><circle cx="6" cy="16" r="4"/><circle cx="18" cy="16" r="4"/><path d="M10 16h4M4 12.5 6 5h3l1 4M20 12.5 18 5h-3l-1 4"/></symbol>
+<symbol id="i-mountain" viewBox="0 0 24 24"><path d="M8 4l4 8 4-5 6 13H2z"/></symbol>
+<symbol id="i-fuel" viewBox="0 0 24 24"><path d="M3 22h12M4 9h10M14 22V4a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v18M14 13h2a2 2 0 0 1 2 2v2a2 2 0 0 0 4 0V9.8a2 2 0 0 0-.6-1.4L18 5"/></symbol>
+<symbol id="i-flag" viewBox="0 0 24 24"><path d="M4 22V4M4 4h13l-2 4 2 4H4"/></symbol>
+<symbol id="i-signal" viewBox="0 0 24 24"><path d="M14 5l7 7-7 7M21 12H8a5 5 0 0 0-5 5v2"/></symbol>
+<symbol id="i-flag-mx" viewBox="0 0 24 24"><rect x="1.5" y="5" width="7" height="14" fill="#006847" stroke="none"/><rect x="8.5" y="5" width="7" height="14" fill="#fff" stroke="none"/><rect x="15.5" y="5" width="7" height="14" fill="#ce1126" stroke="none"/><circle cx="12" cy="12" r="2.2" fill="#8a5a2b" stroke="none"/><rect x="1.5" y="5" width="21" height="14" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.4"/></symbol>
+
+<symbol id="c-flag" viewBox="0 0 64 64"><rect x="4" y="8" width="3" height="52" rx="1.5" fill="#c9cfc6"/><rect x="7" y="12" width="17" height="30" fill="#006847"/><rect x="24" y="12" width="17" height="30" fill="#fff"/><rect x="41" y="12" width="17" height="30" fill="#ce1126"/><circle cx="32.5" cy="27" r="5" fill="#8a5a2b"/><path d="M28 31 q4.5 3 9 0" stroke="#4c7a2a" stroke-width="1.6" fill="none"/></symbol>
+<symbol id="c-ball" viewBox="0 0 64 64"><circle cx="32" cy="32" r="23" fill="#fff" stroke="#1b1f1c" stroke-width="2"/><path d="M32 22 l8 6 -3 9.5 h-10 l-3-9.5z" fill="#1b1f1c"/><path d="M32 22V10 M40 28 l11-4 M37 37.5 l7 9 M27 37.5 l-7 9 M24 28 l-11-4" stroke="#1b1f1c" stroke-width="2"/><path d="M26 9.6 h12 l-2 3.4 h-8z M51.5 21 l3 7 -1.5 5 -3.5-3z M12.5 21 l-3 7 1.5 5 3.5-3z M41 53 l-9 2 -9-2 2.5-3.5 h13z" fill="#1b1f1c"/></symbol>
+<symbol id="c-trumpet" viewBox="0 0 64 64"><path d="M6 30h32" stroke="#d4a017" stroke-width="5" stroke-linecap="round"/><path d="M38 23 L57 12 L57 48 L38 37Z" fill="#e8b923"/><ellipse cx="57" cy="30" rx="3.5" ry="18" fill="#c99410"/><path d="M14 32 q0 11 10 11 h10 q6 0 6-6" stroke="#d4a017" stroke-width="3.5" fill="none"/><rect x="18" y="19" width="4" height="11" rx="1.5" fill="#c99410"/><rect x="25" y="19" width="4" height="11" rx="1.5" fill="#c99410"/><rect x="32" y="19" width="4" height="11" rx="1.5" fill="#c99410"/><circle cx="20" cy="17.5" r="2.6" fill="#f4d35e"/><circle cx="27" cy="17.5" r="2.6" fill="#f4d35e"/><circle cx="34" cy="17.5" r="2.6" fill="#f4d35e"/></symbol>
+<symbol id="c-dumbbell" viewBox="0 0 64 64"><rect x="14" y="30" width="36" height="4" rx="2" fill="#c9cfc6"/><rect x="8" y="17" width="8" height="30" rx="2.5" fill="#2b302c"/><rect x="2.5" y="22" width="6" height="20" rx="2" fill="#3c423e"/><rect x="48" y="17" width="8" height="30" rx="2.5" fill="#2b302c"/><rect x="55.5" y="22" width="6" height="20" rx="2" fill="#3c423e"/><rect x="10" y="19" width="2" height="26" fill="#c9ec7f"/><rect x="52" y="19" width="2" height="26" fill="#c9ec7f"/></symbol>
+<symbol id="c-chip" viewBox="0 0 64 64"><path d="M20 5v9M28 5v9M36 5v9M44 5v9M20 50v9M28 50v9M36 50v9M44 50v9M5 20h9M5 28h9M5 36h9M5 44h9M50 20h9M50 28h9M50 36h9M50 44h9" stroke="#e0b84a" stroke-width="3"/><rect x="14" y="14" width="36" height="36" rx="4" fill="#1b6e3a"/><rect x="22" y="22" width="20" height="20" rx="2" fill="#12140f"/><circle cx="26" cy="26" r="1.8" fill="#c9ec7f"/><path d="M17 18 h6 M41 46 h6" stroke="#3fa34d" stroke-width="1.5"/></symbol>
+<symbol id="c-plane" viewBox="0 0 64 64"><path d="M60 32 q0-4-6-4 H38 L24 10h-6l8 18H14l-5-7H4l3 11-3 11h5l5-7h12l-8 18h6l14-18h16q6 0 6-4z" fill="#f1f5ea"/><path d="M4 21h5l5 7H7z" fill="#1d4fa3"/><path d="M42 30h2M47 30h2M52 30h2" stroke="#1d4fa3" stroke-width="2"/></symbol>
+<symbol id="c-palm" viewBox="0 0 64 64"><ellipse cx="30" cy="58" rx="20" ry="4.5" fill="#e3c27a"/><path d="M30 58 q5-16 2-30" stroke="#8a5a2b" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M32 28 q-14-10-27-4 q12 0 25 8z M32 28 q12-12 27-6 q-14 0-25 9z M32 28 q-4-14 6-23 q-2 12-3 23z M32 28 q-16 4-21 17 q8-11 20-13z M32 28 q14 4 19 17 q-8-11-18-13z" fill="#3fa34d"/><circle cx="34" cy="31" r="2.6" fill="#7a4e1f"/><circle cx="30" cy="32" r="2.6" fill="#7a4e1f"/></symbol>
+<symbol id="c-pump" viewBox="0 0 64 64"><rect x="12" y="10" width="28" height="46" rx="4" fill="#c4161c"/><rect x="17" y="16" width="18" height="12" rx="2" fill="#f1f5ea"/><rect x="10" y="54" width="32" height="5" rx="2" fill="#2b302c"/><path d="M40 22 h6 a4 4 0 0 1 4 4 v18 a3 3 0 0 0 6 0 v-20 l-6-6" stroke="#2b302c" stroke-width="3" fill="none" stroke-linecap="round"/><text x="26" y="44" font-size="10" font-weight="800" fill="#fff" text-anchor="middle" font-family="Schibsted Grotesk, sans-serif">GAS</text></symbol>
+<symbol id="c-pin" viewBox="0 0 64 64"><path d="M32 60 C20 44 13 35 13 24 a19 19 0 0 1 38 0 c0 11-7 20-19 36z" fill="#e5484d"/><circle cx="32" cy="24" r="7.5" fill="#fff"/></symbol>
+<symbol id="c-heart" viewBox="0 0 64 64"><path d="M32 55 C10 41 5 28 9 20 c4-9 17-10 23-1 c6-9 19-8 23 1 c4 8-1 21-23 35z" fill="#e5484d"/><path d="M17 22 q2-5 8-5" stroke="#ffb3b5" stroke-width="3" fill="none" stroke-linecap="round"/></symbol>
+<symbol id="c-house" viewBox="0 0 64 64"><rect x="14" y="28" width="36" height="29" fill="#f1f5ea"/><path d="M8 31 L32 10 L56 31" fill="none" stroke="#c4161c" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/><rect x="28" y="38" width="9" height="19" fill="#8a5a2b"/><rect x="18" y="33" width="7" height="7" fill="#9fd3f5"/><rect x="40" y="33" width="7" height="7" fill="#9fd3f5"/></symbol>
+<symbol id="c-wrench" viewBox="0 0 64 64"><path d="M45 7 a12 12 0 0 0-11 16 L10 47 a5 5 0 0 0 7 7 l24-24 a12 12 0 0 0 16-11 l-7 7 -7-2 -2-7z" fill="#a9b1ad" stroke="#5d6561" stroke-width="2" stroke-linejoin="round"/></symbol>
+<symbol id="c-gear" viewBox="0 0 64 64"><circle cx="32" cy="32" r="18" fill="none" stroke="#7e8781" stroke-width="10" stroke-dasharray="7.1 7.04"/><circle cx="32" cy="32" r="15" fill="#9aa29e"/><circle cx="32" cy="32" r="6" fill="#18211b"/></symbol>
+<symbol id="c-bulb" viewBox="0 0 64 64"><path d="M8 22h-4M60 22h-4M14 8l-3-3M50 8l3-3" stroke="#f2c230" stroke-width="3" stroke-linecap="round"/><path d="M32 8 a16 16 0 0 0-9 29 c2 2 3 4 3 7h12c0-3 1-5 3-7 a16 16 0 0 0-9-29z" fill="#f2c230"/><path d="M27 30 l5 5 5-5" stroke="#b8860b" stroke-width="2" fill="none"/><rect x="25" y="46" width="14" height="5" rx="1.5" fill="#9aa29e"/><rect x="26" y="52" width="12" height="4" rx="1.5" fill="#7e8781"/></symbol>
+<symbol id="c-trophy" viewBox="0 0 64 64"><path d="M20 12h-8q0 13 10 15M44 12h8q0 13-10 15" stroke="#e8b923" stroke-width="3.5" fill="none"/><path d="M20 8h24v14a12 12 0 0 1-24 0z" fill="#e8b923"/><rect x="29" y="34" width="6" height="10" fill="#c99410"/><rect x="20" y="44" width="24" height="9" rx="2" fill="#6b4423"/><path d="M26 13 l3 3" stroke="#fff3b0" stroke-width="2"/></symbol>
+<symbol id="c-clipboard" viewBox="0 0 64 64"><rect x="12" y="8" width="40" height="52" rx="4" fill="#8a5a2b"/><rect x="17" y="14" width="30" height="42" rx="2" fill="#f1f5ea"/><rect x="24" y="5" width="16" height="8" rx="2" fill="#7e8781"/><circle cx="25" cy="25" r="3.2" fill="none" stroke="#1d4fa3" stroke-width="2"/><path d="M34 22 l6 6 M40 22 l-6 6" stroke="#c4161c" stroke-width="2"/><path d="M23 46 q10-12 17-15" stroke="#1b1f1c" stroke-width="2" fill="none"/><path d="M36 29 l4 2 -2 4" stroke="#1b1f1c" stroke-width="2" fill="none"/></symbol>
+<symbol id="c-mic" viewBox="0 0 64 64"><rect x="24" y="6" width="16" height="30" rx="8" fill="#2b302c"/><path d="M26 14h12M26 19h12M26 24h12" stroke="#59605c" stroke-width="1.5"/><path d="M18 28a14 14 0 0 0 28 0" stroke="#a9b1ad" stroke-width="3.5" fill="none"/><path d="M32 42v10M22 54h20" stroke="#a9b1ad" stroke-width="3.5" stroke-linecap="round"/></symbol>
+<symbol id="c-star" viewBox="0 0 64 64"><path d="M32 5l8 17 18 2.5-13 12.5 3.3 18L32 46.5 15.7 55 19 37 6 24.5 24 22z" fill="#f2c230" stroke="#c99410" stroke-width="2" stroke-linejoin="round"/></symbol>
+<symbol id="c-seed" viewBox="0 0 64 64"><path d="M10 50 h44 l-4 10 h-36z" fill="#8a5a2b"/><path d="M32 50 V28" stroke="#3fa34d" stroke-width="3.5"/><path d="M32 35 q-16 0-19-15 q15 0 19 15z" fill="#5cbf5f"/><path d="M32 30 q14-2 19-17 q-15 2-19 17z" fill="#3fa34d"/></symbol>
+<symbol id="c-mountain" viewBox="0 0 64 64"><circle cx="50" cy="12" r="6" fill="#e4f7b5"/><path d="M2 56 L24 18 L36 36 L44 26 L62 56z" fill="#56634a"/><path d="M24 18 L18 28 L24 25 L30 29z M44 26 L40 32 L44 30 L48 33z" fill="#f1f5ea"/></symbol>
+<symbol id="c-snow" viewBox="0 0 64 64"><g stroke="#9fd3f5" stroke-width="3.5" stroke-linecap="round" fill="none"><path d="M32 6v52M9.5 19l45 26M9.5 45l45-26"/><path d="M26 10l6 6 6-6M26 54l6-6 6 6"/></g></symbol>
+<symbol id="c-target" viewBox="0 0 64 64"><circle cx="30" cy="34" r="24" fill="#e5484d"/><circle cx="30" cy="34" r="17" fill="#fff"/><circle cx="30" cy="34" r="10" fill="#e5484d"/><circle cx="30" cy="34" r="4" fill="#fff"/><path d="M30 34 L54 10" stroke="#2b302c" stroke-width="3"/><path d="M50 7 l8-3 -3 8z" fill="#2b302c"/></symbol>
+<symbol id="c-music" viewBox="0 0 64 64"><path d="M24 46V16l26-6v30" stroke="#e4f7b5" stroke-width="3.5" fill="none"/><ellipse cx="18" cy="46" rx="7" ry="5.5" fill="#e4f7b5"/><ellipse cx="44" cy="40" rx="7" ry="5.5" fill="#e4f7b5"/></symbol>
+<symbol id="c-grad" viewBox="0 0 64 64"><path d="M16 30 v12 q16 8 32 0 V30 L32 37z" fill="#1d3f86"/><path d="M32 12 L60 24 L32 36 L4 24z" fill="#002d72"/><path d="M56 26 v14" stroke="#f2c230" stroke-width="2.5"/><circle cx="56" cy="42" r="3" fill="#f2c230"/></symbol>
+<symbol id="crv" viewBox="0 0 220 92">
+  <defs><linearGradient id="crvBody" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a4043"/><stop offset=".38" stop-color="#121516"/><stop offset="1" stop-color="#050606"/></linearGradient>
+  <linearGradient id="crvGlass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3b4a52"/><stop offset="1" stop-color="#141b1f"/></linearGradient></defs>
+  <ellipse cx="112" cy="86" rx="100" ry="5" fill="rgba(0,0,0,.5)"/>
+  <ellipse cx="214" cy="54" rx="12" ry="4" fill="rgba(226,240,255,.25)"/>
+  <path d="M52 16.5 L140 15" stroke="#1a1e1c" stroke-width="3.4" stroke-linecap="round"/>
+  <path d="M17 73 L13 66 L14 49 Q15 42 21 38 L33 27 Q38 22 47 21.5 L138 19.5 Q150 19.5 158 24.5 L180 39 L204 44 Q215 47 218 54 L220 66 Q220 72 214 73 L196 73 A21 21 0 0 0 154 73 L84 73 A21 21 0 0 0 42 73 Z" fill="url(#crvBody)" stroke="rgba(255,255,255,.18)" stroke-width="1"/>
+  <path d="M34 39 L45 27.5 Q49 25 55 25 L71 25 L70 39 Z M75 25 L113 24 L113 39 L74 39 Z M117 24 L141 23.5 Q150 23.5 156 28 L169 39 L117 39 Z" fill="url(#crvGlass)"/>
+  <path d="M120 25.5 L130 25.5 L124 37 L118 37Z M78 26.5 L86 26.5 L82 37 L76 37Z" fill="rgba(255,255,255,.12)"/>
+  <path d="M20 37 L36 35" stroke="#050606" stroke-width="3"/>
+  <path d="M24 52 Q120 47 214 50" stroke="rgba(255,255,255,.16)" stroke-width="1.2" fill="none"/>
+  <path d="M115 40 L115 70 M72 40 L74 70" stroke="rgba(255,255,255,.08)"/>
+  <rect x="96" y="44" width="10" height="2.2" rx="1" fill="#262b29"/><rect x="138" y="43" width="10" height="2.2" rx="1" fill="#262b29"/>
+  <path d="M160 32 L172 32 L174 38 L162 38Z" fill="#0b0d0c" stroke="rgba(255,255,255,.2)"/>
+  <path d="M200 46.5 L216 50.5 L215.5 53.5 L199 50.5Z" fill="#e6f0fa"/><path d="M203 51.5 L214 54" stroke="#9fd3f5" stroke-width="1"/>
+  <path d="M206 58 L219 59 L219 66 L208 66Z" fill="#050606"/><path d="M209 61 L217 61.5" stroke="#2b302d" stroke-width="1.6"/>
+  <path d="M14 45.5 L23 44.5 L23 51 L14 52Z" fill="#b3121a"/><path d="M14 47 L23 46" stroke="#ff5560" stroke-width=".8"/>
+  <path d="M84 66 L154 66 L154 73 L84 73Z M14 62 L42 62 L42 73 L18 73Z M196 66 L218 66 L218 72 L196 73Z" fill="#050606"/>
+  <path d="M41 73 A22 22 0 0 1 85 73 M153 73 A22 22 0 0 1 197 73" stroke="#050606" stroke-width="4" fill="none"/>
+  <g style="transform:rotate(var(--spin,0deg));transform-box:fill-box;transform-origin:center"><circle cx="63" cy="73" r="17" fill="#0b0d0c"/><circle cx="63" cy="73" r="12" fill="#1c201e" stroke="#3a3f3c" stroke-width="1"/><path d="M63 62.5V69M63 77V83.5M53 70l6 1.6M67 74.4l6 1.6M56 81l4-5M66 70l4-5M56 65l4 5M66 76l4 5M53 76l6-1.6M67 71.6l6-1.6" stroke="#4a504d" stroke-width="2.2" stroke-linecap="round"/><circle cx="63" cy="73" r="3.2" fill="#0b0d0c" stroke="#59605c"/></g>
+  <g style="transform:rotate(var(--spin,0deg));transform-box:fill-box;transform-origin:center"><circle cx="175" cy="73" r="17" fill="#0b0d0c"/><circle cx="175" cy="73" r="12" fill="#1c201e" stroke="#3a3f3c" stroke-width="1"/><path d="M175 62.5V69M175 77V83.5M165 70l6 1.6M179 74.4l6 1.6M168 81l4-5M178 70l4-5M168 65l4 5M178 76l4 5M165 76l6-1.6M179 71.6l6-1.6" stroke="#4a504d" stroke-width="2.2" stroke-linecap="round"/><circle cx="175" cy="73" r="3.2" fill="#0b0d0c" stroke="#59605c"/></g>
+</symbol>
+<symbol id="crv-top" viewBox="0 0 40 80"><rect x="7" y="4" width="26" height="72" rx="10" fill="#0b0d0c" stroke="#8f988a" stroke-width="1.2"/><path d="M11 25 Q20 19 29 25 L27.5 35 L12.5 35Z" fill="#33444c"/><rect x="11.5" y="35" width="17" height="25" rx="3" fill="#161a19"/><path d="M13 36 V59 M27 36 V59" stroke="#2b302d" stroke-width="1.6"/><path d="M12.5 61 L27.5 61 L28.5 68 Q20 71 11.5 68Z" fill="#33444c"/><rect x="9" y="5.5" width="6" height="2.6" rx="1" fill="#e6f0fa"/><rect x="25" y="5.5" width="6" height="2.6" rx="1" fill="#e6f0fa"/><rect x="9" y="72" width="6" height="2.4" rx="1" fill="#c4161c"/><rect x="25" y="72" width="6" height="2.4" rx="1" fill="#c4161c"/><rect x="3" y="27" width="5" height="3.4" rx="1.2" fill="#0b0d0c" stroke="#e4f7b5" stroke-width=".8"/><rect x="32" y="27" width="5" height="3.4" rx="1.2" fill="#0b0d0c" stroke="#e4f7b5" stroke-width=".8"/></symbol>
+<symbol id="walker" viewBox="0 0 30 44"><g stroke="#f1f5ea" stroke-width="3" stroke-linecap="round" fill="none"><circle cx="15" cy="6" r="4.2" fill="#f1f5ea" stroke="none"/><path d="M15 11v15"/><path class="arm-a" d="M15 14l-6 7" style="transform-origin:15px 14px"/><path class="arm-b" d="M15 14l6 7" style="transform-origin:15px 14px"/><path class="leg-a" d="M15 26l-6 14" style="transform-origin:15px 26px"/><path class="leg-b" d="M15 26l6 14" style="transform-origin:15px 26px"/></g></symbol>
+<symbol id="plane-top" viewBox="0 0 40 66"><path d="M20 2 C22.4 2 23.4 6 23.4 10 L23.4 26 L38 36 L38 41 L23.4 35.5 L23.4 52 L29.5 58 L29.5 62 L20 59.4 L10.5 62 L10.5 58 L16.6 52 L16.6 35.5 L2 41 L2 36 L16.6 26 L16.6 10 C16.6 6 17.6 2 20 2Z" fill="#f1f5ea" stroke="#1d4fa3" stroke-width="1.4" stroke-linejoin="round"/><path d="M18.4 7 h3.2" stroke="#1d4fa3" stroke-width="1.6" stroke-linecap="round"/></symbol>
+</defs></svg>
+
 
 <header class="top" id="top">
   <a class="brand" href="#hero">David Garcia</a>
@@ -267,7 +471,15 @@ ol.steps{max-width:66ch;padding-left:1.3em}ol.steps li{margin-bottom:6px}
 
 <!-- ============ INTRODUCTION ============ -->
 <section class="chapter" id="introduction">
-<div class="decor" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<div class="decor" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><span class="floaty l" data-sp="0.12" style="--t:6%;--sz:64px;--h:64px;--dur:6.0s"><svg viewBox="0 0 64 64"><use href="#c-house"/></svg></span><span class="floaty r" data-sp="-0.08" style="--t:12%;--sz:62px;--h:62px;--dur:7.3s"><svg viewBox="0 0 64 64"><use href="#c-flag"/></svg></span><span class="floaty l" data-sp="0.18" style="--t:26%;--sz:56px;--h:56px;--dur:8.6s"><svg viewBox="0 0 64 64"><use href="#c-ball"/></svg></span><span class="floaty r" data-sp="-0.14" style="--t:34%;--sz:64px;--h:64px;--dur:9.9s"><svg viewBox="0 0 64 64"><use href="#c-dumbbell"/></svg></span><span class="floaty l" data-sp="0.12" style="--t:46%;--sz:66px;--h:66px;--dur:6.0s"><svg viewBox="0 0 64 64"><use href="#c-palm"/></svg></span><span class="floaty r" data-sp="-0.08" style="--t:56%;--sz:62px;--h:62px;--dur:7.3s"><svg viewBox="0 0 64 64"><use href="#c-plane"/></svg></span><span class="floaty l" data-sp="0.18" style="--t:70%;--sz:58px;--h:58px;--dur:8.6s"><svg viewBox="0 0 64 64"><use href="#c-chip"/></svg></span><span class="floaty r" data-sp="-0.14" style="--t:84%;--sz:92px;--h:38px;--dur:9.9s"><svg viewBox="0 0 220 92"><use href="#crv"/></svg></span></div>
+<div class="road" data-kind="gas" data-name="Home Base" data-where="Columbus, OH" role="img" aria-label="Gas stop: Home Base, Columbus, OH">
+  <div class="road-side">
+    <div class="hwy"><svg class="shield" viewBox="0 0 40 42" aria-hidden="true"><path d="M5 5 Q20 0 35 5 L35 17 Q35 33 20 40 Q5 33 5 17Z" fill="#1d4fa3" stroke="#fff" stroke-width="2.4"/><path d="M5.6 6 Q20 1.2 34.4 6 L34.4 13 L5.6 13Z" fill="#c8102e"/><text x="20" y="30" text-anchor="middle" font-size="14" font-weight="800" fill="#fff" font-family="Schibsted Grotesk, sans-serif">70</text></svg><span><small>Where it all starts</small>Home Base</span></div>
+    <div class="road-stop"><svg class="stop-art" viewBox="0 0 170 92" aria-hidden="true"><rect x="8" y="10" width="154" height="13" rx="2" fill="#e4f7b5"/><rect x="8" y="23" width="154" height="4" fill="#56634a"/><rect x="22" y="27" width="6" height="61" fill="#9aa29a"/><rect x="142" y="27" width="6" height="61" fill="#9aa29a"/><rect x="58" y="52" width="18" height="36" rx="2" fill="#f1f5ea"/><rect x="94" y="52" width="18" height="36" rx="2" fill="#f1f5ea"/><rect x="61" y="56" width="12" height="7" fill="#18211b"/><rect x="97" y="56" width="12" height="7" fill="#18211b"/><path d="M76 66 q8 0 8 10 v8" stroke="#18211b" stroke-width="2.5" fill="none"/><path d="M112 66 q8 0 8 10 v8" stroke="#18211b" stroke-width="2.5" fill="none"/><text x="85" y="20" text-anchor="middle" font-size="9" font-weight="800" fill="#12140f" font-family="Schibsted Grotesk, sans-serif">GAS · FOOD</text></svg></div>
+  </div>
+  <div class="road-way"><span class="lane"></span><svg class="skid" viewBox="0 0 320 60" aria-hidden="true"><path d="M0 18 C90 6 170 34 320 14"/><path d="M0 40 C90 28 170 56 320 36"/></svg><div class="road-car"><svg viewBox="0 0 220 92"><use href="#crv"/></svg></div></div>
+  <p class="road-label"><svg class="ic" aria-hidden="true"><use href="#i-fuel"/></svg><b>Gas stop: Home Base</b><span>Columbus, OH</span></p>
+</div>
 <div class="wrap">
   <h2>Introduction</h2>
 <div class="media">
@@ -278,39 +490,67 @@ ol.steps{max-width:66ch;padding-left:1.3em}ol.steps li{margin-bottom:6px}
     <p>People are at the center of my life. I get my energy from the people around me, and I’m most myself when I’m making plans with friends and family and getting to let loose.</p>
     <p>I’m also always working on myself. Since high school, I’ve followed a self-development journey of trying to become a slightly better version of myself every day, and I try to bring the people around me along with me.</p>
 </div>
-<div class="pics"><figure class="shot"><img src="images/david_santiago_back.jpg" width="1200" height="1600" loading="lazy" alt="Selfie of David in a cap and backpack on a hilltop, with the city of Santiago, Chile and mountains behind him"><figcaption>On a hill overlooking the city of Santiago, Chile, during intersession.</figcaption></figure></div>
+<div class="pics"><figure class="shot" data-loc="cousins" data-steps="walk:cousins"><span class="frame"><img src="images/family_christmas.jpg" width="1050" height="1400" loading="lazy" alt="David and his family posing together in a kitchen decorated with Christmas garland"></span><figcaption>Christmas with my family at my cousins’ house, right next door to ours.</figcaption></figure><figure class="shot" data-loc="columbus" data-steps="walk:columbus"><span class="frame"><img src="images/cbus_food.jpeg" width="1400" height="1050" loading="lazy" alt="Four friends smiling at a table with plates of food in a dim restaurant"></span><figcaption>Fall break in Columbus with my friends from Hopkins.</figcaption></figure></div>
 </div>
-  <div class="strip"><figure class="shot" style="flex-grow:0.750"><img src="images/family_christmas.jpg" width="1050" height="1400" loading="lazy" alt="David and his family posing together in a kitchen decorated with Christmas garland"><figcaption>Christmas with my family at my cousins’ house, right next door to ours.</figcaption></figure><figure class="shot" style="flex-grow:1.333"><img src="images/cbus_food.jpeg" width="1400" height="1050" loading="lazy" alt="Four friends smiling at a table with plates of food in a dim restaurant"><figcaption>Fall break in Columbus with my friends from Hopkins.</figcaption></figure></div>
 <div class="media flip">
 <div class="txt">
     <h3>What I enjoy</h3>
     <p>Soccer has been part of my life for as long as I can remember. I grew up playing it with my family, and I still play whenever I can. In high school, it also pulled me into the gym.</p>
+    <h3>In the gym</h3>
+    <p>The gym is still a big part of my life. I lift weights and go on runs often, and I love pushing myself to see how far I can go.</p>
+    <h3>Exploring</h3>
     <p>I love exploring: new places, new people, and new experiences. I’ve traveled more since starting college than in the rest of my life combined, and almost every trip has been with friends.</p>
-  <div class="strip mini"><figure class="shot" style="flex-grow:0.750"><img src="images/snow_machine.jpeg" width="1050" height="1400" loading="lazy" alt="David in a winter jacket and snow pants standing in front of a large snow groomer"><figcaption>Next to a snow groomer on the Clark Scholars ski trip.</figcaption></figure><figure class="shot" style="flex-grow:1.333"><img src="images/plane.jpeg" width="1400" height="1050" loading="lazy" alt="Two friends posing on top of a fighter jet monument at night"><figcaption>Posing with a friend on an airplane monument at the 2024 SHPE National Convention in Anaheim, California.</figcaption></figure></div>
 </div>
-<div class="pics"><figure class="shot"><img src="images/crew_game.jpeg" width="1400" height="1050" loading="lazy" alt="David and two friends standing in the stands of a soccer stadium with the field behind them"><figcaption>At a Columbus Crew game with friends and teammates from my high school soccer team.</figcaption></figure></div>
+<div class="pics"><figure class="shot" data-loc="lowerfield" data-steps="car:lowerfield"><span class="frame"><img src="images/crew_game.jpeg" width="1400" height="1050" loading="lazy" alt="David and two friends standing in the stands of a soccer stadium with the field behind them"></span><figcaption>At a Columbus Crew game with friends and teammates from my high school soccer team.</figcaption></figure></div>
 </div>
-  <div class="strip"><figure class="shot" style="flex-grow:0.750"><img src="images/chile_group.jpg" width="1200" height="1600" loading="lazy" alt="Four friends on a garden path with mountains behind them in Chile"><figcaption>In the mountains of Chile with friends I made on the Clark Scholars intersession trip.</figcaption></figure><figure class="shot" style="flex-grow:0.750"><img src="images/hocking_hills.jpeg" width="1050" height="1400" loading="lazy" alt="Four friends standing by a creek under a stone arch bridge in the woods"><figcaption>Hiking through Hocking Hills with friends.</figcaption></figure><figure class="shot" style="flex-grow:0.666"><img src="images/stairs_jamaica.jpeg" width="933" height="1400" loading="lazy" alt="Two people climbing a steep stone staircase through dense green jungle"><figcaption>Climbing a staircase through the forest in Jamaica with a friend I made on the Clark Scholars spring trip.</figcaption></figure></div>
-  <div class="prose">
+  <div class="strip"><figure class="shot" style="flex-grow:0.750" data-loc="hocking" data-steps="car:hocking"><span class="frame"><img src="images/hocking_hills.jpeg" width="1050" height="1400" loading="lazy" alt="Four friends standing by a creek under a stone arch bridge in the woods"></span><figcaption>Hiking through Hocking Hills near Logan, Ohio, with friends.</figcaption></figure><figure class="shot" style="flex-grow:0.750" data-loc="bahai" data-steps="car:jhu,car:bwi,plane:scl,car:bahai"><span class="frame"><img src="images/david_santiago_back.jpg" width="1200" height="1600" loading="lazy" alt="Selfie of David in a cap and backpack on a hilltop, with the city of Santiago, Chile and mountains behind him"></span><figcaption>Overlooking the city of Santiago from the Bahá’í Temple in Chile during intersession.</figcaption></figure><figure class="shot" style="flex-grow:0.750" data-loc="bahai" data-steps=""><span class="frame"><img src="images/chile_group.jpg" width="1200" height="1600" loading="lazy" alt="Four friends on a garden path with mountains behind them in Chile"></span><figcaption>At the Bahá’í Temple outside Santiago with friends I made on the Clark Scholars intersession trip.</figcaption></figure><figure class="shot" style="flex-grow:0.666" data-loc="jamaica" data-steps="car:scl,plane:bwi,plane:jamaica"><span class="frame"><img src="images/stairs_jamaica.jpeg" width="933" height="1400" loading="lazy" alt="Two people climbing a steep stone staircase through dense green jungle"></span><figcaption>Climbing a staircase through the forest in Jamaica with a friend I made on the Clark Scholars spring trip.</figcaption></figure></div>
+<div class="media">
+<div class="txt">
+    <h3>On the road</h3>
+    <p>I also love to drive. I make the drive between Columbus and Baltimore often in my black 2022 Honda CR-V, and the longest drive I’ve ever done was Columbus to Dallas: about 15 hours behind the wheel.</p>
+    <p>That’s why this site is built like a road trip. As you scroll, the map in the corner follows me to the real place behind each photo: by car when I can drive it, and by plane when I can’t. Each section is a stop with its own name, a gas station when I’m sharing information and a scenic stop when I’m reflecting. Keep an eye on the gas gauge and the odometer. There’s no final destination here; the journey is the point.</p>
+</div>
+<div class="pics"><div class="carcard"><svg class="carcard-car" viewBox="0 0 220 92" aria-hidden="true"><use href="#crv"/></svg>
+<div class="plate">BLACK 2022 · HONDA CR-V</div>
+<dl><div><dt>Usual drive</dt><dd>Columbus ⇄ Baltimore</dd></div><div><dt>Longest drive</dt><dd>Columbus to Dallas, about 15 hours</dd></div><div><dt>Favorite route</dt><dd>I-70 E and I-68 E, about 400 miles</dd></div></dl></div></div>
+</div>
+  <div class="media signrow">
+<div class="txt">
     <h3>Career goals</h3>
     <p>Today I’m a fourth-year Electrical Engineering student in the Whiting School of Engineering. The field that pulls me in most is semiconductors: designing, testing, and manufacturing the chips inside so many of today’s devices. After graduating, I plan to join a semiconductor company, earn a master’s in ECE with a concentration in microelectronics, and eventually work as a design engineer who brings new chips into the devices people use every day.</p>
-  </div>
-  <div class="strip"><figure class="shot" style="flex-grow:0.750"><img src="images/load_board.jpeg" width="1050" height="1400" loading="lazy" alt="A green semiconductor load board mounted in a test system next to lab monitors"><figcaption>A load board I worked with during my internship at Texas Instruments.</figcaption></figure><figure class="shot" style="flex-grow:1.333"><img src="images/test_bench.jpeg" width="1400" height="1050" loading="lazy" alt="An internship lab bench with monitors, an oscilloscope, a microscope, and a circuit board under test"><figcaption>My bench setup during my internship at Milwaukee Tool.</figcaption></figure><figure class="shot" style="flex-grow:0.750"><img src="images/micron_bunny_suit.jpeg" width="1050" height="1400" loading="lazy" alt="David in a suit taking a selfie beside a person in a white cleanroom bunny suit at a Micron booth"><figcaption>A selfie at Micron’s “Chip or Treat” booth during a conference on Halloween.</figcaption></figure></div>
-  <div class="prose">
+</div>
+<div class="pics"><div class="roadsign " aria-hidden="true"><div class="rsign green"><svg class="ic" aria-hidden="true"><use href="#i-chip"/></svg><small>Next exit</small><b>Semiconductors</b><span>Design engineer, then a master’s in ECE</span><small>Internships: Texas Instruments · Milwaukee Tool</small></div><span class="signpost"></span></div><svg class="skid" viewBox="0 0 320 60" aria-hidden="true"><path d="M0 18 C90 6 170 34 320 14"/><path d="M0 40 C90 28 170 56 320 36"/></svg></div>
+</div>
+  <div class="strip"><figure class="shot" data-loc="dallas" data-steps="plane:bwi,car:columbus,car:dallas" style="flex-grow:0.750"><span class="frame"><img src="images/load_board.jpeg" width="1050" height="1400" loading="lazy" alt="A green semiconductor load board mounted in a test system next to lab monitors"></span><figcaption>A load board I worked with during my internship at Texas Instruments in Dallas.</figcaption></figure><figure class="shot" data-loc="milwaukee" data-steps="car:columbus,car:milwaukee" style="flex-grow:1.333"><span class="frame"><img src="images/test_bench.jpeg" width="1400" height="1050" loading="lazy" alt="An internship lab bench with monitors, an oscilloscope, a microscope, and a circuit board under test"></span><figcaption>My bench setup during my internship at Milwaukee Tool in Milwaukee.</figcaption></figure><figure class="shot" data-loc="indy" data-steps="car:jhu,car:columbus,car:indy" style="flex-grow:0.750"><span class="frame"><img src="images/micron_bunny_suit.jpeg" width="1050" height="1400" loading="lazy" alt="David in a suit taking a selfie beside a person in a white cleanroom bunny suit at a Micron booth"></span><figcaption>A selfie at Micron’s “Chip or Treat” booth during a conference in Indianapolis on Halloween.</figcaption></figure></div>
+  <div class="media signrow">
+<div class="txt">
     <h3>Purpose of this portfolio</h3>
     <p>This site is my Best Self Portfolio, the largest assignment in my leadership course EN.660.332 Leadership Theory. For it, I interviewed two people about a time I was at my best, reflected on my 16P and conflict assessments, built my own leadership theory, and set one goal for growth. Putting it together pushed me to look closely at my character and at how others see me, so I can understand where I have been, where I am now, and the leader I want to become.</p>
-  </div>
+</div>
+<div class="pics"><div class="roadsign " aria-hidden="true"><div class="rsign green"><svg class="ic" aria-hidden="true"><use href="#i-compass"/></svg><small>Why I’m on this road</small><b>The journey, not the destination</b><span>A look back at where I’ve been</span><small>EN.660.332 Leadership Theory</small></div><span class="signpost"></span></div><svg class="skid" viewBox="0 0 320 60" aria-hidden="true"><path d="M0 18 C90 6 170 34 320 14"/><path d="M0 40 C90 28 170 56 320 36"/></svg></div>
+</div>
 </div>
 </section>
 
 <!-- ============ INTERVIEWS ============ -->
 <section class="chapter" id="interviews">
-<div class="decor" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<div class="decor" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><span class="floaty r" data-sp="0.12" style="--t:10%;--sz:54px;--h:54px;--dur:6.0s"><svg viewBox="0 0 64 64"><use href="#c-heart"/></svg></span><span class="floaty l" data-sp="-0.08" style="--t:24%;--sz:70px;--h:70px;--dur:7.3s"><svg viewBox="0 0 64 64"><use href="#c-trumpet"/></svg></span><span class="floaty r" data-sp="0.18" style="--t:38%;--sz:52px;--h:52px;--dur:8.6s"><svg viewBox="0 0 64 64"><use href="#c-music"/></svg></span><span class="floaty l" data-sp="-0.14" style="--t:56%;--sz:54px;--h:54px;--dur:9.9s"><svg viewBox="0 0 64 64"><use href="#c-ball"/></svg></span><span class="floaty r" data-sp="0.12" style="--t:70%;--sz:62px;--h:62px;--dur:6.0s"><svg viewBox="0 0 64 64"><use href="#c-grad"/></svg></span><span class="floaty l" data-sp="-0.08" style="--t:86%;--sz:52px;--h:52px;--dur:7.3s"><svg viewBox="0 0 64 64"><use href="#c-pin"/></svg></span></div>
+<div class="road" data-kind="site" data-name="Visiting Loved Ones" data-where="Chicago, IL · Memory Lane · Baltimore, MD" role="img" aria-label="Scenic stop: Visiting Loved Ones, Chicago, IL · Memory Lane · Baltimore, MD">
+  <div class="road-side">
+    <div class="hwy"><span><small>Scenic stop</small>Visiting Loved Ones</span></div>
+    <div class="road-stop"><svg class="stop-art" viewBox="0 0 170 92" aria-hidden="true"><circle cx="128" cy="26" r="11" fill="#e4f7b5" opacity=".9"/><path d="M0 88 L42 34 L70 62 L98 22 L170 88Z" fill="#3a5a27"/><path d="M0 88 L30 58 L58 88Z M70 88 L112 46 L150 88Z" fill="#56634a"/><path d="M92 30 L98 22 L104 30" fill="#f1f5ea"/><rect x="18" y="58" width="56" height="20" rx="3" fill="#6b4423" stroke="#fff" stroke-width="1.6"/><text x="46" y="71" text-anchor="middle" font-size="7.5" font-weight="700" fill="#fff" font-family="Schibsted Grotesk, sans-serif">SCENIC VIEW</text><rect x="44" y="78" width="4" height="10" fill="#9aa29a"/></svg></div>
+  </div>
+  <div class="road-way"><span class="lane"></span><svg class="skid" viewBox="0 0 320 60" aria-hidden="true"><path d="M0 18 C90 6 170 34 320 14"/><path d="M0 40 C90 28 170 56 320 36"/></svg><div class="road-car"><svg viewBox="0 0 220 92"><use href="#crv"/></svg></div></div>
+  <p class="road-label"><svg class="ic" aria-hidden="true"><use href="#i-mountain"/></svg><b>Scenic stop: Visiting Loved Ones</b><span>Chicago, IL · Memory Lane · Baltimore, MD</span></p>
+</div>
 <div class="wrap">
   <h2>Interviews</h2>
-  <div class="prose">
+  <div class="media signrow">
+<div class="txt">
     <p>I asked two people who know me from different parts of my life the same question: <em>“Can you tell me one time when I was at my best self and be as descriptive, honest, and share as much detail as possible?”</em> Here are their answers, in their own words.</p>
-  </div>
+</div>
+<div class="pics"><div class="roadsign " aria-hidden="true"><div class="rsign brown"><svg class="ic" aria-hidden="true"><use href="#i-binoculars"/></svg><small>Scenic stop ahead</small><b>Two best-self stories</b><span>Adriana · Mahmoud</span></div><span class="signpost"></span></div><svg class="skid" viewBox="0 0 320 60" aria-hidden="true"><path d="M0 18 C90 6 170 34 320 14"/><path d="M0 40 C90 28 170 56 320 36"/></svg></div>
+</div>
   <div class="tabs" role="tablist" aria-label="Interviewees">
     <button role="tab" id="tab-0" aria-selected="true" aria-controls="story-0" data-i="0">Adriana Garcia</button>
     <button role="tab" id="tab-1" aria-selected="false" aria-controls="story-1" data-i="1" tabindex="-1">Mahmoud Radwan</button>
@@ -318,7 +558,7 @@ ol.steps{max-width:66ch;padding-left:1.3em}ol.steps li{margin-bottom:6px}
 
   <div class="story" id="story-0" role="tabpanel" aria-labelledby="tab-0">
     <div class="bio">
-      <figure class="shot"><img src="images/adriana.png" width="975" height="650" alt="Portrait of Adriana Garcia smiling in a light blue cardigan"><figcaption>My sister, Adriana.</figcaption></figure>
+      <figure class="shot" data-loc="chicago" data-steps="car:chicago"><span class="frame"><img src="images/adriana.png" width="975" height="650" alt="Portrait of Adriana Garcia smiling in a light blue cardigan"></span><figcaption>My sister, Adriana.</figcaption></figure>
       <p>Adriana is my older sister and a Civil Engineering Analyst on Kimley-Horn’s Land Development team in the Chicago area, where she works on residential, commercial, educational, medical, retail, and mixed-use projects. She graduated from the University of Dayton in 2024 with a civil engineering degree focused on infrastructure and serves on the Scholarship Committee of Commercial Real Estate Women (CREW) Chicago. Outside of work, she explores the city’s food and architecture, stays active, travels, and catches up on shows and movies.</p>
     </div>
 <div class="media">
@@ -331,13 +571,13 @@ ol.steps{max-width:66ch;padding-left:1.3em}ol.steps li{margin-bottom:6px}
       <p>Overall, David’s high school years demonstrated what he is capable of when he is focused, motivated, and at his best. He showed discipline, initiative, emotional intelligence, curiosity, and analytical thinking. Not only did he demonstrate these qualities in only one area of his life, but he applied them consistently across academics, athletics, music, relationships, and his community. His ability to pursue his goals while remaining connected to and supportive to those around him was one of the clearest examples of David at his best.</p>
     </blockquote>
 </div>
-<div class="pics"><figure class="shot"><img src="images/seniors_soccer.jpg" width="1200" height="1600" loading="lazy" alt="Four soccer players in black jerseys with their arms around each other on a field"><figcaption>With friends from my high school soccer team.</figcaption></figure><figure class="shot"><img src="images/david_dribbling.jpg" width="504" height="338" loading="lazy" alt="David in a Briggs jersey dribbling a soccer ball past a defender"><figcaption>Taking on a defender during a high school game.</figcaption></figure><figure class="shot"><img src="images/award_typo.jpg" width="828" height="638" loading="lazy" alt="All-Star Award certificate presented to David for trumpet with the CAHS Jazz Ensemble at the 45th Annual Ohio State University Jazz Festival, March 26, 2022"><figcaption>My All-Star Award for trumpet from the 2022 Ohio State University Jazz Festival, typo in my name and all.</figcaption></figure></div>
+<div class="pics"><figure class="shot" data-loc="cbusdt" data-steps="car:cbusdt"><span class="frame"><img src="images/seniors_soccer.jpg" width="1200" height="1600" loading="lazy" alt="Four soccer players in black jerseys with their arms around each other on a field"></span><figcaption>With friends from my high school soccer team.</figcaption></figure><figure class="shot" data-loc="cbusdt" data-steps=""><span class="frame"><img src="images/david_dribbling.jpg" width="504" height="338" loading="lazy" alt="David in a Briggs jersey dribbling a soccer ball past a defender"></span><figcaption>Taking on a defender during a high school game.</figcaption></figure><figure class="shot" data-loc="osu" data-steps="car:osu"><span class="frame"><img src="images/award_typo.jpg" width="828" height="638" loading="lazy" alt="All-Star Award certificate presented to David for trumpet with the CAHS Jazz Ensemble at the 45th Annual Ohio State University Jazz Festival, March 26, 2022"></span><figcaption>My All-Star Award for trumpet from the 2022 Ohio State University Jazz Festival, typo in my name and all.</figcaption></figure></div>
 </div>
   </div>
 
   <div class="story" id="story-1" role="tabpanel" aria-labelledby="tab-1" hidden>
     <div class="bio">
-      <figure class="shot"><img src="images/mahmoud.png" width="598" height="678" alt="Close-up selfie of Mahmoud Radwan outdoors with trees and rocks behind him"><figcaption>My best friend, Mahmoud.</figcaption></figure>
+      <figure class="shot" data-loc="jhu" data-steps="car:jhu"><span class="frame"><img src="images/mahmoud.png" width="598" height="678" alt="Close-up selfie of Mahmoud Radwan outdoors with trees and rocks behind him"></span><figcaption>My best friend, Mahmoud.</figcaption></figure>
       <p>Mahmoud is my best friend and a senior studying Electrical Engineering at Johns Hopkins. We are both members of our school’s chapter of the Society of Hispanic Professional Engineers (SHPE).</p>
     </div>
 <div class="media">
@@ -347,11 +587,12 @@ ol.steps{max-width:66ch;padding-left:1.3em}ol.steps li{margin-bottom:6px}
       <p>Once we were at the convention, I felt that David was super focused on getting done what he needed to get done, but especially outside convention time I felt that he was genuinely concerned about the people we were talking to. I also felt like he was supporting people in terms of his experience at the convention, but by also just being a positive presence. While we were waiting in lines during the company expos, David would talk with others and give them advice on how to succeed at the SHPE National convention, like how he did for me during my first time at last year’s convention.</p>
     </blockquote>
 </div>
-<div class="pics"><figure class="shot"><img src="images/shpe_dinner.jpeg" width="1400" height="1050" loading="lazy" alt="Friends around a restaurant table smiling over plates of food"><figcaption>Dinner with fellow Hopkins SHPE members.</figcaption></figure><figure class="shot"><img src="images/shpe_group.jpeg" width="1050" height="1400" loading="lazy" alt="A large group of SHPE members in business attire posing in front of an industry partnership banner"><figcaption>A group picture at the convention center.</figcaption></figure></div>
+<div class="pics"><figure class="shot" data-loc="indy" data-steps="car:columbus,car:indy"><span class="frame"><img src="images/shpe_dinner.jpeg" width="1400" height="1050" loading="lazy" alt="Friends around a restaurant table smiling over plates of food"></span><figcaption>Dinner with fellow Hopkins SHPE members at the 2026 SHPE National Convention in Indianapolis.</figcaption></figure><figure class="shot" data-loc="indy" data-steps=""><span class="frame"><img src="images/shpe_group.jpeg" width="1050" height="1400" loading="lazy" alt="A large group of SHPE members in business attire posing in front of an industry partnership banner"></span><figcaption>A group picture at the convention center in Indianapolis.</figcaption></figure></div>
 </div>
   </div>
 
-<div class="prose">
+<div class="media signrow">
+<div class="txt">
     <h3>Reflection on their responses</h3>
     <p>Hearing my sister and my best friend describe me this way meant a lot. I often feel that my actions go unnoticed, and I’m okay with that: helping others comes naturally to me, and I don’t do it for recognition. Still, when someone notices, it feels good to know that the small things I do for people actually matter to them.</p>
     <p>Character is a big part of my identity. Whether it is a small gesture or a big contribution, I want the way I treat people to be what they remember about me.</p>
@@ -360,12 +601,22 @@ ol.steps{max-width:66ch;padding-left:1.3em}ol.steps li{margin-bottom:6px}
     <p>Both stories show the same pattern. In high school, I didn’t wait for more practice time; I organized scrimmages at the park, which made me a better player and gave my teammates more time on the ball. At the SHPE National Convention, the chapter couldn’t cover travel, so I drove members there myself, let them stay at my family’s house, and shared the roadmap behind my internships while I pursued a full-time job. At my best, I create an opportunity and then make sure the people around me can take it too.</p>
   </div>
 </div>
+<div class="pics"><div class="roadsign " aria-hidden="true"><div class="rsign brown"><svg class="ic" aria-hidden="true"><use href="#i-mountain"/></svg><small>Scenic overlook</small><b>Time to reflect</b><span>What their stories showed me</span></div><span class="signpost"></span></div><svg class="skid" viewBox="0 0 320 60" aria-hidden="true"><path d="M0 18 C90 6 170 34 320 14"/><path d="M0 40 C90 28 170 56 320 36"/></svg></div>
+</div>
 </div>
 </section>
 
 <!-- ============ ASSESSMENT ============ -->
 <section class="chapter" id="assessment">
-<div class="decor" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<div class="decor" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><span class="floaty l" data-sp="0.12" style="--t:9%;--sz:60px;--h:60px;--dur:6.0s"><svg viewBox="0 0 64 64"><use href="#c-wrench"/></svg></span><span class="floaty r" data-sp="-0.08" style="--t:20%;--sz:64px;--h:64px;--dur:7.3s"><svg viewBox="0 0 64 64"><use href="#c-gear"/></svg></span><span class="floaty l" data-sp="0.18" style="--t:40%;--sz:56px;--h:56px;--dur:8.6s"><svg viewBox="0 0 64 64"><use href="#c-bulb"/></svg></span><span class="floaty r" data-sp="-0.14" style="--t:58%;--sz:52px;--h:52px;--dur:9.9s"><svg viewBox="0 0 64 64"><use href="#c-pin"/></svg></span><span class="floaty l" data-sp="0.12" style="--t:74%;--sz:58px;--h:58px;--dur:6.0s"><svg viewBox="0 0 64 64"><use href="#c-plane"/></svg></span><span class="floaty r" data-sp="-0.08" style="--t:88%;--sz:60px;--h:60px;--dur:7.3s"><svg viewBox="0 0 64 64"><use href="#c-pump"/></svg></span></div>
+<div class="road" data-kind="site" data-name="Under the Hood" data-where="Wherever the photos take me" role="img" aria-label="Scenic stop: Under the Hood, Wherever the photos take me">
+  <div class="road-side">
+    <div class="hwy"><span><small>Self-inspection ahead</small>Under the Hood</span></div>
+    <div class="road-stop"><svg class="stop-art" viewBox="0 0 170 92" aria-hidden="true"><circle cx="128" cy="26" r="11" fill="#e4f7b5" opacity=".9"/><path d="M0 88 L42 34 L70 62 L98 22 L170 88Z" fill="#3a5a27"/><path d="M0 88 L30 58 L58 88Z M70 88 L112 46 L150 88Z" fill="#56634a"/><path d="M92 30 L98 22 L104 30" fill="#f1f5ea"/><rect x="18" y="58" width="56" height="20" rx="3" fill="#6b4423" stroke="#fff" stroke-width="1.6"/><text x="46" y="71" text-anchor="middle" font-size="7.5" font-weight="700" fill="#fff" font-family="Schibsted Grotesk, sans-serif">SCENIC VIEW</text><rect x="44" y="78" width="4" height="10" fill="#9aa29a"/></svg></div>
+  </div>
+  <div class="road-way"><span class="lane"></span><svg class="skid" viewBox="0 0 320 60" aria-hidden="true"><path d="M0 18 C90 6 170 34 320 14"/><path d="M0 40 C90 28 170 56 320 36"/></svg><div class="road-car"><svg viewBox="0 0 220 92"><use href="#crv"/></svg></div></div>
+  <p class="road-label"><svg class="ic" aria-hidden="true"><use href="#i-mountain"/></svg><b>Scenic stop: Under the Hood</b><span>Wherever the photos take me</span></p>
+</div>
 <div class="wrap">
   <h2>Assessment Reflection</h2>
 <div class="media">
@@ -404,9 +655,9 @@ ol.steps{max-width:66ch;padding-left:1.3em}ol.steps li{margin-bottom:6px}
       <p>I’m self-conscious and sensitive to stress, but also driven to succeed and improve, which keeps my self-development journey going.</p>
     </div>
   </div>
-  <details class="raw"><summary>View my original 16Personalities results</summary><figure class="shot"><img src="images/16P_results.png" width="778" height="676" loading="lazy" alt="Screenshot of David’s 16Personalities results: 67% Extraverted, 61% Observant, 54% Feeling, 51% Judging, 51% Turbulent"><figcaption>My 16Personalities results, as shown on the 16Personalities site.<sup>1</sup></figcaption></figure></details>
+  <details class="raw"><summary>View my original 16Personalities results</summary><figure class="shot"><span class="frame"><img src="images/16P_results.png" width="778" height="676" loading="lazy" alt="Screenshot of David’s 16Personalities results: 67% Extraverted, 61% Observant, 54% Feeling, 51% Judging, 51% Turbulent"></span><figcaption>My 16Personalities results, as shown on the 16Personalities site.<sup>1</sup></figcaption></figure></details>
 </div>
-<div class="pics"><figure class="shot"><img src="images/brewers.jpeg" width="1050" height="1400" loading="lazy" alt="A large group of friends posing in the stands of a baseball stadium"><figcaption>A Brewers game with my fellow interns.</figcaption></figure><figure class="shot"><img src="images/concert.jpg" width="1200" height="1600" loading="lazy" alt="David and a friend standing on a city street at night"><figcaption>Leaving a Junior H concert, my favorite artist, with a friend in New Jersey.</figcaption></figure></div>
+<div class="pics"><figure class="shot" data-loc="milwaukee" data-steps="car:milwaukee"><span class="frame"><img src="images/brewers.jpeg" width="1050" height="1400" loading="lazy" alt="A large group of friends posing in the stands of a baseball stadium"></span><figcaption>A Brewers game in Milwaukee with my fellow interns.</figcaption></figure><figure class="shot" data-loc="newark" data-steps="car:newark"><span class="frame"><img src="images/concert.jpg" width="1200" height="1600" loading="lazy" alt="David and a friend standing on a city street at night"></span><figcaption>Leaving a Junior H concert, my favorite artist, with a friend in Newark, New Jersey.</figcaption></figure></div>
 </div>
 <div class="media flip">
 <div class="txt">
@@ -415,7 +666,7 @@ ol.steps{max-width:66ch;padding-left:1.3em}ol.steps li{margin-bottom:6px}
     <p>The work itself was harder. At almost every meeting, someone was missing or had made little progress. Even as the leader, I never called anyone out or got upset, because I didn’t want anyone to feel bad and I wanted to keep morale up. As the deadline closed in and the project still wasn’t finished, I completed it myself so we would have a working demo for the professor and avoid a bad grade. It worked, and our team got full credit.</p>
     <p>Looking back, every part of my personality played a role. Being extraverted helped me form the team and lead it, and being observant helped me build good relationships within it, because I knew each person’s strengths and weaknesses. Being Feeling made things harder: I prioritized everyone’s feelings over the team being productive, so I put more of the work on myself. Being Judging is what let us finish on time, since I set up scheduled meetings and deliverables for us, and being Turbulent drove my motivation to see it through.</p>
 </div>
-<div class="pics"><figure class="shot"><img src="images/old_electrical_engineering_building.jpg" width="1200" height="1600" loading="lazy" alt="David with arms raised on the steps of a brick building with white columns"><figcaption>Doing a scavenger hunt during my Clark Scholars pre-orientation.</figcaption></figure></div>
+<div class="pics"><figure class="shot" data-loc="jhu" data-steps="car:jhu"><span class="frame"><img src="images/old_electrical_engineering_building.jpg" width="1200" height="1600" loading="lazy" alt="David with arms raised on the steps of a brick building with white columns"></span><figcaption>Doing a scavenger hunt at Hopkins during my Clark Scholars pre-orientation.</figcaption></figure></div>
 </div>
 <div class="media">
 <div class="txt">
@@ -424,10 +675,10 @@ ol.steps{max-width:66ch;padding-left:1.3em}ol.steps li{margin-bottom:6px}
     <p>My highest conflict score is <strong>Collaborating</strong>, the “owl,” which describes someone who values both their goals and their relationships. Accommodating and Compromising are close behind. Accommodating fits my habit of putting others first. Accommodators tend to come across as agreeable and easygoing, but always putting others’ needs ahead of their own can build resentment, so they benefit from saying what they need.<sup>2</sup></p>
   <div class="tbl"><table><thead><tr><th>Conflict style</th><th>Score</th></tr></thead><tbody>
   <tr><td>Collaborating (owl)</td><td>9</td></tr><tr><td>Accommodating (teddy bear)</td><td>8</td></tr><tr><td>Compromising (fox)</td><td>8</td></tr><tr><td>Competing (shark)</td><td>6</td></tr><tr><td>Avoiding (turtle)</td><td>5</td></tr></tbody></table></div>
-  <details class="raw"><summary>View my original conflict assessment result</summary><figure class="shot"><img src="images/conflict_assessment_results.png" width="1213" height="280" loading="lazy" alt="Screenshot of David’s conflict assessment result: Owl, Collaborating. Owls highly value both their goals and their relationships."><figcaption>My conflict assessment result: the owl, or Collaborating style.</figcaption></figure></details>
+  <details class="raw"><summary>View my original conflict assessment result</summary><figure class="shot"><span class="frame"><img src="images/conflict_assessment_results.png" width="1213" height="280" loading="lazy" alt="Screenshot of David’s conflict assessment result: Owl, Collaborating. Owls highly value both their goals and their relationships."></span><figcaption>My conflict assessment result: the owl, or Collaborating style.</figcaption></figure></details>
     <p>Being an owl is fairly new for me. I used to be more of a shark who put goals ahead of relationships. In my family-centered Mexican household, relationships were simply there; I never had to work to build them. Leaving for college changed that. Building relationships on purpose taught me to value people as much as goals, and now I actively make time for the people in my life.</p>
 </div>
-<div class="pics"><figure class="shot"><img src="images/formal.jpg" width="1600" height="1200" loading="lazy" alt="Four friends in formal clothes posing by a river at night"><figcaption>High school formal with friends.</figcaption></figure><figure class="shot"><img src="images/plant.jpeg" width="828" height="622" loading="lazy" alt="David with his arm around a friend at night"><figcaption>A good time with a friend.</figcaption></figure></div>
+<div class="pics"><figure class="shot" data-loc="cbusdt" data-steps="car:cbusdt"><span class="frame"><img src="images/formal.jpg" width="1600" height="1200" loading="lazy" alt="Four friends in formal clothes posing by a river at night"></span><figcaption>High school formal with friends in downtown Columbus.</figcaption></figure><figure class="shot" data-loc="jhu" data-steps="car:jhu"><span class="frame"><img src="images/plant.jpeg" width="828" height="622" loading="lazy" alt="David with his arm around a friend at night"></span><figcaption>A good time with a friend from Hopkins.</figcaption></figure></div>
 </div>
 <div class="media flip">
 <div class="txt">
@@ -435,7 +686,7 @@ ol.steps{max-width:66ch;padding-left:1.3em}ol.steps li{margin-bottom:6px}
     <p>Collaborating showed up this past semester at the SHPE National Convention in Indianapolis. The convention is built around professional development: networking, company workshops, and conversations with employers about jobs. As this year’s National Convention chair, I was the person Hopkins SHPE members turned to for advice on how to make the most of it.</p>
     <p>It was my third national convention, so before we left, I shared a roadmap of how I had landed my last two internships. At the convention, I balanced two goals. Mine was to land a full-time engineering role with one of the attending companies. The chapter’s was for every member to feel ready to approach recruiters and pitch themselves. I also passed what I had learned on to students from other schools I had just met. By the end, everyone in our chapter felt prepared and had a great time. That is what putting my goals and my relationships on equal footing looks like.</p>
 </div>
-<div class="pics"><figure class="shot"><img src="images/shpe_big4.jpg" width="1400" height="1050" loading="lazy" alt="Five students in suits with convention badges standing in an expo hall"><figcaption>With friends from other schools’ SHPE chapters while waiting in the Apple line to talk to recruiters.</figcaption></figure><figure class="shot"><img src="images/NILA.jpeg" width="1050" height="1400" loading="lazy" alt="A group of students posing in front of a SHPE step-and-repeat backdrop"><figcaption>Region 4 (DMV area) leaders at SHPE’s NILA.</figcaption></figure></div>
+<div class="pics"><figure class="shot" data-loc="anaheim" data-steps="car:bwi,plane:anaheim"><span class="frame"><img src="images/plane.jpeg" width="1400" height="1050" loading="lazy" alt="Two friends posing on top of a fighter jet monument at night"></span><figcaption>Posing with a friend on an airplane monument at the 2024 SHPE National Convention in Anaheim, California.</figcaption></figure><figure class="shot" data-loc="philly" data-steps="plane:bwi,car:philly"><span class="frame"><img src="images/shpe_big4.jpg" width="1400" height="1050" loading="lazy" alt="Five students in suits with convention badges standing in an expo hall"></span><figcaption>With friends from other schools’ SHPE chapters while waiting in the Apple line to talk to recruiters at the 2025 SHPE National Convention in Philadelphia.</figcaption></figure><figure class="shot" data-loc="chicago" data-steps="car:bwi,plane:chicago"><span class="frame"><img src="images/NILA.jpeg" width="1050" height="1400" loading="lazy" alt="A group of students posing in front of a SHPE step-and-repeat backdrop"></span><figcaption>Region 4 (DMV area) leaders at SHPE’s NILA in Chicago.</figcaption></figure></div>
 </div>
   <div class="refs"><h4>References</h4><ol><li>16Personalities. <a href="https://www.16personalities.com/">Theory and framework</a>.</li><li>Harvard Program on Negotiation. <a href="https://www.pon.harvard.edu/daily/conflict-resolution/conflict-management-styles-pitfalls-and-best-practices/">Conflict management styles, pitfalls, and best practices</a>.</li></ol></div>
 </div>
@@ -443,7 +694,15 @@ ol.steps{max-width:66ch;padding-left:1.3em}ol.steps li{margin-bottom:6px}
 
 <!-- ============ THEORY ============ -->
 <section class="chapter" id="theory">
-<div class="decor" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<div class="decor" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><span class="floaty r" data-sp="0.12" style="--t:9%;--sz:64px;--h:64px;--dur:6.0s"><svg viewBox="0 0 64 64"><use href="#c-clipboard"/></svg></span><span class="floaty l" data-sp="-0.08" style="--t:22%;--sz:56px;--h:56px;--dur:7.3s"><svg viewBox="0 0 64 64"><use href="#c-ball"/></svg></span><span class="floaty r" data-sp="0.18" style="--t:40%;--sz:62px;--h:62px;--dur:8.6s"><svg viewBox="0 0 64 64"><use href="#c-trophy"/></svg></span><span class="floaty l" data-sp="-0.14" style="--t:58%;--sz:56px;--h:56px;--dur:9.9s"><svg viewBox="0 0 64 64"><use href="#c-mic"/></svg></span><span class="floaty r" data-sp="0.12" style="--t:74%;--sz:52px;--h:52px;--dur:6.0s"><svg viewBox="0 0 64 64"><use href="#c-star"/></svg></span><span class="floaty l" data-sp="-0.08" style="--t:88%;--sz:58px;--h:58px;--dur:7.3s"><svg viewBox="0 0 64 64"><use href="#c-flag"/></svg></span></div>
+<div class="road" data-kind="gas" data-name="Game Plan" data-where="Baltimore, MD" role="img" aria-label="Gas stop: Game Plan, Baltimore, MD">
+  <div class="road-side">
+    <div class="hwy"><span><small>Fuel up</small>Game Plan</span></div>
+    <div class="road-stop"><svg class="stop-art" viewBox="0 0 170 92" aria-hidden="true"><rect x="8" y="10" width="154" height="13" rx="2" fill="#e4f7b5"/><rect x="8" y="23" width="154" height="4" fill="#56634a"/><rect x="22" y="27" width="6" height="61" fill="#9aa29a"/><rect x="142" y="27" width="6" height="61" fill="#9aa29a"/><rect x="58" y="52" width="18" height="36" rx="2" fill="#f1f5ea"/><rect x="94" y="52" width="18" height="36" rx="2" fill="#f1f5ea"/><rect x="61" y="56" width="12" height="7" fill="#18211b"/><rect x="97" y="56" width="12" height="7" fill="#18211b"/><path d="M76 66 q8 0 8 10 v8" stroke="#18211b" stroke-width="2.5" fill="none"/><path d="M112 66 q8 0 8 10 v8" stroke="#18211b" stroke-width="2.5" fill="none"/><text x="85" y="20" text-anchor="middle" font-size="9" font-weight="800" fill="#12140f" font-family="Schibsted Grotesk, sans-serif">GAS · FOOD</text></svg></div>
+  </div>
+  <div class="road-way"><span class="lane"></span><svg class="skid" viewBox="0 0 320 60" aria-hidden="true"><path d="M0 18 C90 6 170 34 320 14"/><path d="M0 40 C90 28 170 56 320 36"/></svg><div class="road-car"><svg viewBox="0 0 220 92"><use href="#crv"/></svg></div></div>
+  <p class="road-label"><svg class="ic" aria-hidden="true"><use href="#i-fuel"/></svg><b>Gas stop: Game Plan</b><span>Baltimore, MD</span></p>
+</div>
 <div class="wrap">
   <h2>The Positive Pitch</h2>
   <div class="pitch-wrap">
@@ -470,7 +729,7 @@ ol.steps{max-width:66ch;padding-left:1.3em}ol.steps li{margin-bottom:6px}
     <p>The theory also comes from my own project team, where I led by example but never built the accountability that would have made the team share the work.</p>
     <p><strong>What I want to be known for:</strong> someone who cares about the people around me, works hard, brings positive energy everywhere I go, and inspires people to be the best version of themselves.</p>
 </div>
-<div class="pics"><figure class="shot"><img src="images/soccer_solo.jpeg" width="1400" height="933" loading="lazy" alt="David running with the ball on a turf field at night"><figcaption>Playing intramural soccer.</figcaption></figure></div>
+<div class="pics"><figure class="shot" data-loc="jhu" data-steps="plane:bwi,car:jhu"><span class="frame"><img src="images/soccer_solo.jpeg" width="1400" height="933" loading="lazy" alt="David running with the ball on a turf field at night"></span><figcaption>Playing intramural soccer at Hopkins.</figcaption></figure></div>
 </div>
 <div class="media">
 <div class="txt">
@@ -478,7 +737,7 @@ ol.steps{max-width:66ch;padding-left:1.3em}ol.steps li{margin-bottom:6px}
     <h3>Why it’s needed</h3>
     <p>Research backs up the idea that a team’s atmosphere matters as much as its talent. In a study of 51 work teams at a manufacturing company, Harvard professor Amy Edmondson found that teams with more psychological safety, a shared belief that it is safe to take interpersonal risks like asking a question or admitting a mistake, engaged in more learning behavior, and that learning behavior led to better team performance.<sup>3</sup> Google reached a similar conclusion in Project Aristotle, a study of 180 of its own teams. Psychological safety ranked first among the five dynamics that set its effective teams apart, and how a team worked together mattered more than who was on it.<sup>4</sup> That is the pitch in my theory: without it, even a team of talented people can’t perform, which is part of what I saw on my own project team.</p>
 </div>
-<div class="pics"><figure class="shot"><img src="images/mex_vs_col.jpeg" width="1400" height="1050" loading="lazy" alt="Friends in Mexico and Colombia jerseys cheering in a packed stadium"><figcaption>Watching Mexico vs. Colombia with friends at M&amp;T Bank Stadium.</figcaption></figure><figure class="shot"><img src="images/shpe_mexican_flag.jpg" width="1200" height="1600" loading="lazy" alt="David holding a large Mexican flag in a convention hall"><figcaption>Holding the Mexican flag at the 2025 SHPE National Convention in Anaheim, California.</figcaption></figure></div>
+<div class="pics"><figure class="shot" data-loc="mtbank" data-steps="car:mtbank"><span class="frame"><img src="images/mex_vs_col.jpeg" width="1400" height="1050" loading="lazy" alt="Friends in Mexico and Colombia jerseys cheering in a packed stadium"></span><figcaption>Watching Mexico vs. Colombia with friends at M&amp;T Bank Stadium.</figcaption></figure><figure class="shot" data-loc="anaheim" data-steps="car:bwi,plane:anaheim"><span class="frame"><img src="images/shpe_mexican_flag.jpg" width="1200" height="1600" loading="lazy" alt="David holding a large Mexican flag in a convention hall"></span><figcaption>Holding the Mexican flag at the 2024 SHPE National Convention in Anaheim, California.</figcaption></figure></div>
 </div>
 <div class="media half flip">
 <div class="txt">
@@ -491,7 +750,7 @@ ol.steps{max-width:66ch;padding-left:1.3em}ol.steps li{margin-bottom:6px}
       <li><strong>Delegating (S4):</strong> low task, low relationship. The leader hands off responsibility and trusts the team to deliver.</li>
     </ul>
 </div>
-<div class="pics"><figure class="shot"><img src="images/SL_Model.png" width="711" height="541" loading="lazy" alt="The Situational Leadership model: a curve through four quadrants of task behavior and relationship behavior, labeled Telling, Selling, Participating, and Delegating"><figcaption>The four leadership styles, plotted by task and relationship behavior. Image: The Decision Lab.<sup>1</sup></figcaption></figure></div>
+<div class="pics"><figure class="shot"><span class="frame"><img src="images/SL_Model.png" width="711" height="541" loading="lazy" alt="The Situational Leadership model: a curve through four quadrants of task behavior and relationship behavior, labeled Telling, Selling, Participating, and Delegating"></span><figcaption>The four leadership styles, plotted by task and relationship behavior. Image: The Decision Lab.<sup>1</sup></figcaption></figure></div>
 </div>
 <div class="media half">
 <div class="txt">
@@ -511,26 +770,37 @@ ol.steps{max-width:66ch;padding-left:1.3em}ol.steps li{margin-bottom:6px}
     <h3>Putting it into practice</h3>
     <ol class="steps"><li>Do your part first, and let the team see it.</li><li>Open each meeting with a quick check-in so everyone feels heard.</li><li>Match your style to each teammate: more direction for someone new, more trust for someone experienced.</li><li>Give kind, direct feedback early instead of absorbing the work yourself.</li><li>Celebrate progress out loud.</li></ol>
 </div>
-<div class="pics"><figure class="shot"><img src="images/dmv_shpe_speaker.jpeg" width="1400" height="933" loading="lazy" alt="David speaking into a microphone at a podium in a conference room"><figcaption>Speaking at the SHPE DMV alumni event I organized: a multi-chapter alumni-student mixer that brought together five SHPE chapters and 50+ attendees to build professional connections for Hispanics in STEM.</figcaption></figure></div>
+<div class="pics"><figure class="shot" data-loc="bsc" data-steps="plane:bwi,car:bsc"><span class="frame"><img src="images/dmv_shpe_speaker.jpeg" width="1400" height="933" loading="lazy" alt="David speaking into a microphone at a podium in a conference room"></span><figcaption>Speaking at the SHPE DMV alumni event I organized at the Bloomberg Student Center: a multi-chapter alumni-student mixer that brought together five SHPE chapters and 50+ attendees to build professional connections for Hispanics in STEM.</figcaption></figure></div>
 </div>
 <div class="media flip">
 <div class="txt">
     <h3>When to use it</h3>
     <p>The Positive Pitch works best on new, small teams of peers who share a goal, like student project groups, club boards, or intramural teams, where no one has formal authority and the leader has to earn buy-in by example. It fits the start of a team’s life, when teammates are still around M2 and need both direction and connection, and it adapts as the team matures by shifting toward a delegating style. It is less suited to emergencies or large organizations that need one person to make fast, top-down decisions.</p>
 </div>
-<div class="pics"><figure class="shot"><img src="images/shpe_dmv_group.jpeg" width="1400" height="542" loading="lazy" alt="A large group of students and alumni in business attire posing together at the front of a conference room"><figcaption>Everyone who came out to the SHPE DMV alumni event, a student-run event like the ones this theory is built for.</figcaption></figure></div>
+<div class="pics"><figure class="shot" data-loc="bsc" data-steps=""><span class="frame"><img src="images/shpe_dmv_group.jpeg" width="1400" height="542" loading="lazy" alt="A large group of students and alumni in business attire posing together at the front of a conference room"></span><figcaption>Everyone who came out to the SHPE DMV alumni event, a student-run event like the ones this theory is built for.</figcaption></figure></div>
 </div>
-  <div class="prose">
+  <div class="media signrow">
+<div class="txt">
     <h3>Limitations and nuances</h3>
     <p>Leading by example can turn into doing everyone’s work, which is exactly what happened on my project. A positive atmosphere can also become a way to avoid hard conversations. And Barcelona’s squad was full of exceptional talent, so its results won’t transfer one-to-one to a student team. I know this theory differs from established ones because it takes a tactical approach that mirrors a sport, while most leadership theories are abstract or built on corporate and real-world examples.</p>
-  </div>
+</div>
+<div class="pics"><div class="roadsign diamond" aria-hidden="true"><div class="rsign warn"><div class="warn-in"><svg class="ic" aria-hidden="true"><use href="#i-warning"/></svg><b>Caution</b><span>Blind spots ahead</span></div></div><span class="signpost"></span></div><svg class="skid" viewBox="0 0 320 60" aria-hidden="true"><path d="M0 18 C90 6 170 34 320 14"/><path d="M0 40 C90 28 170 56 320 36"/></svg></div>
+</div>
   <div class="refs"><h4>References</h4><ol><li>The Decision Lab. <a href="https://thedecisionlab.com/reference-guide/management/situational-leadership-theory">Situational Leadership Theory</a>.</li><li>Transfermarkt. <a href="https://www.transfermarkt.co.uk/pep-guardiola/erfolge/spieler/5950">Pep Guardiola: titles and honours</a>.</li><li>Edmondson, A. (1999). <a href="https://doi.org/10.2307/2666999">Psychological safety and learning behavior in work teams</a>. <em>Administrative Science Quarterly, 44</em>(2), 350–383.</li><li>Google re:Work. <a href="https://rework.withgoogle.com/intl/en/guides/understand-team-effectiveness">Understand team effectiveness</a>.</li></ol></div>
 </div>
 </section>
 
 <!-- ============ GROWTH ============ -->
 <section class="chapter" id="growth">
-<div class="decor" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<div class="decor" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><span class="floaty l" data-sp="0.12" style="--t:10%;--sz:64px;--h:64px;--dur:6.0s"><svg viewBox="0 0 64 64"><use href="#c-seed"/></svg></span><span class="floaty r" data-sp="-0.08" style="--t:26%;--sz:70px;--h:70px;--dur:7.3s"><svg viewBox="0 0 64 64"><use href="#c-mountain"/></svg></span><span class="floaty l" data-sp="0.18" style="--t:48%;--sz:54px;--h:54px;--dur:8.6s"><svg viewBox="0 0 64 64"><use href="#c-snow"/></svg></span><span class="floaty r" data-sp="-0.14" style="--t:66%;--sz:58px;--h:58px;--dur:9.9s"><svg viewBox="0 0 64 64"><use href="#c-target"/></svg></span><span class="floaty l" data-sp="0.12" style="--t:86%;--sz:92px;--h:38px;--dur:6.0s"><svg viewBox="0 0 220 92"><use href="#crv"/></svg></span></div>
+<div class="road" data-kind="site" data-name="Room to Grow" data-where="Hocking Hills, OH" role="img" aria-label="Scenic stop: Room to Grow, Hocking Hills, OH">
+  <div class="road-side">
+    <div class="hwy"><span><small>Scenic route</small>Room to Grow</span></div>
+    <div class="road-stop"><svg class="stop-art" viewBox="0 0 170 92" aria-hidden="true"><circle cx="128" cy="26" r="11" fill="#e4f7b5" opacity=".9"/><path d="M0 88 L42 34 L70 62 L98 22 L170 88Z" fill="#3a5a27"/><path d="M0 88 L30 58 L58 88Z M70 88 L112 46 L150 88Z" fill="#56634a"/><path d="M92 30 L98 22 L104 30" fill="#f1f5ea"/><rect x="18" y="58" width="56" height="20" rx="3" fill="#6b4423" stroke="#fff" stroke-width="1.6"/><text x="46" y="71" text-anchor="middle" font-size="7.5" font-weight="700" fill="#fff" font-family="Schibsted Grotesk, sans-serif">SCENIC VIEW</text><rect x="44" y="78" width="4" height="10" fill="#9aa29a"/></svg></div>
+  </div>
+  <div class="road-way"><span class="lane"></span><svg class="skid" viewBox="0 0 320 60" aria-hidden="true"><path d="M0 18 C90 6 170 34 320 14"/><path d="M0 40 C90 28 170 56 320 36"/></svg><div class="road-car"><svg viewBox="0 0 220 92"><use href="#crv"/></svg></div></div>
+  <p class="road-label"><svg class="ic" aria-hidden="true"><use href="#i-mountain"/></svg><b>Scenic stop: Room to Grow</b><span>Hocking Hills, OH</span></p>
+</div>
 <div class="wrap">
   <h2>Growth</h2>
 <div class="media">
@@ -541,20 +811,41 @@ ol.steps{max-width:66ch;padding-left:1.3em}ol.steps li{margin-bottom:6px}
     <h3>One concrete behavior change</h3>
     <p>When a teammate hasn’t made progress by our weekly check-in, I will message them privately within 24 hours, ask what is blocking them, and agree on one specific task with a due date. I won’t take the task over unless we decide that together.</p>
 </div>
-<div class="pics"><figure class="shot"><img src="images/zipline.jpeg" width="1050" height="1400" loading="lazy" alt="Friends in helmets reflected in a round mirror above autumn trees"><figcaption>A selfie before getting on the zipline.</figcaption></figure></div>
+<div class="pics"><figure class="shot" data-loc="hocking" data-steps="car:hocking"><span class="frame"><img src="images/zipline.jpeg" width="1050" height="1400" loading="lazy" alt="Friends in helmets reflected in a round mirror above autumn trees"></span><figcaption>A selfie before getting on the zipline at Hocking Hills.</figcaption></figure><figure class="shot" data-loc="harrisburg" data-steps="car:harrisburg"><span class="frame"><img src="images/snow_machine.jpeg" width="1050" height="1400" loading="lazy" alt="David in a winter jacket and snow pants standing in front of a large snow groomer"></span><figcaption>Next to a snow groomer on the Clark Scholars ski trip near Harrisburg, Pennsylvania.</figcaption></figure></div>
 </div>
 <div class="media flip">
 <div class="txt">
     <h3>How this helps a current team</h3>
     <p>My current team is my final presentation group in EN.660.332 Leadership Theory. We all had different schedules and couldn’t meet in person, but we still found a way to work together, and we became close friends in the process. No one person did the whole presentation; we all contributed, and it turned out really well. This change would help a team like this one, because if someone started to fall behind, I would hold them accountable instead of staying quiet and picking up their part.</p>
 </div>
-<div class="pics"><figure class="shot"><img src="images/cahs_osu_tour.jpeg" width="1050" height="1400" loading="lazy" alt="David taking a selfie with a group of high school classmates on a campus tour"><figcaption>A selfie with everyone during our high school tour of Ohio State.</figcaption></figure></div>
+<div class="pics"><figure class="shot" data-loc="osu" data-steps="car:osu"><span class="frame"><img src="images/cahs_osu_tour.jpeg" width="1050" height="1400" loading="lazy" alt="David taking a selfie with a group of high school classmates on a campus tour"></span><figcaption>A selfie with everyone during our high school tour of Ohio State.</figcaption></figure></div>
 </div>
 </div>
+<div class="road unknown" data-kind="unknown" data-name="Wherever the road takes me" data-where="Unknown" role="img" aria-label="The road keeps going toward an unknown destination">
+  <div class="road-side">
+    <div class="hwy unknown-sign"><span><small>Next stop</small>Wherever the road takes me</span></div>
+    <div class="road-stop qmark" aria-hidden="true">?</div>
+  </div>
+  <div class="road-way"><span class="lane"></span><svg class="skid" viewBox="0 0 320 60" aria-hidden="true"><path d="M0 18 C90 6 170 34 320 14"/><path d="M0 40 C90 28 170 56 320 36"/></svg><div class="road-car"><svg viewBox="0 0 220 92"><use href="#crv"/></svg></div></div>
+</div>
+<p class="the-end">I don’t know exactly where this road goes next. What I do know is that I’ll enjoy the journey, and that’s what matters most.</p>
 </section>
 </main>
+<aside class="dash" id="dash" aria-label="Road trip dashboard">
+  <button class="dash-toggle" id="dashToggle" type="button" aria-expanded="true" aria-controls="tripMap">Hide map</button>
+  <div class="dash-map-wrap" style="position:relative"><div class="dash-map" id="tripMap" aria-hidden="true"></div><div class="dash-end" aria-hidden="true"><b>?</b><span>Wherever the road takes me</span></div></div>
+  <div class="dash-row">
+    <div class="odo"><span id="odo">0</span><small>mi</small></div>
+    <div class="fuel"><svg class="ic" aria-hidden="true"><use href="#i-fuel"/></svg><span class="f-e">E</span><span class="fuel-bar"><span id="fuelFill"></span></span><span class="f-f">F</span></div>
+    <span class="lite low" id="liteLow" title="Low fuel"><svg class="ic" aria-hidden="true"><use href="#i-fuel"/></svg></span>
+    <span class="lite sig" id="liteSig" title="Turn signal"><svg class="ic" aria-hidden="true"><use href="#i-signal"/></svg></span>
+  </div>
+  <p class="dash-here" id="dashHere">You are here: Home, Columbus, OH</p>
+  <p class="dash-next" id="dashNext">Next stop: Home Base</p>
+</aside>
 
 
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
 (function(){
   var $=function(s,c){return (c||document).querySelector(s)}, $$=function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s))};
@@ -660,18 +951,227 @@ ol.steps{max-width:66ch;padding-left:1.3em}ol.steps li{margin-bottom:6px}
   hero.addEventListener('pointerleave',function(){pointer=false});
   if('IntersectionObserver' in window){new IntersectionObserver(function(es){heroOn=es[0].isIntersecting;if(heroOn)startLens()}).observe(hero)}
 
+
+  /* ---------- the journey: every photo is a real place, reached the way I really got there ---------- */
+  var LOC={
+    columbus:[39.9612,-82.9988,'Home, Columbus, OH'], cbusdt:[39.9580,-82.9990,'Downtown Columbus, OH'], osu:[40.0076,-83.0300,'Ohio State, Columbus, OH'],
+    santiago:[-33.4489,-70.6693,'Santiago, Chile'], andes:[-33.3550,-70.2990,'Andes Mountains, Chile'], hocking:[39.5401,-82.4071,'Hocking Hills, Logan, OH'],
+    jamaica:[18.1096,-77.2975,'Jamaica'], cousins:[39.96145,-82.99835,'My cousins’ house, next door'], lowerfield:[39.9686,-83.0170,'Lower.com Field, Columbus, OH'],
+    bwi:[39.1754,-76.6683,'BWI Airport, Baltimore, MD'], scl:[-33.3930,-70.7858,'Santiago Airport, Chile'], bahai:[-33.4720,-70.5096,'Bahá’í Temple, Santiago, Chile'], dallas:[32.7767,-96.7970,'Dallas, TX'], milwaukee:[43.0389,-87.9065,'Milwaukee, WI'],
+    indy:[39.7684,-86.1581,'Indianapolis, IN'], chicago:[41.8781,-87.6298,'Chicago, IL'], jhu:[39.3299,-76.6205,'Johns Hopkins, Baltimore, MD'],
+    bsc:[39.3289,-76.6190,'Bloomberg Student Center, Johns Hopkins'], mtbank:[39.2780,-76.6227,'M&T Bank Stadium, Baltimore, MD'],
+    philly:[39.9526,-75.1652,'Philadelphia, PA'], newark:[40.7357,-74.1724,'Newark, NJ'], anaheim:[33.8366,-117.9143,'Anaheim, CA'],
+    harrisburg:[40.2732,-76.8867,'Near Harrisburg, PA']
+  };
+  var ROUTES={"columbus>lowerfield":[[39.961,-82.998],[39.96,-83.002],[39.966,-83.003],[39.968,-83.018]],"lowerfield>hocking":[[39.968,-83.018],[39.968,-83.01],[39.972,-83.01],[39.976,-82.996],[39.971,-82.984],[39.955,-82.981],[39.952,-82.945],[39.934,-82.934],[39.926,-82.923],[39.909,-82.917],[39.901,-82.898],[39.867,-82.849],[39.845,-82.793],[39.828,-82.722],[39.802,-82.71],[39.786,-82.692],[39.769,-82.691],[39.753,-82.678],[39.724,-82.678],[39.697,-82.666],[39.681,-82.654],[39.668,-82.616],[39.665,-82.564],[39.647,-82.556],[39.595,-82.546],[39.583,-82.526],[39.568,-82.514],[39.56,-82.503],[39.545,-82.45],[39.534,-82.432],[39.534,-82.405],[39.54,-82.407]],"hocking>jhu":[[39.54,-82.407],[39.478,-82.314],[39.471,-82.231],[39.33,-82.084],[39.307,-81.942],[39.214,-81.847],[39.286,-81.664],[39.238,-81.458],[39.298,-80.752],[39.277,-80.283],[39.428,-80.195],[39.522,-80.011],[39.582,-79.953],[39.629,-79.959],[39.672,-79.856],[39.653,-79.44],[39.702,-79.308],[39.696,-79.136],[39.688,-78.975],[39.632,-78.914],[39.65,-78.756],[39.714,-78.613],[39.664,-78.422],[39.72,-78.286],[39.685,-78.103],[39.623,-78.007],[39.65,-77.853],[39.599,-77.663],[39.404,-77.462],[39.296,-76.854],[39.33,-76.621]],"jhu>bwi":[[39.33,-76.621],[39.334,-76.622],[39.331,-76.624],[39.325,-76.62],[39.312,-76.619],[39.302,-76.62],[39.297,-76.626],[39.281,-76.623],[39.268,-76.635],[39.255,-76.637],[39.245,-76.648],[39.225,-76.651],[39.22,-76.657],[39.212,-76.68],[39.204,-76.692],[39.198,-76.692],[39.192,-76.687],[39.179,-76.669]],"scl>bahai":[[-33.393,-70.783],[-33.389,-70.784],[-33.394,-70.769],[-33.372,-70.742],[-33.374,-70.714],[-33.366,-70.697],[-33.367,-70.682],[-33.38,-70.646],[-33.4,-70.613],[-33.399,-70.607],[-33.392,-70.602],[-33.391,-70.596],[-33.398,-70.588],[-33.409,-70.587],[-33.428,-70.575],[-33.438,-70.573],[-33.463,-70.552],[-33.463,-70.54],[-33.472,-70.519],[-33.47,-70.518],[-33.472,-70.518],[-33.472,-70.51]],"bwi>columbus":[[39.179,-76.669],[39.306,-76.745],[39.302,-76.909],[39.405,-77.464],[39.599,-77.661],[39.651,-77.852],[39.624,-78.009],[39.714,-78.189],[39.7,-78.381],[39.664,-78.423],[39.714,-78.613],[39.635,-78.832],[39.635,-78.943],[39.688,-78.977],[39.702,-79.308],[39.654,-79.44],[39.672,-79.855],[39.629,-79.988],[39.918,-80.162],[40.162,-80.193],[40.189,-80.245],[40.042,-80.611],[40.078,-80.936],[40.06,-81.305],[39.944,-81.992],[39.932,-82.925],[39.961,-82.998]],"columbus>dallas":[[39.961,-82.998],[39.835,-83.097],[39.376,-84.243],[39.003,-84.647],[38.876,-84.627],[38.29,-85.645],[38.191,-85.732],[37.916,-85.687],[37.669,-85.853],[37.192,-85.94],[36.994,-86.382],[36.412,-86.722],[36.311,-86.703],[36.087,-86.944],[35.538,-89.252],[35.153,-89.884],[35.151,-90.402],[34.852,-91.341],[34.782,-92.163],[34.537,-92.675],[33.958,-93.223],[33.48,-93.985],[33.476,-94.445],[33.158,-95.037],[33.136,-96.073],[32.776,-96.797]],"columbus>milwaukee":[[39.961,-82.998],[39.981,-83.246],[39.935,-83.667],[39.891,-83.736],[39.838,-84.448],[39.829,-84.808],[39.873,-84.883],[39.8,-86.03],[39.889,-86.048],[39.913,-86.082],[39.934,-86.341],[40.045,-86.488],[40.199,-86.575],[40.319,-86.748],[40.492,-86.861],[40.815,-87.161],[41.002,-87.268],[41.152,-87.266],[41.386,-87.327],[41.578,-87.296],[41.615,-87.487],[41.703,-87.524],[41.778,-87.63],[41.886,-87.646],[41.965,-87.746],[42.089,-87.759],[42.408,-87.938],[42.839,-87.952],[43.039,-87.907]],"milwaukee>jhu":[[43.039,-87.907],[42.384,-87.949],[42.152,-87.874],[42.137,-87.787],[41.964,-87.747],[41.611,-87.478],[41.571,-86.984],[41.756,-86.459],[41.755,-85.126],[41.628,-84.811],[41.59,-83.64],[41.353,-82.875],[41.326,-82.524],[41.392,-82.124],[41.252,-81.584],[41.24,-80.99],[40.949,-80.63],[40.585,-79.875],[40.38,-79.676],[40.267,-79.667],[40.115,-79.394],[39.957,-78.847],[40.05,-78.538],[40.0,-78.233],[39.808,-78.272],[39.624,-78.01],[39.599,-77.663],[39.399,-77.439],[39.296,-76.854],[39.33,-76.621]],"jhu>columbus":[[39.33,-76.621],[39.296,-76.853],[39.404,-77.463],[39.599,-77.661],[39.651,-77.852],[39.624,-78.009],[39.714,-78.189],[39.7,-78.381],[39.664,-78.423],[39.714,-78.613],[39.635,-78.832],[39.635,-78.943],[39.688,-78.977],[39.702,-79.308],[39.654,-79.44],[39.672,-79.855],[39.629,-79.988],[39.918,-80.162],[40.162,-80.193],[40.189,-80.245],[40.042,-80.611],[40.078,-80.936],[40.06,-81.305],[39.944,-81.992],[39.932,-82.925],[39.961,-82.998]],"columbus>indy":[[39.961,-82.998],[39.948,-83.034],[39.974,-83.083],[39.981,-83.246],[39.942,-83.44],[39.935,-83.667],[39.891,-83.736],[39.894,-83.916],[39.865,-83.997],[39.857,-84.407],[39.838,-84.448],[39.829,-84.808],[39.873,-84.879],[39.853,-85.069],[39.853,-85.48],[39.826,-85.612],[39.807,-86.062],[39.768,-86.158]],"indy>chicago":[[39.768,-86.158],[39.811,-86.168],[39.843,-86.258],[39.949,-86.356],[40.045,-86.488],[40.133,-86.519],[40.173,-86.551],[40.269,-86.663],[40.319,-86.748],[40.446,-86.844],[40.492,-86.861],[40.503,-86.885],[40.674,-87.051],[40.815,-87.161],[40.949,-87.223],[41.008,-87.27],[41.152,-87.266],[41.218,-87.295],[41.321,-87.302],[41.386,-87.327],[41.517,-87.319],[41.578,-87.296],[41.598,-87.307],[41.608,-87.351],[41.617,-87.488],[41.653,-87.515],[41.703,-87.524],[41.779,-87.63],[41.878,-87.63]],"chicago>cbusdt":[[41.878,-87.63],[41.778,-87.631],[41.704,-87.526],[41.617,-87.489],[41.579,-87.297],[41.385,-87.327],[41.15,-87.266],[41.008,-87.271],[40.814,-87.162],[40.493,-86.861],[40.319,-86.749],[40.173,-86.551],[40.043,-86.486],[39.931,-86.341],[39.912,-86.081],[39.888,-86.048],[39.798,-86.036],[39.853,-85.48],[39.873,-84.882],[39.828,-84.806],[39.838,-84.448],[39.89,-83.735],[39.935,-83.668],[39.981,-83.247],[39.958,-82.999]],"cbusdt>osu":[[39.958,-82.999],[39.957,-83.018],[39.969,-83.022],[39.996,-83.025],[40.0,-83.03],[40.008,-83.031]],"osu>jhu":[[40.008,-83.031],[39.932,-82.929],[39.944,-81.992],[40.059,-81.304],[40.078,-80.936],[40.042,-80.61],[40.188,-80.244],[40.161,-80.194],[39.998,-80.189],[39.717,-80.061],[39.628,-79.956],[39.672,-79.855],[39.653,-79.439],[39.702,-79.307],[39.688,-78.977],[39.635,-78.943],[39.635,-78.833],[39.714,-78.613],[39.664,-78.423],[39.7,-78.382],[39.713,-78.19],[39.624,-78.009],[39.65,-77.853],[39.599,-77.662],[39.404,-77.462],[39.296,-76.854],[39.33,-76.621]],"indy>milwaukee":[[39.768,-86.158],[39.811,-86.168],[39.843,-86.258],[39.949,-86.356],[40.045,-86.488],[40.134,-86.52],[40.199,-86.575],[40.319,-86.748],[40.492,-86.861],[40.674,-87.051],[40.815,-87.161],[40.949,-87.223],[41.002,-87.268],[41.152,-87.266],[41.386,-87.327],[41.517,-87.319],[41.578,-87.296],[41.608,-87.351],[41.615,-87.487],[41.703,-87.524],[41.778,-87.63],[41.886,-87.646],[41.965,-87.746],[42.028,-87.769],[42.089,-87.759],[42.24,-87.862],[42.374,-87.897],[42.408,-87.938],[42.839,-87.952],[42.963,-87.934],[42.971,-87.915],[43.034,-87.922],[43.039,-87.907]],"milwaukee>newark":[[43.039,-87.907],[42.384,-87.949],[42.152,-87.874],[42.137,-87.787],[41.611,-87.476],[41.571,-86.984],[41.756,-86.459],[41.755,-85.126],[41.628,-84.811],[41.59,-83.64],[41.353,-82.875],[41.392,-82.124],[41.252,-81.584],[41.241,-80.993],[41.109,-80.83],[41.185,-80.515],[41.19,-79.214],[40.944,-77.728],[41.069,-77.409],[41.077,-76.931],[40.986,-76.718],[41.078,-75.512],[40.923,-75.063],[40.91,-74.506],[40.736,-74.172]],"newark>jhu":[[40.736,-74.172],[40.688,-74.193],[40.665,-74.183],[40.576,-74.248],[40.548,-74.281],[40.517,-74.364],[40.474,-74.409],[40.248,-74.52],[40.167,-74.647],[39.876,-75.013],[39.854,-75.102],[39.725,-75.323],[39.691,-75.417],[39.679,-75.487],[39.707,-75.596],[39.647,-75.739],[39.643,-75.934],[39.575,-76.134],[39.487,-76.244],[39.419,-76.407],[39.312,-76.542],[39.326,-76.552],[39.33,-76.621]],"jhu>cbusdt":[[39.33,-76.621],[39.296,-76.853],[39.404,-77.463],[39.599,-77.661],[39.651,-77.852],[39.624,-78.009],[39.714,-78.189],[39.7,-78.381],[39.664,-78.423],[39.714,-78.613],[39.635,-78.832],[39.635,-78.943],[39.688,-78.977],[39.702,-79.308],[39.654,-79.44],[39.672,-79.855],[39.629,-79.988],[39.918,-80.162],[40.162,-80.193],[40.189,-80.245],[40.042,-80.611],[40.078,-80.936],[40.06,-81.305],[39.944,-81.992],[39.958,-82.999]],"bwi>philly":[[39.179,-76.669],[39.192,-76.687],[39.205,-76.689],[39.232,-76.649],[39.228,-76.627],[39.239,-76.614],[39.242,-76.579],[39.273,-76.554],[39.293,-76.553],[39.344,-76.511],[39.372,-76.457],[39.44,-76.372],[39.446,-76.331],[39.487,-76.244],[39.574,-76.134],[39.586,-76.076],[39.645,-75.925],[39.639,-75.787],[39.655,-75.702],[39.683,-75.66],[39.702,-75.591],[39.714,-75.582],[39.719,-75.542],[39.758,-75.491],[39.8,-75.451],[39.817,-75.452],[39.834,-75.423],[39.868,-75.343],[39.877,-75.253],[39.906,-75.194],[39.922,-75.191],[39.937,-75.199],[39.96,-75.18],[39.953,-75.165]],"jhu>mtbank":[[39.33,-76.621],[39.334,-76.622],[39.331,-76.624],[39.325,-76.62],[39.302,-76.62],[39.297,-76.626],[39.282,-76.623],[39.277,-76.625],[39.277,-76.621]],"mtbank>bwi":[[39.277,-76.621],[39.278,-76.626],[39.269,-76.635],[39.255,-76.637],[39.245,-76.648],[39.224,-76.652],[39.212,-76.68],[39.204,-76.692],[39.198,-76.692],[39.192,-76.687],[39.179,-76.669]],"bwi>bsc":[[39.179,-76.669],[39.184,-76.672],[39.191,-76.686],[39.202,-76.691],[39.211,-76.681],[39.224,-76.651],[39.245,-76.647],[39.255,-76.637],[39.267,-76.635],[39.281,-76.623],[39.301,-76.622],[39.303,-76.616],[39.329,-76.619]],"bsc>hocking":[[39.329,-76.619],[39.296,-76.853],[39.404,-77.463],[39.599,-77.664],[39.651,-77.852],[39.624,-78.007],[39.685,-78.102],[39.72,-78.284],[39.664,-78.422],[39.714,-78.613],[39.65,-78.757],[39.633,-78.915],[39.688,-78.976],[39.696,-79.135],[39.702,-79.309],[39.654,-79.44],[39.672,-79.856],[39.629,-79.959],[39.522,-80.011],[39.429,-80.195],[39.337,-80.223],[39.276,-80.3],[39.299,-80.752],[39.239,-81.459],[39.268,-81.497],[39.258,-81.642],[39.287,-81.646],[39.214,-81.847],[39.308,-81.942],[39.332,-82.082],[39.472,-82.23],[39.478,-82.313],[39.54,-82.407]],"hocking>harrisburg":[[39.54,-82.407],[39.694,-82.287],[39.723,-82.314],[39.809,-82.295],[39.885,-82.056],[39.944,-82.001],[40.003,-81.499],[40.059,-81.306],[40.078,-80.936],[40.042,-80.61],[40.119,-80.48],[40.131,-80.326],[40.188,-80.247],[40.107,-79.9],[40.225,-79.608],[40.108,-79.379],[40.129,-79.291],[40.001,-79.048],[39.955,-78.818],[40.051,-78.536],[40.003,-78.431],[39.985,-78.238],[40.06,-78.094],[40.037,-77.996],[40.087,-77.829],[40.158,-77.704],[40.143,-77.643],[40.228,-77.152],[40.195,-76.98],[40.273,-76.887]],"harrisburg>osu":[[40.273,-76.887],[40.196,-76.98],[40.228,-77.153],[40.158,-77.704],[40.087,-77.83],[40.037,-77.996],[40.06,-78.093],[39.985,-78.238],[40.051,-78.537],[39.955,-78.818],[40.001,-79.047],[40.129,-79.29],[40.108,-79.379],[40.224,-79.604],[40.107,-79.9],[40.189,-80.247],[40.043,-80.609],[40.078,-80.936],[40.06,-81.305],[39.944,-81.992],[39.932,-82.929],[39.952,-83.017],[40.008,-83.031]],"osu>milwaukee":[[40.008,-83.031],[40.114,-83.034],[40.1,-83.17],[40.253,-83.366],[40.237,-83.405],[40.274,-83.531],[40.321,-83.581],[40.328,-83.675],[40.387,-83.77],[40.576,-83.849],[40.695,-83.981],[40.737,-84.102],[40.828,-84.136],[40.899,-84.642],[40.992,-84.788],[41.063,-84.987],[41.154,-85.02],[41.169,-85.105],[41.124,-85.187],[41.127,-85.379],[41.362,-86.296],[41.449,-87.018],[41.576,-87.046],[41.616,-87.487],[41.703,-87.524],[41.779,-87.63],[41.888,-87.647],[41.965,-87.746],[42.089,-87.759],[42.408,-87.938],[42.839,-87.952],[43.039,-87.907]]};
+  var roads=$$('.road'), dash=$('#dash'), odo=$('#odo'), fuelFill=$('#fuelFill'), fuelBar=fuelFill.parentNode,
+      dashHere=$('#dashHere'), dashNext=$('#dashNext'), liteLow=$('#liteLow'), liteSig=$('#liteSig'), rootEl=document.documentElement,
+      floaties=$$('.floaty'), dashToggle=$('#dashToggle');
+  function hav(a,b){var R=3958.8,r=Math.PI/180,dl=(b[0]-a[0])*r,dg=(b[1]-a[1])*r,x=Math.sin(dl/2)*Math.sin(dl/2)+Math.cos(a[0]*r)*Math.cos(b[0]*r)*Math.sin(dg/2)*Math.sin(dg/2);return 2*R*Math.asin(Math.sqrt(x))}
+  function arc(A,B,n){ /* great-circle flight path */
+    var r=Math.PI/180,la1=A[0]*r,lo1=A[1]*r,la2=B[0]*r,lo2=B[1]*r;
+    var d=2*Math.asin(Math.sqrt(Math.pow(Math.sin((la2-la1)/2),2)+Math.cos(la1)*Math.cos(la2)*Math.pow(Math.sin((lo2-lo1)/2),2)));
+    if(d<1e-6)return [[A[0],A[1]],[B[0],B[1]]];
+    var out=[];for(var i=0;i<=n;i++){var f=i/n,a=Math.sin((1-f)*d)/Math.sin(d),b=Math.sin(f*d)/Math.sin(d),
+      x=a*Math.cos(la1)*Math.cos(lo1)+b*Math.cos(la2)*Math.cos(lo2),y=a*Math.cos(la1)*Math.sin(lo1)+b*Math.cos(la2)*Math.sin(lo2),z=a*Math.sin(la1)+b*Math.sin(la2);
+      out.push([Math.atan2(z,Math.sqrt(x*x+y*y))/r,Math.atan2(y,x)/r])}
+    return out;
+  }
+  function geom(mode,from,to){
+    var A=LOC[from],B=LOC[to];
+    if(from===to)return [[A[0],A[1]],[B[0],B[1]]];
+    if(mode==='plane')return arc(A,B,64);
+    if(mode==='walk')return [[A[0],A[1]],[B[0],B[1]]];
+    var k=from+'>'+to; if(ROUTES[k])return ROUTES[k];
+    k=to+'>'+from; if(ROUTES[k])return ROUTES[k].slice().reverse();
+    return [[A[0],A[1]],[B[0],B[1]]];
+  }
+  var P=[], LL=[], SEG=[], STOPS=[], sig='';
+  function build(figs){
+    var cur='columbus', c=LOC.columbus;
+    P=[{d:0,s:0}]; LL=[[c[0],c[1]]]; SEG=[]; STOPS=[{d:0,loc:'columbus',f:null}];
+    figs.forEach(function(f){
+      (f.dataset.steps||'').split(',').filter(Boolean).forEach(function(st){
+        var m=st.split(':'), mode=m[0], to=m[1], g=geom(mode,cur,to), i0=LL.length-1;
+        for(var j=1;j<g.length;j++){var last=LL[LL.length-1];LL.push(g[j]);P.push({d:P[P.length-1].d+hav(last,g[j]),s:SEG.length})}
+        SEG.push({i0:i0,i1:LL.length-1,mode:mode,from:cur,to:to,z:null}); cur=to;
+      });
+      STOPS.push({d:P[P.length-1].d,loc:f.dataset.loc,f:f});
+    });
+  }
+  function at(D){ /* position along the journey at distance D (miles) */
+    var lo=0,hi=P.length-1; if(D<=0)return {k:0,t:0,lat:LL[0][0],lng:LL[0][1]};
+    if(D>=P[hi].d)return {k:hi-1<0?0:hi-1,t:1,lat:LL[hi][0],lng:LL[hi][1]};
+    while(hi-lo>1){var mid=(lo+hi)>>1;if(P[mid].d<=D)lo=mid;else hi=mid}
+    var span=P[hi].d-P[lo].d, t=span>0?(D-P[lo].d)/span:0;
+    return {k:lo,t:t,lat:LL[lo][0]+(LL[hi][0]-LL[lo][0])*t,lng:LL[lo][1]+(LL[hi][1]-LL[lo][1])*t};
+  }
+  function carX(p,st){
+    if(p<.42)return -0.25+(st+0.25)*(1-Math.pow(1-p/.42,2));
+    if(p<.58)return st;
+    return st+(1.3-st)*Math.pow((p-.58)/.42,2);
+  }
+  var map=null, veh=null, done=null, head=null, ghost=null, dots=null, lastK=-1, vehMode='', heading=0;
+  var Dshow=0, Dtarget=0, camLat=LOC.columbus[0], camLng=LOC.columbus[1], camZ=16, raf2=0, lastHere='', lastNext='', lastSec=-1;
+  function vehHTML(mode){
+    if(mode==='walk')return '<div class="veh walk"><svg viewBox="0 0 30 44"><use href="#walker"/></svg></div>';
+    return '<div class="veh '+mode+'"><svg viewBox="'+(mode==='plane'?'0 0 40 66':'0 0 40 80')+'"><use href="#'+(mode==='plane'?'plane-top':'crv-top')+'"/></svg></div>';
+  }
+  function drawRoute(){
+    if(!map)return;
+    if(ghost)map.removeLayer(ghost); if(dots)map.removeLayer(dots);
+    ghost=L.polyline(LL,{color:'#e4f7b5',weight:1.2,opacity:.08,dashArray:'3 5',interactive:false}).addTo(map);
+    dots=L.layerGroup(); var seen={};
+    STOPS.forEach(function(st){if(seen[st.loc])return;seen[st.loc]=1;var c=LOC[st.loc];L.circleMarker([c[0],c[1]],{radius:3,color:'#c9ec7f',weight:1,opacity:.6,fillColor:'#18211b',fillOpacity:.8,interactive:false}).addTo(dots)});
+    dots.addTo(map); lastK=-1;
+    if(veh){veh.remove();veh=null;vehMode=''}
+  }
+  function initMap(){
+    if(!window.L||map)return;
+    map=L.map('tripMap',{zoomControl:false,dragging:false,scrollWheelZoom:false,doubleClickZoom:false,boxZoom:false,keyboard:false,touchZoom:false,
+      zoomSnap:1,zoomAnimation:true,zoomAnimationThreshold:20,fadeAnimation:false,maxZoom:16,markerZoomAnimation:true,inertia:false,attributionControl:true}).setView([camLat,camLng],camZ);
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}',{maxZoom:16,maxNativeZoom:16,keepBuffer:10,updateWhenIdle:false,updateWhenZooming:false,attribution:'Tiles &copy; Esri'}).addTo(map);
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}',{maxZoom:16,maxNativeZoom:16,keepBuffer:10,updateWhenIdle:false,updateWhenZooming:false}).addTo(map);
+    done=L.polyline([],{color:'#c9ec7f',weight:2,opacity:.55,interactive:false}).addTo(map);
+    head=L.polyline([],{color:'#c9ec7f',weight:2,opacity:.55,interactive:false}).addTo(map);
+    drawRoute();
+  }
+  function segZoom(sg){ /* short trips zoom way in, long trips zoom way out */
+    if(sg.z!==null)return sg.z;
+    var pts=LL.slice(sg.i0,sg.i1+1), span=hav(pts[0],pts[pts.length-1]);
+    var z=span<0.15?16:Math.max(2,Math.min(15.5,map.getBoundsZoom(L.latLngBounds(pts),false,L.point(44,44))-.15));
+    if(isFinite(z))sg.z=z;
+    return z;
+  }
+  function render(){
+    var pos=at(Dshow), sg=SEG[Math.min(P[Math.min(pos.k+1,P.length-1)].s,SEG.length-1)]||{mode:'car',from:'columbus',to:'columbus',i0:0,i1:0};
+    odo.textContent=Dshow<10?Dshow.toFixed(Dshow<1?2:1):Math.round(Dshow).toLocaleString();
+    /* nearest stop: arrived or on the way? */
+    var near=null, tol=sg.mode==='walk'?0.002:0.6; for(var i=0;i<STOPS.length;i++){if(Math.abs(STOPS[i].d-Dshow)<tol){near=STOPS[i];break}}
+    if(dash.classList.contains('unknown')){liteSig.classList.remove('on');return}
+    var here=near?'You are here: '+LOC[near.loc][2]:({plane:'Flying to ',walk:'Walking to '}[sg.mode]||'Driving to ')+LOC[sg.to][2];
+    if(Dshow<0.001)here='Home Base: Columbus, OH';
+    if(here!==lastHere){dashHere.textContent=here;lastHere=here}
+    liteSig.classList.toggle('on',!near&&sg.mode==='car'&&sg.from!==sg.to);
+    if(!map||dash.classList.contains('mini'))return;
+    var sz=map.getSize(); if(!sz.x||!sz.y)return;
+    if(!isFinite(pos.lat)||!isFinite(pos.lng))return;
+    if(sg.mode!==vehMode||!veh){
+      if(veh)veh.remove();
+      veh=L.marker([pos.lat,pos.lng],{icon:L.divIcon({className:'map-veh',html:vehHTML(sg.mode),iconSize:[48,48],iconAnchor:[24,24]}),interactive:false,keyboard:false}).addTo(map);
+      vehMode=sg.mode;
+    }
+    veh.setLatLng([pos.lat,pos.lng]);
+    if(pos.k!==lastK){done.setLatLngs(LL.slice(0,pos.k+1));lastK=pos.k}
+    head.setLatLngs([LL[pos.k],[pos.lat,pos.lng]]);
+    /* camera eases toward the vehicle */
+    /* whole zoom levels only, so city and landmark labels stay loaded while moving */
+    var zt=Math.min(16,Math.round(segZoom(sg))+(sg.mode==='car'?2:sg.mode==='plane'?1:0)), e=rm.matches?1:.14; if(!isFinite(zt))zt=Math.round(map.getZoom())||6;
+    if(!isFinite(camLat)||!isFinite(camLng)){camLat=pos.lat;camLng=pos.lng}
+    camLat+=(pos.lat-camLat)*e; camLng+=(pos.lng-camLng)*e;
+    if(!map._animatingZoom){
+      if(map.getZoom()!==zt)map.setView([camLat,camLng],zt,{animate:!rm.matches});
+      else map.setView([camLat,camLng],zt,{animate:false});
+    }
+    /* face the direction of travel */
+    var segLen=P[sg.i1].d-P[sg.i0].d, stepD=Math.max(segLen*.01,Math.min(.4,segLen*.2)), ahead=at(Dshow+stepD), back=at(Math.max(0,Dshow-stepD));
+    var p1=map.latLngToContainerPoint([back.lat,back.lng]), p2=map.latLngToContainerPoint([ahead.lat,ahead.lng]);
+    if(Math.hypot(p2.x-p1.x,p2.y-p1.y)>.5){var ang=Math.atan2(p2.x-p1.x,-(p2.y-p1.y))*180/Math.PI, diff=((ang-heading+540)%360)-180;heading+=rm.matches?diff:diff*.25}
+    var el=veh.getElement();
+    if(el&&el.firstChild){
+      if(sg.mode==='walk')el.firstChild.style.transform=(heading>180||heading<0&&heading>-180&&Math.sin(heading*Math.PI/180)<0||Math.sin(heading*Math.PI/180)<0)?'scaleX(-1)':'none';
+      else el.firstChild.style.transform='rotate('+heading.toFixed(1)+'deg)';
+      el.firstChild.classList.toggle('moving',!near);
+    }
+  }
+  function tick(){
+    raf2=0;
+    var diff=Dtarget-Dshow; Dshow=rm.matches?Dtarget:(Math.abs(diff)<.05?Dtarget:Dshow+diff*.1);
+    render();
+    var camOff=map?Math.abs(map.getCenter().lat-at(Dshow).lat)+Math.abs(map.getCenter().lng-at(Dshow).lng):0;
+    if(Dshow!==Dtarget||camOff>.002||(map&&map._animatingZoom))raf2=requestAnimationFrame(tick);
+  }
+  function kick(){if(!raf2)raf2=requestAnimationFrame(tick)}
+  function setMini(on){dash.classList.toggle('mini',on);dashToggle.textContent=on?'Show map':'Hide map';dashToggle.setAttribute('aria-expanded',String(!on));try{localStorage.setItem('tripMini',on?'1':'0')}catch(e){}if(!on&&map)setTimeout(function(){map.invalidateSize();kick()},50)}
+  dashToggle.addEventListener('click',function(){setMini(!dash.classList.contains('mini'))});
+  try{if(localStorage.getItem('tripMini')==='1')setMini(true)}catch(e){}
+  function measureTrip(){}
+  function tripUpdate(){
+    var y=scrollY, vh=innerHeight;
+    rootEl.style.setProperty('--spin',(rm.matches?0:y*.9)+'deg');
+    rootEl.style.setProperty('--dash',(rm.matches?0:-y*.7)+'px');
+    roads.forEach(function(r){
+      var b=r.getBoundingClientRect(); if(b.bottom<-50||b.top>vh+50)return;
+      var p=clamp((vh-b.top)/(vh+b.height),0,1), car=r.querySelector('.road-car'), cw=car.offsetWidth, room=b.width-cw;
+      var sb=r.querySelector('.road-stop').getBoundingClientRect(), st=clamp((sb.left-b.left+sb.width/2-cw/2)/room,0,1);
+      var cx=r.classList.contains('unknown')?(rm.matches?.4:-0.25+1.55*p):(rm.matches?st:carX(p,st));
+      car.style.transform='translate3d('+(cx*room)+'px,0,0)';
+    });
+    if(!rm.matches)floaties.forEach(function(f){var b=f.getBoundingClientRect();if(b.bottom<-200||b.top>vh+200)return;f.style.setProperty('--py',((b.top+b.height/2-vh/2)*(+f.dataset.sp)).toFixed(1)+'px')});
+    /* rebuild the path if the visible photos changed (interview tabs) */
+    var figs=$$('main figure[data-loc]').filter(function(f){return !!f.offsetParent}), nsig=figs.map(function(f){return f.dataset.loc}).join('|');
+    if(nsig!==sig){sig=nsig;build(figs);drawRoute()}
+    /* scroll position -> distance along the journey */
+    var home=roads[0].getBoundingClientRect(), ys=[home.top+y+home.height/2-vh/2], raw=[], hs=[];
+    for(var i=1;i<STOPS.length;i++){var b=STOPS[i].f.getBoundingClientRect();raw.push(b.top+y+b.height/2-vh/2);hs.push(b.height)}
+    /* photos side by side in one row: spread their checkpoints down the row so each trip plays in turn */
+    for(var g=0;g<raw.length;){var e2=g;while(e2+1<raw.length&&Math.abs(raw[e2+1]-raw[g])<60)e2++;
+      var n=e2-g+1;if(n>1){var h=Math.max(hs[g],240),base=raw[g];for(var j=0;j<n;j++)raw[g+j]=base-h*.45+j*(h*.9/(n-1))}g=e2+1}
+    for(var i2=0;i2<raw.length;i2++)ys.push(Math.max(raw[i2],ys[ys.length-1]+1));
+    var yy=y+24, D=0;
+    if(yy>=ys[ys.length-1])D=STOPS[STOPS.length-1].d;
+    else if(yy>ys[0]){for(var k=0;k<ys.length-1;k++){if(yy<ys[k+1]){var t=(yy-ys[k])/(ys[k+1]-ys[k]);t=t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;D=STOPS[k].d+(STOPS[k+1].d-STOPS[k].d)*t;break}}}
+    Dtarget=D;
+    /* sections: fuel drains through each one and refills at the next stop */
+    var sec=-1, segT=0;
+    for(var q=0;q<roads.length;q++){var rb=roads[q].getBoundingClientRect();if(yy>=rb.top+y+rb.height/2-vh/2)sec=q}
+    if(sec>=0){var a0=roads[sec].getBoundingClientRect().top+y, a1=sec+1<roads.length?roads[sec+1].getBoundingClientRect().top+y:document.documentElement.scrollHeight;segT=clamp((y-a0)/(a1-a0),0,1)}
+    var fuel=sec<0?100:100-82*segT;
+    if(sec>lastSec&&sec>=0){fuelBar.classList.add('refill');setTimeout(function(){fuelBar.classList.remove('refill')},950)}
+    lastSec=sec;
+    fuelFill.style.width=fuel.toFixed(1)+'%';
+    liteLow.classList.toggle('on',fuel<28);
+    var nxt=roads[sec+1], cur=roads[sec], atStop=cur&&Math.abs(cur.getBoundingClientRect().top+cur.offsetHeight/2-vh/2)<vh*.2;
+    var next=atStop&&cur.dataset.kind!=='unknown'?(cur.dataset.kind==='gas'?'Gas stop: ':'Scenic stop: ')+cur.dataset.name+(cur.dataset.kind==='gas'?' · tank refilled':'')
+            :(nxt?'Next stop: '+nxt.dataset.name:'Next stop: wherever the road goes');
+    if(fuel<28&&!atStop)next='Low fuel · '+next;
+    var endBand=roads[roads.length-1], endMode=endBand.classList.contains('unknown')&&endBand.getBoundingClientRect().top<vh*.7;
+    dash.classList.toggle('unknown',endMode);
+    if(endMode){next='Next stop: ?';if(lastHere!=='end'){dashHere.textContent='Destination: unknown';lastHere='end'}}
+    else if(cur&&cur.dataset.kind==='unknown'){next='Next stop: ?'}
+    if(next!==lastNext){dashNext.textContent=next;lastNext=next}
+    dash.classList.toggle('show',y>vh*.5);
+    if(dash.classList.contains('show'))initMap();
+    kick();
+  }
+
+  /* ---------- photos tilt toward the cursor ---------- */
+  if(!rm.matches){
+    $$('.shot .frame').forEach(function(fr){
+      fr.addEventListener('pointermove',function(e){
+        if(e.pointerType!=='mouse')return;
+        var b=fr.getBoundingClientRect(), px=(e.clientX-b.left)/b.width, py=(e.clientY-b.top)/b.height;
+        fr.classList.add('tilting');
+        fr.style.setProperty('--ry',((px-.5)*12).toFixed(2)+'deg'); fr.style.setProperty('--rx',((.5-py)*12).toFixed(2)+'deg');
+        fr.style.setProperty('--mx',(px*100).toFixed(1)+'%'); fr.style.setProperty('--my',(py*100).toFixed(1)+'%');
+      });
+      fr.addEventListener('pointerleave',function(){fr.classList.remove('tilting');fr.style.setProperty('--rx','0deg');fr.style.setProperty('--ry','0deg')});
+    });
+  }
+
   /* scroll: header state, active nav link, footer wordmark */
   var top=$('#top'), secs=$$('main section[id]'), navLinks=$$('#siteNav a'), ticking=false;
   function update(){
     var y=scrollY, vh=innerHeight;
-    top.classList.toggle('scrolled',y>40); heroUpdate();
+    top.classList.toggle('scrolled',y>40); heroUpdate(); tripUpdate();
     var cur=null; secs.forEach(function(s){if(s.getBoundingClientRect().top<=vh*.4)cur=s.id});
     navLinks.forEach(function(a){a.classList.toggle('on',a.getAttribute('href')==='#'+cur)});
   }
   addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(function(){ticking=false;update()})}},{passive:true});
-  addEventListener('resize',function(){measure();update()});
+  addEventListener('resize',function(){measure();measureTrip();update()});
+  addEventListener('load',function(){measureTrip();update()});
   rm.addEventListener&&rm.addEventListener('change',startLens);
-  measure(); update(); startLens();
+  measure(); measureTrip(); update(); startLens();
   if(document.fonts&&document.fonts.ready)document.fonts.ready.then(measure);
 })();
 </script>
