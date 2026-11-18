@@ -7,7 +7,7 @@
 <meta name="description" content="David Garcia's Best Self leadership portfolio: where he comes from, what others see in him, and how he leads.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Schibsted+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Instrument+Serif:ital@0;1&family=Schibsted+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
   color-scheme:dark;
@@ -88,7 +88,7 @@ a{color:var(--lime);text-underline-offset:3px}
 }
 
 /* ---------- chapters ---------- */
-.chapter{position:relative;isolation:isolate;overflow:clip;padding:0 var(--gut) clamp(96px,14vh,160px);border-top:1px solid var(--line)}
+.chapter{position:relative;isolation:isolate;overflow:clip;padding:0 var(--gut) clamp(56px,8vh,96px);border-top:1px solid var(--line)}
 h2::after{content:"";display:inline-block;width:.22em;height:.22em;margin-left:.12em;border-radius:50%;background:var(--lime);vertical-align:.05em}
 .decor{position:absolute;inset:0;z-index:-1;pointer-events:none}
 .decor i{position:absolute;display:block;border-radius:50%}
@@ -103,7 +103,7 @@ h2::after{content:"";display:inline-block;width:.22em;height:.22em;margin-left:.
 .decor i:nth-child(odd){animation:bob 7s ease-in-out infinite}
 .decor i:nth-child(3){animation-delay:-2s}.decor i:nth-child(5){animation-delay:-4s}.decor i:nth-child(7){animation-delay:-1s}
 @keyframes bob{50%{translate:0 -14px}}
-h2{font:600 clamp(1.9rem,3.6vw,3rem)/1.06 var(--sans);letter-spacing:-.035em;margin:0 0 48px;max-width:18ch;text-wrap:balance}
+h2{font:600 clamp(1.9rem,3.6vw,3rem)/1.06 var(--sans);letter-spacing:-.035em;margin:0 0 32px;max-width:18ch;text-wrap:balance}
 h3{font:600 1.45rem/1.25 var(--sans);letter-spacing:-.015em;margin:56px 0 12px}
 .chapter h3 .ic{width:1.1em;height:1.1em;vertical-align:-.18em;margin-right:.45em}
 .chapter h3{display:table;font-size:.98rem;letter-spacing:-.01em;background:var(--lime);color:var(--on-lime);padding:.5em 1.1em;border-radius:999px;margin-bottom:20px}
@@ -116,20 +116,38 @@ p{max-width:68ch;margin:0 0 1em}
 .refs ol{margin:0;padding-left:1.2em}.refs li{margin-bottom:6px}
 
 /* ---------- photos beside text ---------- */
-.media{display:grid;grid-template-columns:minmax(0,1fr) 290px;gap:clamp(36px,5vw,72px);align-items:start;margin:0 0 104px}
-.media.flip{grid-template-columns:290px minmax(0,1fr)}
+.media{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:clamp(36px,5vw,72px);align-items:start;margin:0 0 64px}
+.media.flip{grid-template-columns:380px minmax(0,1fr)}
 .media.flip>.pics{order:-1}
+/* postcards sit two-across beside the text, small enough that the words stay the focus */
+.media:not(.signrow):not(.half)>.pics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 18px;align-items:start;padding-top:14px}
+/* busy blocks: a slightly wider column, postcards three-across */
+.media:has(>.pics>.card:nth-child(3)){grid-template-columns:minmax(0,1fr) 480px}
+.media.flip:has(>.pics>.card:nth-child(3)){grid-template-columns:480px minmax(0,1fr)}
+.media:not(.signrow):not(.half)>.pics:has(>.card:nth-child(3)){grid-template-columns:repeat(3,minmax(0,1fr));gap:22px 14px}
+.media:not(.signrow):not(.half)>.pics:has(>.card:nth-child(3))>.card:last-child:nth-child(odd){grid-column:auto;width:auto}
+.pics>.runcard{grid-column:1/-1;margin:0;max-width:none;padding:12px 14px 10px}
+.pics>.runcard .run-head{margin-bottom:8px;gap:8px}.pics>.runcard .run-shoe{width:26px;height:26px}
+.pics>.runcard .run-head b{font-size:.92rem}.pics>.runcard .run-head span{font-size:.7rem}
+.pics>.runcard .pr{width:28px;height:28px;font-size:.62rem}
+.pics>.runcard .run-body{grid-template-columns:62px minmax(0,1fr);gap:12px}
+.pics>.runcard .run-stats{gap:6px 8px}.pics>.runcard .run-stats dt{font-size:.62rem}.pics>.runcard .run-stats dd{font-size:.84rem}
+.pics>.runcard figcaption{margin-top:8px;font-size:.7rem}
+@media(max-width:900px){.media:not(.signrow):not(.half)>.pics:has(>.card:nth-child(3)){grid-template-columns:repeat(2,minmax(0,1fr))}}
+.media:not(.signrow):not(.half)>.pics>.card:only-child{grid-column:1/-1;width:62%;justify-self:center}
+.media:not(.signrow):not(.half)>.pics>.card:last-child:nth-child(odd):not(:only-child){grid-column:1/-1;width:50%;justify-self:center}
+.media:not(.signrow):not(.half)>.pics>.carcard{grid-column:1/-1}
 .media.half{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
 .mtable table{margin:0;font-size:.88rem}.mtable th,.mtable td{padding:10px 10px}.mtable td:first-child{white-space:nowrap}
 .mtable tr.hi td{background:rgba(228,247,181,.12);color:var(--text)}.mtable tr.hi td:first-child{box-shadow:inset 3px 0 0 var(--lime)}
 .media>.txt>h3:first-child{margin-top:0}
 .media .tbl{max-width:100%}
-.pics{display:flex;flex-direction:column;gap:56px;padding-top:6px}
-.strip{display:flex;gap:clamp(20px,3vw,36px);max-width:860px;margin:40px auto 104px}
+.pics{display:flex;flex-direction:column;gap:28px;padding-top:6px}
+.strip{display:flex;gap:clamp(16px,2.4vw,28px);max-width:860px;margin:24px auto 64px}
 .strip>*{flex-basis:0;flex-shrink:1;min-width:0}
 .strip.mini{margin:36px 0 0;max-width:none}
-.strip.two{max-width:560px;margin-top:-64px}
-.chapter h3{margin-top:72px}
+.strip.two{max-width:560px;margin-top:-36px}
+.chapter h3{margin-top:44px}
 @media(max-width:900px){
   .media,.media.flip{grid-template-columns:1fr;gap:28px}
   .media.flip>.pics{order:0}
@@ -143,6 +161,74 @@ p{max-width:68ch;margin:0 0 1em}
 html.js .shot.rise{opacity:0;transform:translateY(70px) scale(.97);transition:opacity .55s ease-in,transform .6s cubic-bezier(.5,0,.75,0)}
 html.js .shot.rise.above{transform:translateY(-70px) scale(.97)}
 html.js .shot.rise.in{opacity:1;transform:none;transition:opacity .8s ease,transform 1.3s cubic-bezier(.3,1.6,.55,1);transition-delay:var(--d,0s)}
+
+/* travel postcards, taped up and swaying a little as you scroll */
+.shot.card{background:#f3efe4;padding:7px 7px 9px;border-radius:3px;box-shadow:0 12px 26px rgba(0,0,0,.45),0 1px 0 rgba(255,255,255,.4) inset;
+  rotate:calc(var(--rot,0deg) + var(--sw,0deg));transform-origin:50% -6px;transition:rotate .5s var(--ease),box-shadow .3s}
+.pics>.card:nth-child(4n+1){--rot:-2.4deg}.pics>.card:nth-child(4n+2){--rot:2deg}.pics>.card:nth-child(4n+3){--rot:1.4deg}.pics>.card:nth-child(4n+4){--rot:-1.6deg}
+.bio .card{--rot:-2deg}
+.shot.card::before{content:"";position:absolute;z-index:3;top:-11px;left:50%;width:62px;height:20px;margin-left:-31px;background:rgba(228,247,181,.55);
+  box-shadow:0 1px 2px rgba(0,0,0,.25);rotate:-4deg;clip-path:polygon(4% 0,96% 4%,100% 100%,0 96%)}
+.shot.card:hover{rotate:0deg!important;box-shadow:0 18px 36px rgba(0,0,0,.55),0 0 0 2px var(--lime)}
+.shot.card .frame{border-radius:2px}
+.shot.card:hover .frame{box-shadow:none}
+.stamp{position:absolute;z-index:2;top:13px;right:13px;width:34px;height:40px;display:grid;place-items:center;background:#f3efe4;
+  border:2px dashed #b9b29f;border-radius:2px;box-shadow:0 2px 4px rgba(0,0,0,.3);rotate:4deg}
+.stamp svg{width:24px;height:24px}
+.postmark{position:absolute;z-index:2;top:30px;right:34px;width:58px;height:58px;display:grid;place-items:center;border:1.6px solid rgba(40,40,40,.55);border-radius:50%;
+  font:700 7px/1.1 var(--sans);letter-spacing:.06em;text-align:center;color:rgba(40,40,40,.7);rotate:-14deg;padding:6px;
+  background:repeating-linear-gradient(0deg,transparent 0 9px,rgba(40,40,40,.25) 9px 10px);background-clip:padding-box;mix-blend-mode:multiply;pointer-events:none}
+.shot.card figcaption{margin-top:6px;padding:0 2px;font:600 1.05rem/1.1 "Caveat",var(--serif);color:#2c2c28}
+.pics[data-cols="3"] .shot.card figcaption{font-size:.95rem}
+.pics[data-cols="3"] .stamp{width:26px;height:31px;top:11px;right:11px}.pics[data-cols="3"] .stamp svg{width:18px;height:18px}
+.pics[data-cols="3"] .postmark{width:46px;height:46px;font-size:6px;top:24px;right:26px}
+.shot.card figcaption .ic{display:none}
+
+/* Katy Trail run card */
+.runcard{margin:26px 0 0;padding:16px 18px 14px;border-radius:12px;background:var(--surface);border:1px solid var(--line);box-shadow:0 12px 26px rgba(0,0,0,.3);max-width:560px}
+.run-head{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.run-shoe{width:34px;height:34px;flex:none}
+.run-head b{display:block;font-size:1.05rem}.run-head span{font-size:.8rem;color:var(--muted)}
+.pr{margin-left:auto;display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:#e8b923;color:#3d2b00;font:800 .72rem var(--sans);box-shadow:0 0 0 3px rgba(232,185,35,.3)}
+.run-body{display:grid;grid-template-columns:110px minmax(0,1fr);gap:20px;align-items:center}
+.run-route{width:100%;height:auto;overflow:visible}
+.run-route polyline{fill:none;stroke-linecap:round;stroke-linejoin:round}
+.trail-bg{stroke:rgba(201,236,127,.16);stroke-width:5}
+.trail{stroke:var(--lime-2);stroke-width:3.2;stroke-dasharray:1;stroke-dashoffset:0;filter:drop-shadow(0 0 3px rgba(201,236,127,.6))}
+html.js .runcard .trail{stroke-dashoffset:1;transition:stroke-dashoffset 2.4s cubic-bezier(.45,.05,.3,1)}
+html.js .runcard.in .trail{stroke-dashoffset:0}
+.trail-start{fill:#3fa34d;stroke:#f1f5ea;stroke-width:1.2}.trail-end{fill:#e8b923;stroke:#f1f5ea;stroke-width:1.2}
+.run-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px 14px;margin:0}
+.run-stats dt{font-size:.72rem;color:var(--muted)}.run-stats dd{margin:2px 0 0;font:700 1.02rem/1.1 var(--sans);font-variant-numeric:tabular-nums}
+.runcard figcaption{margin-top:12px;font-size:.82rem;color:var(--muted)}
+@media(max-width:520px){.run-body{grid-template-columns:80px minmax(0,1fr)}.run-stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.veh.walk.run.moving .leg-a,.veh.walk.run.moving .leg-b,.veh.walk.run.moving .arm-a,.veh.walk.run.moving .arm-b{animation-duration:.28s}
+
+/* profile photo beside the Introduction heading */
+.intro-top>.txt>h2+h3{margin-top:0}
+.intro-top>.pics{padding-top:0}
+.avatar{grid-column:1/-1;justify-self:center;width:min(100%,340px);aspect-ratio:1;border-radius:50%;padding:6px;margin-bottom:10px;
+  background:conic-gradient(from 200deg,var(--lime),#3fa34d,var(--lime-2),var(--lime));box-shadow:0 18px 40px rgba(0,0,0,.45),0 0 0 10px rgba(201,236,127,.08)}
+.avatar img{display:block;width:100%;height:100%;object-fit:cover;object-position:34% 46%;border-radius:50%;border:4px solid var(--ink)}
+@media(max-width:900px){.avatar{width:min(100%,260px)}}
+
+/* the owl beside the conflict results */
+.owl{float:right;width:96px;margin:-6px 0 8px 18px;text-align:center;shape-outside:circle(50%)}
+.owl svg{width:96px;height:auto;display:block;overflow:visible;animation:owlBob 3.6s ease-in-out infinite;filter:drop-shadow(0 8px 14px rgba(0,0,0,.45))}
+.owl span{display:inline-block;margin-top:2px;padding:2px 10px;border-radius:99px;background:var(--lime);color:var(--on-lime);font:700 .72rem var(--sans);letter-spacing:.04em}
+.owl-eyes{transform-box:fill-box;transform-origin:center;animation:owlBlink 4.2s infinite}
+.owl-wing{transform-box:fill-box;animation:owlFlap 3.6s ease-in-out infinite}.owl-wing.l{transform-origin:100% 0}.owl-wing.r{transform-origin:0 0;animation-direction:reverse}
+@keyframes owlBob{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-6px) rotate(3deg)}}
+@keyframes owlBlink{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.1)}}
+@keyframes owlFlap{0%,100%{rotate:0deg}50%{rotate:-8deg}}
+@media(prefers-reduced-motion:reduce){.owl svg,.owl-eyes,.owl-wing{animation:none}}
+
+/* map: start point solid lime, destination a red X */
+.pin-x span{position:absolute;inset:0;filter:drop-shadow(0 0 3px rgba(0,0,0,.8))}
+.pin-x span::before,.pin-x span::after{content:"";position:absolute;left:50%;top:50%;width:20px;height:5px;margin:-2.5px 0 0 -10px;border-radius:3px;background:#e5484d;box-shadow:0 0 0 1.5px #f1f5ea}
+.pin-x span::before{transform:rotate(45deg)}.pin-x span::after{transform:rotate(-45deg)}
+.pin-x{animation:xPop .45s cubic-bezier(.3,1.6,.5,1)}
+@keyframes xPop{from{scale:0}to{scale:1}}
 
 /* every photo has a visible caption underneath */
 .shot{position:relative;margin:0}
@@ -171,7 +257,7 @@ details.raw .shot{margin-top:18px;max-width:560px}
 .ic{display:inline-block;flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 
 /* ---------- floating colored icons ---------- */
-.floaty{position:absolute;top:var(--t);width:var(--sz);height:var(--h);transform:translate3d(0,var(--py,0px),0);will-change:transform}
+.floaty{position:absolute;top:calc(240px + var(--t) * .9);width:var(--sz);height:var(--h);transform:translate3d(0,var(--py,0px),0);will-change:transform}
 .floaty.l{left:max(6px,calc(50% - 550px - var(--sz) - 22px))}
 .floaty.r{right:max(6px,calc(50% - 550px - var(--sz) - 22px))}
 .floaty svg{display:block;width:100%;height:100%;filter:drop-shadow(0 10px 14px rgba(0,0,0,.45));animation:drift var(--dur,7s) ease-in-out infinite alternate}
@@ -210,7 +296,7 @@ details.raw .shot{margin-top:18px;max-width:560px}
 .carcard dt{font-size:.78rem;color:var(--muted)}.carcard dd{margin:0;font-weight:600}
 
 /* ---------- road bands ---------- */
-.road{position:relative;margin:0 calc(-1 * var(--gut)) clamp(64px,9vh,96px);height:210px;overflow:hidden;background:linear-gradient(180deg,transparent 0,transparent 118px,#1f2620 118px)}
+.road{position:relative;margin:0 calc(-1 * var(--gut)) clamp(40px,6vh,64px);height:210px;overflow:hidden;background:linear-gradient(180deg,transparent 0,transparent 118px,#1f2620 118px)}
 .road-side{position:absolute;left:0;right:0;top:0;height:118px;display:flex;align-items:flex-end;justify-content:space-between;padding:0 max(var(--gut),calc((100% - 1100px)/2))}
 .hwy{display:flex;align-items:center;gap:10px;margin-bottom:12px;padding:8px 14px 8px 10px;border-radius:10px;background:#0b6b3a;color:#fff;font-weight:700;box-shadow:inset 0 0 0 2px #fff}
 .hwy.merge{background:#f2c230;color:#12140f;box-shadow:inset 0 0 0 2px #12140f}
@@ -232,22 +318,9 @@ details.raw .shot{margin-top:18px;max-width:560px}
 .hwy.unknown-sign{background:#f2c230;color:#12140f;box-shadow:inset 0 0 0 2px #12140f}
 .qmark{display:grid;place-items:center;width:84px!important;height:84px;margin:0 8% 14px 0!important;border-radius:14px;background:#f2c230;color:#12140f;font:800 3.4rem/1 var(--sans);box-shadow:inset 0 0 0 3px #12140f,0 12px 26px rgba(0,0,0,.4);animation:bob 3.5s ease-in-out infinite}
 .the-end{max-width:46ch;margin:0 auto;text-align:center;font:400 clamp(1.2rem,2.2vw,1.6rem)/1.45 var(--serif);color:var(--text)}
-.dash-end{position:absolute;inset:0 -3px 8px;border-radius:9px;z-index:500;display:none;place-items:center;align-content:center;gap:4px;background:#1c231e;text-align:center}
-.dash-end b{font:800 2.6rem/1 var(--sans);color:var(--lime)}
-.dash-end span{font-size:.72rem;color:var(--muted)}
-.dash.unknown .dash-end{display:grid}
-
 /* ---------- dashboard ---------- */
 .dash{position:fixed;right:14px;bottom:14px;z-index:45;width:232px;padding:9px 11px 8px;font-size:.74rem;border-radius:16px;background:rgba(17,23,19,.9);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--line);box-shadow:0 18px 40px rgba(0,0,0,.4);font-size:.8rem;transform:translateY(140%);transition:transform .5s var(--ease);pointer-events:none}
 .dash.show{transform:none}
-.dash-toggle{pointer-events:auto;position:absolute;top:-32px;right:0;min-height:28px;padding:0 12px;border-radius:999px;border:1px solid var(--line);background:rgba(17,23,19,.92);color:var(--text);font:600 .72rem var(--sans);cursor:pointer}
-.dash-toggle:hover{border-color:var(--lime)}
-.dash.mini .dash-map,.dash.mini .dash-map-wrap{display:none}
-.dash-map{position:relative;height:118px;margin:-1px -3px 8px;border-radius:9px;overflow:hidden;background:#2a2a2a}
-.dash-map .leaflet-container,.dash-map.leaflet-container{background:#2a2a2a}
-.dash-map .leaflet-tile{filter:none}
-.dash-map .leaflet-control-attribution{font-size:8px;background:rgba(11,14,12,.7);color:#8f988a}
-.dash-map .leaflet-control-attribution a{color:#b7c2ac}
 .map-veh{background:none;border:0}
 .veh{width:48px;height:48px;display:grid;place-items:center;will-change:transform}
 .veh svg{display:block;filter:drop-shadow(0 2px 3px rgba(0,0,0,.55))}
@@ -259,15 +332,7 @@ details.raw .shot{margin-top:18px;max-width:560px}
 @keyframes stride{from{transform:rotate(-24deg)}to{transform:rotate(24deg)}}
 .veh.car svg{width:15px;height:30px}
 .veh.plane svg{width:26px;height:43px}
-.dash-route{position:relative;height:30px;margin:0 6px 8px}
-.dash-track{position:absolute;left:0;right:0;top:22px;height:3px;border-radius:3px;background:var(--line)}
-.dash-done{position:absolute;left:0;top:0;bottom:0;width:0;border-radius:3px;background:var(--lime)}
-.dash-route i{position:absolute;top:19px;width:9px;height:9px;margin-left:-4.5px;border-radius:50%;background:#18211b;border:2px solid var(--muted)}
-.dash-route i.gas{border-color:var(--lime)}.dash-route i.site{border-color:#c98b5a}.dash-route i.end{background:var(--lime);border-color:var(--lime)}
-.dash-car{position:absolute;top:0;left:0;width:46px;height:20px;margin-left:-23px}
 .dash-row{display:flex;align-items:center;gap:10px}
-.odo{display:flex;align-items:baseline;gap:4px;padding:4px 8px;border-radius:6px;background:#0b0e0c;font-variant-numeric:tabular-nums}
-.odo span{font:700 .95rem/1 var(--sans);color:var(--lime);letter-spacing:.06em}.odo small{color:var(--muted)}
 .fuel{display:flex;align-items:center;gap:5px;flex:1;color:var(--muted)}
 .fuel .ic{width:15px;height:15px}
 .fuel-bar{position:relative;flex:1;height:8px;border-radius:8px;background:#0b0e0c;overflow:hidden}
@@ -280,8 +345,72 @@ details.raw .shot{margin-top:18px;max-width:560px}
 .lite.sig.on{color:var(--lime);animation:blink .7s steps(2) infinite}
 @keyframes blink{50%{opacity:.25}}
 .dash-here,.dash-next{margin:6px 0 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.dash-here{color:#f1f5ea;font-weight:600;margin-top:8px}.dash-next{color:var(--lime)}
-@media(max-width:700px){.dash{left:auto;right:10px;bottom:10px;width:236px;padding:8px 12px}.dash-map,.dash-map-wrap,.dash-next,.dash-toggle{display:none}.dash-here{font-size:.74rem;margin-top:6px}}
+.dash-here{margin-top:8px}
+/* section tracker */
+.dash-route{position:relative;height:34px;margin:2px 10px 8px}
+.dash-track{position:absolute;left:0;right:0;top:25px;height:3px;border-radius:3px;background:var(--line)}
+.dash-done{position:absolute;left:0;top:0;bottom:0;width:0;border-radius:3px;background:var(--lime)}
+.dash .stop{position:absolute;top:20px;width:13px;height:13px;margin-left:-6.5px;border-radius:50%;background:#18211b;border:2px solid var(--muted);transition:background .3s,border-color .3s,box-shadow .3s}
+.dash .stop.gas{border-color:var(--lime)}.dash .stop.site{border-color:#c98b5a}
+.dash .stop.start{width:7px;height:7px;margin-left:-3.5px;top:23px;background:var(--muted);border:0}
+.dash .stop.passed{background:var(--lime);border-color:var(--lime)}
+.dash .stop.cur{box-shadow:0 0 0 4px rgba(201,236,127,.25);animation:stopPulse 1.8s ease-in-out infinite}
+.dash .stop.end{width:18px;height:18px;margin-left:-9px;top:17px;display:grid;place-items:center;font:800 .7rem/1 var(--sans);color:var(--lime);border-color:var(--lime)}
+.dash .stop.end.passed{color:var(--on-lime)}
+a.stop:hover{scale:1.3}
+@keyframes stopPulse{50%{box-shadow:0 0 0 7px rgba(201,236,127,.08)}}
+.dash-car{position:absolute;top:0;left:0;width:44px;height:19px;margin-left:-22px;pointer-events:none;z-index:2}
+.dash-car svg{display:block;width:100%;height:100%;filter:drop-shadow(0 2px 2px rgba(0,0,0,.5))}
+.dash-car.moving svg{animation:carBob .35s ease-in-out infinite alternate}
+@keyframes carBob{to{transform:translateY(-1.5px)}}
+.dash-here b,.dash-next b{font-weight:700}
+.dash-here{color:var(--muted);font-weight:500}.dash-here b{color:var(--text)}
+.dash-next{color:var(--muted)}.dash-next b{color:var(--lime)}
+@media(max-width:700px){.dash{left:auto;right:10px;bottom:10px;width:236px;padding:8px 12px}.dash-here{font-size:.74rem;margin-top:6px}}
+
+/* sized by fitBlock(): one, two or three across */
+.media>.pics[data-cols]>.card{grid-column:auto!important;width:auto!important;justify-self:stretch!important}
+.media>.pics[data-cols="2"]>.card:last-child:nth-child(odd){grid-column:1/-1!important;width:calc(50% - 9px)!important;justify-self:center!important}
+.media>.pics[data-cols="1"]{row-gap:30px}
+.media>.pics[data-cols="3"]>.runcard{grid-column:span 2}
+.media>.pics[data-feature]>.card:first-child{grid-column:1/-1;width:auto;justify-self:stretch}
+.media>.pics[data-feature]>.card:last-child:nth-child(odd){grid-column:auto;width:auto;justify-self:stretch}
+
+/* two or three across: stacked in columns so short cards never leave a gap */
+.media>.pics[data-cols="2"],.media>.pics[data-cols="3"]{display:block;column-gap:18px;padding-top:24px}
+.media>.pics[data-cols="2"]{columns:2}.media>.pics[data-cols="3"]{columns:3;column-gap:14px}
+.media>.pics[data-cols="2"]>*,.media>.pics[data-cols="3"]>*{break-inside:avoid;display:block;margin:0 0 30px!important;width:auto!important}
+.media>.pics[data-cols]>.runcard{column-span:all}
+
+/* the trip map that opens on a postcard */
+.card-map{position:absolute;inset:0;z-index:6;border-radius:inherit;overflow:hidden;background:#2a2a2a;opacity:0;transform:scale(.9);
+  transition:opacity .28s ease,transform .45s var(--ease);pointer-events:none;box-shadow:inset 0 0 0 2px var(--lime-2)}
+.card-map.show{opacity:1;transform:none}
+.card-map.pip{top:auto;height:55%}
+.runcard>.card-map{border-radius:12px}
+.cm-map{position:absolute;inset:0;background:#1d2420}
+.cm-scene{position:absolute;inset:0;width:100%;height:100%;display:none}
+.card-map.scene .cm-map{display:none}.card-map.scene .cm-scene{display:block}
+.sc-label{font:700 9px var(--sans);fill:#f1f5ea;letter-spacing:.04em}
+.sc-ghost{fill:none;stroke:rgba(228,247,181,.35);stroke-width:2;stroke-dasharray:3 4}
+.sc-path{fill:none;stroke:#c9ec7f;stroke-width:3;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1}
+.card-map.play .sc-path{animation:scDraw 2.6s ease-in-out .3s forwards}
+.card-map.play .sc-walker{animation:scWalk 2.6s ease-in-out .3s forwards}
+.card-map.play .sc-leg.a,.card-map.play .sc-arm.b{transform-origin:0 17px;animation:scStep .32s ease-in-out .3s 8 alternate}
+.card-map.play .sc-leg.b,.card-map.play .sc-arm.a{transform-origin:0 17px;animation:scStep .32s ease-in-out .3s 8 alternate-reverse}
+.sc-arm{transform-box:view-box}
+.sc-lights circle{animation:twinkle 1.2s steps(2) infinite}.sc-lights circle:nth-child(odd){animation-delay:.6s}
+@keyframes scDraw{to{stroke-dashoffset:0}}
+@keyframes scWalk{to{transform:translateX(100px)}}
+@keyframes scStep{from{rotate:-18deg}to{rotate:18deg}}
+@keyframes twinkle{50%{opacity:.35}}
+.cm-map .leaflet-tile-pane{filter:invert(1) hue-rotate(180deg) saturate(.75) brightness(.92) contrast(.92)}
+.has-map .frame,.shot.card.has-map{transform:none!important;rotate:0deg!important}
+.cm-map .leaflet-control-attribution{font-size:7px;line-height:1.2;padding:0 3px;background:rgba(11,14,12,.7);color:#8f988a}
+.card-map .veh.car svg,.card-map .veh.bus svg,.card-map .veh.shuttle svg,.card-map .veh.schoolbus svg{width:13px;height:26px}
+.card-map .veh.plane svg{width:22px;height:36px}
+.runcard{position:relative}
+.stamp,.postmark{transition:opacity .25s}.shot.card.has-map .stamp,.shot.card.has-map .postmark{opacity:0}
 
 /* 16P spectrum sliders */
 .traits{display:flex;flex-direction:column;gap:30px;margin:28px 0 8px}
@@ -347,6 +476,7 @@ ol.steps{max-width:66ch;padding-left:1.3em}ol.steps li{margin-bottom:6px}
 
 
 @media(prefers-reduced-motion:reduce){
+  .shot.card{--sw:0deg!important}
   .blob,.decor i,.lite.on,.roadsign *,.floaty svg{animation:none!important}
   .frame{transform:none!important}
   .hero{height:auto}.hero-pin{position:relative;min-height:100svh;height:auto}
@@ -402,6 +532,7 @@ ol.steps{max-width:66ch;padding-left:1.3em}ol.steps li{margin-bottom:6px}
 <symbol id="c-clipboard" viewBox="0 0 64 64"><rect x="12" y="8" width="40" height="52" rx="4" fill="#8a5a2b"/><rect x="17" y="14" width="30" height="42" rx="2" fill="#f1f5ea"/><rect x="24" y="5" width="16" height="8" rx="2" fill="#7e8781"/><circle cx="25" cy="25" r="3.2" fill="none" stroke="#1d4fa3" stroke-width="2"/><path d="M34 22 l6 6 M40 22 l-6 6" stroke="#c4161c" stroke-width="2"/><path d="M23 46 q10-12 17-15" stroke="#1b1f1c" stroke-width="2" fill="none"/><path d="M36 29 l4 2 -2 4" stroke="#1b1f1c" stroke-width="2" fill="none"/></symbol>
 <symbol id="c-mic" viewBox="0 0 64 64"><rect x="24" y="6" width="16" height="30" rx="8" fill="#2b302c"/><path d="M26 14h12M26 19h12M26 24h12" stroke="#59605c" stroke-width="1.5"/><path d="M18 28a14 14 0 0 0 28 0" stroke="#a9b1ad" stroke-width="3.5" fill="none"/><path d="M32 42v10M22 54h20" stroke="#a9b1ad" stroke-width="3.5" stroke-linecap="round"/></symbol>
 <symbol id="c-star" viewBox="0 0 64 64"><path d="M32 5l8 17 18 2.5-13 12.5 3.3 18L32 46.5 15.7 55 19 37 6 24.5 24 22z" fill="#f2c230" stroke="#c99410" stroke-width="2" stroke-linejoin="round"/></symbol>
+<symbol id="c-shoe" viewBox="0 0 64 64"><path d="M6 44 Q6 34 14 32 L24 30 L30 20 Q34 16 38 20 L42 28 Q50 30 56 36 Q60 40 58 46 L58 48 L6 48Z" fill="#fc5200"/><path d="M6 48 L58 48 L58 52 Q58 54 56 54 L8 54 Q6 54 6 52Z" fill="#f1f5ea"/><path d="M30 26l6 3M28 30l6 3M26 34l6 3" stroke="#f1f5ea" stroke-width="2" stroke-linecap="round"/></symbol>
 <symbol id="c-seed" viewBox="0 0 64 64"><path d="M10 50 h44 l-4 10 h-36z" fill="#8a5a2b"/><path d="M32 50 V28" stroke="#3fa34d" stroke-width="3.5"/><path d="M32 35 q-16 0-19-15 q15 0 19 15z" fill="#5cbf5f"/><path d="M32 30 q14-2 19-17 q-15 2-19 17z" fill="#3fa34d"/></symbol>
 <symbol id="c-mountain" viewBox="0 0 64 64"><circle cx="50" cy="12" r="6" fill="#e4f7b5"/><path d="M2 56 L24 18 L36 36 L44 26 L62 56z" fill="#56634a"/><path d="M24 18 L18 28 L24 25 L30 29z M44 26 L40 32 L44 30 L48 33z" fill="#f1f5ea"/></symbol>
 <symbol id="c-snow" viewBox="0 0 64 64"><g stroke="#9fd3f5" stroke-width="3.5" stroke-linecap="round" fill="none"><path d="M32 6v52M9.5 19l45 26M9.5 45l45-26"/><path d="M26 10l6 6 6-6M26 54l6-6 6 6"/></g></symbol>
@@ -431,6 +562,9 @@ ol.steps{max-width:66ch;padding-left:1.3em}ol.steps li{margin-bottom:6px}
   <g style="transform:rotate(var(--spin,0deg));transform-box:fill-box;transform-origin:center"><circle cx="175" cy="73" r="17" fill="#0b0d0c"/><circle cx="175" cy="73" r="12" fill="#1c201e" stroke="#3a3f3c" stroke-width="1"/><path d="M175 62.5V69M175 77V83.5M165 70l6 1.6M179 74.4l6 1.6M168 81l4-5M178 70l4-5M168 65l4 5M178 76l4 5M165 76l6-1.6M179 71.6l6-1.6" stroke="#4a504d" stroke-width="2.2" stroke-linecap="round"/><circle cx="175" cy="73" r="3.2" fill="#0b0d0c" stroke="#59605c"/></g>
 </symbol>
 <symbol id="crv-top" viewBox="0 0 40 80"><rect x="7" y="4" width="26" height="72" rx="10" fill="#0b0d0c" stroke="#8f988a" stroke-width="1.2"/><path d="M11 25 Q20 19 29 25 L27.5 35 L12.5 35Z" fill="#33444c"/><rect x="11.5" y="35" width="17" height="25" rx="3" fill="#161a19"/><path d="M13 36 V59 M27 36 V59" stroke="#2b302d" stroke-width="1.6"/><path d="M12.5 61 L27.5 61 L28.5 68 Q20 71 11.5 68Z" fill="#33444c"/><rect x="9" y="5.5" width="6" height="2.6" rx="1" fill="#e6f0fa"/><rect x="25" y="5.5" width="6" height="2.6" rx="1" fill="#e6f0fa"/><rect x="9" y="72" width="6" height="2.4" rx="1" fill="#c4161c"/><rect x="25" y="72" width="6" height="2.4" rx="1" fill="#c4161c"/><rect x="3" y="27" width="5" height="3.4" rx="1.2" fill="#0b0d0c" stroke="#e4f7b5" stroke-width=".8"/><rect x="32" y="27" width="5" height="3.4" rx="1.2" fill="#0b0d0c" stroke="#e4f7b5" stroke-width=".8"/></symbol>
+<symbol id="bus-top" viewBox="0 0 40 80"><rect x="8" y="2" width="24" height="76" rx="4" fill="#dfe3e8" stroke="#2b2f33" stroke-width="1.5"/><rect x="10" y="4" width="20" height="9" rx="2" fill="#1b2a3a"/><rect x="8" y="22" width="3" height="44" fill="#1f5fae"/><rect x="29" y="22" width="3" height="44" fill="#1f5fae"/><rect x="14" y="30" width="12" height="7" rx="1.5" fill="#b9c0c8"/><rect x="14" y="48" width="12" height="7" rx="1.5" fill="#b9c0c8"/></symbol>
+<symbol id="school-top" viewBox="0 0 40 80"><rect x="8" y="2" width="24" height="76" rx="4" fill="#f5b800" stroke="#2b2200" stroke-width="1.5"/><rect x="10" y="4" width="20" height="9" rx="2" fill="#1d1d1d"/><path d="M8 24h24M8 44h24M8 64h24" stroke="#1d1d1d" stroke-width="1.6"/><rect x="15" y="30" width="10" height="8" rx="1.5" fill="#d99f00"/></symbol>
+<symbol id="shuttle-top" viewBox="0 0 40 80"><rect x="9" y="8" width="22" height="64" rx="7" fill="#f1f5ea" stroke="#2b2f33" stroke-width="1.5"/><rect x="11" y="11" width="18" height="11" rx="3" fill="#1b2a3a"/><rect x="13" y="30" width="14" height="32" rx="2" fill="#d4dacb"/></symbol>
 <symbol id="walker" viewBox="0 0 30 44"><g stroke="#f1f5ea" stroke-width="3" stroke-linecap="round" fill="none"><circle cx="15" cy="6" r="4.2" fill="#f1f5ea" stroke="none"/><path d="M15 11v15"/><path class="arm-a" d="M15 14l-6 7" style="transform-origin:15px 14px"/><path class="arm-b" d="M15 14l6 7" style="transform-origin:15px 14px"/><path class="leg-a" d="M15 26l-6 14" style="transform-origin:15px 26px"/><path class="leg-b" d="M15 26l6 14" style="transform-origin:15px 26px"/></g></symbol>
 <symbol id="plane-top" viewBox="0 0 40 66"><path d="M20 2 C22.4 2 23.4 6 23.4 10 L23.4 26 L38 36 L38 41 L23.4 35.5 L23.4 52 L29.5 58 L29.5 62 L20 59.4 L10.5 62 L10.5 58 L16.6 52 L16.6 35.5 L2 41 L2 36 L16.6 26 L16.6 10 C16.6 6 17.6 2 20 2Z" fill="#f1f5ea" stroke="#1d4fa3" stroke-width="1.4" stroke-linejoin="round"/><path d="M18.4 7 h3.2" stroke="#1d4fa3" stroke-width="1.6" stroke-linecap="round"/></symbol>
 </defs></svg>
@@ -482,16 +616,16 @@ ol.steps{max-width:66ch;padding-left:1.3em}ol.steps li{margin-bottom:6px}
   <p class="road-label"><svg class="ic" aria-hidden="true"><use href="#i-fuel"/></svg><b>Gas stop: Home Base</b><span>Columbus, OH</span></p>
 </div>
 <div class="wrap">
-  <h2>Introduction</h2>
-<div class="media">
+<div class="media intro-top">
 <div class="txt">
+  <h2>Introduction</h2>
     <h3>Who I am</h3>
     <p>I’m David Garcia, a 21-year-old Mexican American from Columbus, Ohio, and a first-generation college student. I grew up with two immigrant parents, two older sisters, a younger brother, and more cousins, aunts, and uncles than I can count. My Catholic faith and my Mexican roots shape a lot of how I see the world, starting with the belief that family comes first.</p>
     <h3>What matters to me</h3>
     <p>People are at the center of my life. I get my energy from the people around me, and I’m most myself when I’m making plans with friends and family and getting to let loose.</p>
     <p>I’m also always working on myself. Since high school, I’ve followed a self-development journey of trying to become a slightly better version of myself every day, and I try to bring the people around me along with me.</p>
 </div>
-<div class="pics"><figure class="shot" data-loc="cousins" data-steps="walk:cousins"><span class="frame"><img src="images/family_christmas.jpg" width="1050" height="1400" loading="lazy" alt="David and his family posing together in a kitchen decorated with Christmas garland"></span><figcaption>Christmas with my family at my cousins’ house, right next door to ours.</figcaption></figure><figure class="shot" data-loc="columbus" data-steps="walk:columbus"><span class="frame"><img src="images/cbus_food.jpeg" width="1400" height="1050" loading="lazy" alt="Four friends smiling at a table with plates of food in a dim restaurant"></span><figcaption>Fall break in Columbus with my friends from Hopkins.</figcaption></figure></div>
+<div class="pics"><div class="avatar"><img src="images/david_santiago_back.jpg" width="1200" height="1600" alt="Portrait of David Garcia in a cap, smiling slightly on a hilltop above Santiago, Chile"></div><figure class="shot card" data-loc="cousins" data-trip="walk:columbus-cousins" data-scene="nextdoor" data-why="Christmas with family"><span class="frame"><img src="images/family_christmas.jpg" width="1050" height="1400" loading="lazy" alt="David and his family posing together in a kitchen decorated with Christmas garland"></span><span class="stamp" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#c-heart"/></svg></span><span class="postmark" aria-hidden="true">COLUMBUS OH</span><figcaption>Christmas with my family at my cousins’ house, right next door to ours.</figcaption></figure><figure class="shot card" data-loc="columbus" data-trip="car:jhu-columbus" data-why="Fall break with friends"><span class="frame"><img src="images/cbus_food.jpeg" width="1400" height="1050" loading="lazy" alt="Four friends smiling at a table with plates of food in a dim restaurant"></span><span class="stamp" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#c-pin"/></svg></span><span class="postmark" aria-hidden="true">COLUMBUS OH</span><figcaption>Fall break in Columbus with my friends from Hopkins.</figcaption></figure></div>
 </div>
 <div class="media flip">
 <div class="txt">
@@ -499,37 +633,42 @@ ol.steps{max-width:66ch;padding-left:1.3em}ol.steps li{margin-bottom:6px}
     <p>Soccer has been part of my life for as long as I can remember. I grew up playing it with my family, and I still play whenever I can. In high school, it also pulled me into the gym.</p>
     <h3>In the gym</h3>
     <p>The gym is still a big part of my life. I lift weights and go on runs often, and I love pushing myself to see how far I can go.</p>
-    <h3>Exploring</h3>
-    <p>I love exploring: new places, new people, and new experiences. I’ve traveled more since starting college than in the rest of my life combined, and almost every trip has been with friends.</p>
 </div>
-<div class="pics"><figure class="shot" data-loc="lowerfield" data-steps="car:lowerfield"><span class="frame"><img src="images/crew_game.jpeg" width="1400" height="1050" loading="lazy" alt="David and two friends standing in the stands of a soccer stadium with the field behind them"></span><figcaption>At a Columbus Crew game with friends and teammates from my high school soccer team.</figcaption></figure></div>
+<div class="pics"><figure class="shot card" data-loc="lowerfield" data-trip="car:columbus-lowerfield" data-why="Columbus Crew game"><span class="frame"><img src="images/crew_game.jpeg" width="1400" height="1050" loading="lazy" alt="David and two friends standing in the stands of a soccer stadium with the field behind them"></span><span class="stamp" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#c-ball"/></svg></span><span class="postmark" aria-hidden="true">COLUMBUS OH</span><figcaption>At a Columbus Crew game with friends and teammates from my high school soccer team.</figcaption></figure></div>
 </div>
-  <div class="strip"><figure class="shot" style="flex-grow:0.750" data-loc="hocking" data-steps="car:hocking"><span class="frame"><img src="images/hocking_hills.jpeg" width="1050" height="1400" loading="lazy" alt="Four friends standing by a creek under a stone arch bridge in the woods"></span><figcaption>Hiking through Hocking Hills near Logan, Ohio, with friends.</figcaption></figure><figure class="shot" style="flex-grow:0.750" data-loc="cerro" data-steps="plane:cerro"><span class="frame"><img src="images/david_santiago_back.jpg" width="1200" height="1600" loading="lazy" alt="Selfie of David in a cap and backpack on a hilltop, with the city of Santiago, Chile and mountains behind him"></span><figcaption>On a hill overlooking the city of Santiago, Chile, during intersession.</figcaption></figure><figure class="shot" style="flex-grow:0.750" data-loc="bahai" data-steps="car:bahai"><span class="frame"><img src="images/chile_group.jpg" width="1200" height="1600" loading="lazy" alt="Four friends on a garden path with mountains behind them in Chile"></span><figcaption>At the Bahá’í Temple outside Santiago with friends I made on the Clark Scholars intersession trip.</figcaption></figure></div>
-  <div class="strip two"><figure class="shot" style="flex-grow:0.666" data-loc="jamaica" data-steps="plane:jamaica"><span class="frame"><img src="images/stairs_jamaica.jpeg" width="933" height="1400" loading="lazy" alt="Two people climbing a steep stone staircase through dense green jungle"></span><figcaption>Climbing a staircase through the forest in Jamaica with a friend I made on the Clark Scholars spring trip.</figcaption></figure><figure class="shot" style="flex-grow:0.5625" data-loc="miami" data-steps="plane:miami"><span class="frame"><video src="media/miami_heat_vs_76ers.mp4" poster="media/miami_heat_poster.jpg" width="540" height="960" muted loop playsinline controls preload="metadata" aria-label="Video from the stands of the Miami Heat playing the Philadelphia 76ers"></video></span><figcaption>The Miami Heat vs. the Philadelphia 76ers in Miami: my first (and last) NBA game watched live.</figcaption></figure></div>
 <div class="media">
 <div class="txt">
+    <h3>Exploring</h3>
+    <p>I love exploring: new places, new people, and new experiences. I’ve traveled more since starting college than in the rest of my life combined, and almost every trip has been with friends.</p>
     <h3>On the road</h3>
     <p>I also love to drive. I make the drive between Columbus and Baltimore often in my black 2022 Honda CR-V, and the longest drive I’ve ever done was Columbus to Dallas: about 15 hours behind the wheel.</p>
     <p>That’s why this site is built like a road trip. As you scroll, the map in the corner follows me to the real place behind each photo: by car when I can drive it, and by plane when I can’t. Each section is a stop with its own name, a gas station when I’m sharing information and a scenic stop when I’m reflecting. Keep an eye on the gas gauge and the odometer. There’s no final destination here; the journey is the point.</p>
 </div>
-<div class="pics"><div class="carcard"><svg class="carcard-car" viewBox="0 0 220 92" aria-hidden="true"><use href="#crv"/></svg>
-<div class="plate">BLACK 2022 · HONDA CR-V</div>
-<dl><div><dt>Usual drive</dt><dd>Columbus ⇄ Baltimore</dd></div><div><dt>Longest drive</dt><dd>Columbus to Dallas, about 15 hours</dd></div><div><dt>Favorite route</dt><dd>I-70 E and I-68 E, about 400 miles</dd></div></dl></div></div>
+<div class="pics"><figure class="shot card" data-loc="hocking" data-trip="car:columbus-hocking" data-why="Hiking with friends"><span class="frame"><img src="images/hocking_hills.jpeg" width="1050" height="1400" loading="lazy" alt="Four friends standing by a creek under a stone arch bridge in the woods"></span><span class="stamp" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#c-mountain"/></svg></span><span class="postmark" aria-hidden="true">LOGAN OH</span><figcaption>Hiking through Hocking Hills near Logan, Ohio, with friends.</figcaption></figure><figure class="shot card" data-loc="bahai" data-trip="plane:bwi-iah,plane:iah-scl,car:scl-bahai" data-why="Intersession with friends"><span class="frame"><img src="images/chile_group.jpg" width="1200" height="1600" loading="lazy" alt="Four friends on a garden path with mountains behind them in Chile"></span><span class="stamp" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#c-palm"/></svg></span><span class="postmark" aria-hidden="true">SANTIAGO CL</span><figcaption>At the Bahá’í Temple outside Santiago with friends I made on the Clark Scholars intersession trip.</figcaption></figure><figure class="shot card" data-loc="jamaica" data-trip="plane:bwi-mia,plane:mia-kin" data-why="Spring trip with friends"><span class="frame"><img src="images/stairs_jamaica.jpeg" width="933" height="1400" loading="lazy" alt="Two people climbing a steep stone staircase through dense green jungle"></span><span class="stamp" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#c-plane"/></svg></span><span class="postmark" aria-hidden="true">KINGSTON JM</span><figcaption>Climbing a staircase through the forest in Jamaica with a friend I made on the Clark Scholars spring trip.</figcaption></figure><figure class="shot card" data-loc="miami" data-trip="plane:bwi-miami" data-why="My first NBA game"><span class="frame"><video src="media/miami_heat_vs_76ers.mp4" poster="media/miami_heat_poster.jpg" width="540" height="960" muted loop playsinline controls preload="metadata" aria-label="Video from the stands of the Miami Heat playing the Philadelphia 76ers"></video></span><span class="stamp" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#c-music"/></svg></span><span class="postmark" aria-hidden="true">MIAMI FL</span><figcaption>The Miami Heat vs. the Philadelphia 76ers in Miami: my first (and last) NBA game watched live.</figcaption></figure></div>
 </div>
-  <div class="media signrow">
+<div class="media">
 <div class="txt">
     <h3>Career goals</h3>
-    <p>Today I’m a fourth-year Electrical Engineering student in the Whiting School of Engineering. The field that pulls me in most is semiconductors: designing, testing, and manufacturing the chips inside so many of today’s devices. After graduating, I plan to join a semiconductor company, earn a master’s in ECE with a concentration in microelectronics, and eventually work as a design engineer who brings new chips into the devices people use every day.</p>
-</div>
-<div class="pics"><div class="roadsign " aria-hidden="true"><div class="rsign green"><svg class="ic" aria-hidden="true"><use href="#i-chip"/></svg><small>Next exit</small><b>Semiconductors</b><span>Design engineer, then a master’s in ECE</span><small>Internships: Texas Instruments · Milwaukee Tool</small></div><span class="signpost"></span></div><svg class="skid" viewBox="0 0 320 60" aria-hidden="true"><path d="M0 18 C90 6 170 34 320 14"/><path d="M0 40 C90 28 170 56 320 36"/></svg></div>
-</div>
-  <div class="strip"><figure class="shot" data-loc="dallas" data-steps="car:dallas" style="flex-grow:0.750"><span class="frame"><img src="images/load_board.jpeg" width="1050" height="1400" loading="lazy" alt="A green semiconductor load board mounted in a test system next to lab monitors"></span><figcaption>A load board I worked with during my internship at Texas Instruments in Dallas.</figcaption></figure><figure class="shot" data-loc="milwaukee" data-steps="car:milwaukee" style="flex-grow:1.333"><span class="frame"><img src="images/test_bench.jpeg" width="1400" height="1050" loading="lazy" alt="An internship lab bench with monitors, an oscilloscope, a microscope, and a circuit board under test"></span><figcaption>My bench setup during my internship at Milwaukee Tool in Milwaukee.</figcaption></figure><figure class="shot" data-loc="indy" data-steps="car:indy" style="flex-grow:0.750"><span class="frame"><img src="images/micron_bunny_suit.jpeg" width="1050" height="1400" loading="lazy" alt="David in a suit taking a selfie beside a person in a white cleanroom bunny suit at a Micron booth"></span><figcaption>A selfie at Micron’s “Chip or Treat” booth during a conference in Indianapolis on Halloween.</figcaption></figure></div>
-  <div class="media signrow">
-<div class="txt">
+    <p>Today I’m a fourth-year Electrical Engineering student in the Whiting School of Engineering, and so far I’ve interned at Milwaukee Tool and Texas Instruments. The field that pulls me in most is semiconductors: designing, testing, and manufacturing the chips inside so many of today’s devices. After graduating, I plan to join a semiconductor company, earn a master’s in ECE with a concentration in microelectronics, and eventually work as a design engineer who brings new chips into the devices people use every day.</p>
     <h3>Purpose of this portfolio</h3>
     <p>This site is my Best Self Portfolio, the largest assignment in my leadership course EN.660.332 Leadership Theory. For it, I interviewed two people about a time I was at my best, reflected on my 16P and conflict assessments, built my own leadership theory, and set one goal for growth. Putting it together pushed me to look closely at my character and at how others see me, so I can understand where I have been, where I am now, and the leader I want to become.</p>
 </div>
-<div class="pics"><div class="roadsign " aria-hidden="true"><div class="rsign green"><svg class="ic" aria-hidden="true"><use href="#i-compass"/></svg><small>Why I’m on this road</small><b>The journey, not the destination</b><span>A look back at where I’ve been</span><small>EN.660.332 Leadership Theory</small></div><span class="signpost"></span></div><svg class="skid" viewBox="0 0 320 60" aria-hidden="true"><path d="M0 18 C90 6 170 34 320 14"/><path d="M0 40 C90 28 170 56 320 36"/></svg></div>
+<div class="pics"><figure class="shot card" data-loc="milwaukee" data-trip="car:columbus-chicago,car:chicago-milwaukee" data-why="Internship: Milwaukee Tool"><span class="frame"><img src="images/test_bench.jpeg" width="1400" height="1050" loading="lazy" alt="An internship lab bench with monitors, an oscilloscope, a microscope, and a circuit board under test"></span><span class="stamp" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#c-chip"/></svg></span><span class="postmark" aria-hidden="true">MILWAUKEE WI</span><figcaption>My bench setup during my internship at Milwaukee Tool in Milwaukee.</figcaption></figure><figure class="shot card" data-loc="milwaukee" data-trip="car:columbus-chicago,car:chicago-milwaukee" data-why="Internship: Brewers game"><span class="frame"><img src="images/brewers.jpeg" width="1050" height="1400" loading="lazy" alt="A large group of friends posing in the stands of a baseball stadium"></span><span class="stamp" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#c-chip"/></svg></span><span class="postmark" aria-hidden="true">MILWAUKEE WI</span><figcaption>A Brewers game in Milwaukee with my fellow interns.</figcaption></figure><figure class="shot card" data-loc="dallas" data-trip="car:columbus-dallas" data-why="Internship: Texas Instruments"><span class="frame"><img src="images/load_board.jpeg" width="1050" height="1400" loading="lazy" alt="A green semiconductor load board mounted in a test system next to lab monitors"></span><span class="stamp" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#c-chip"/></svg></span><span class="postmark" aria-hidden="true">DALLAS TX</span><figcaption>A load board I worked with during my internship at Texas Instruments in Dallas.</figcaption></figure><figure class="shot card" data-loc="dallas" data-trip="car:columbus-dallas" data-why="World Cup: Mexico vs. South Africa"><span class="frame"><video src="media/worldcup_mex_vs_south_africa.mp4" poster="media/worldcup_poster.jpg" width="480" height="854" muted loop playsinline controls preload="metadata" aria-label="Video of a packed Mexican bar in Dallas celebrating at the end of the 2026 World Cup opener, Mexico vs. South Africa"></video></span><span class="stamp" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#c-ball"/></svg></span><span class="postmark" aria-hidden="true">DALLAS TX</span><figcaption>The 2026 World Cup opener, Mexico vs. South Africa, at a Mexican bar in Dallas with other Mexican interns.</figcaption></figure><figure class="runcard" data-loc="katy" data-trip="run:katys-katy" data-why="Katy Trail 5K">
+  <div class="run-head"><svg class="run-shoe" viewBox="0 0 64 64" aria-hidden="true"><use href="#c-shoe"/></svg><div><b>Katy Trail 5K</b><span>Dallas, TX · August 2, 2026</span></div><span class="pr" title="Personal record">PR</span></div>
+  <div class="run-body">
+    <svg class="run-route" viewBox="0 0 81.9 108.0" role="img" aria-label="Outline of the run: a single line heading northeast along the Katy Trail">
+      <polyline class="trail-bg" points="4.0,104.0 5.8,101.7 13.2,96.4 20.7,91.9 22.8,89.6 29.8,72.9 33.1,66.9 34.4,66.1 38.0,60.8 40.8,54.8 41.6,54.0 42.2,50.2 44.5,46.4 44.6,45.7 45.4,44.2 49.9,34.3 52.1,31.3 54.8,29.8 55.1,28.2 75.4,7.8 77.4,5.5 77.9,4.0"/>
+      <polyline class="trail" points="4.0,104.0 5.8,101.7 13.2,96.4 20.7,91.9 22.8,89.6 29.8,72.9 33.1,66.9 34.4,66.1 38.0,60.8 40.8,54.8 41.6,54.0 42.2,50.2 44.5,46.4 44.6,45.7 45.4,44.2 49.9,34.3 52.1,31.3 54.8,29.8 55.1,28.2 75.4,7.8 77.4,5.5 77.9,4.0" pathLength="1"/>
+      <circle class="trail-start" cx="4.0" cy="104.0" r="3.2"/>
+      <circle class="trail-end" cx="77.9" cy="4.0" r="4.2"/>
+    </svg>
+    <dl class="run-stats">
+      <div><dt>Distance</dt><dd>3.11 mi</dd></div><div><dt>Avg pace</dt><dd>8:50 /mi</dd></div><div><dt>Moving time</dt><dd>27:30</dd></div>
+      <div><dt>Elevation gain</dt><dd>111 ft</dd></div><div><dt>Max elevation</dt><dd>558 ft</dd></div><div><dt>Steps</dt><dd>4,408</dd></div>
+    </dl>
+  </div>
+  <figcaption>My go-to run all summer, and my fastest 5K ever. Stats from Strava.</figcaption>
+</figure></div>
 </div>
 </div>
 </section>
@@ -560,7 +699,7 @@ ol.steps{max-width:66ch;padding-left:1.3em}ol.steps li{margin-bottom:6px}
 
   <div class="story" id="story-0" role="tabpanel" aria-labelledby="tab-0">
     <div class="bio">
-      <figure class="shot" data-loc="chicago" data-steps="car:chicago"><span class="frame"><img src="images/adriana.png" width="975" height="650" alt="Portrait of Adriana Garcia smiling in a light blue cardigan"></span><figcaption>My sister, Adriana.</figcaption></figure>
+      <figure class="shot card" data-loc="chicago" data-trip="car:columbus-chicago" data-why="Visiting my sister"><span class="frame"><img src="images/adriana.png" width="975" height="650" alt="Portrait of Adriana Garcia smiling in a light blue cardigan"></span><span class="stamp" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#c-heart"/></svg></span><span class="postmark" aria-hidden="true">CHICAGO IL</span><figcaption>My sister, Adriana.</figcaption></figure>
       <p>Adriana is my older sister and a Civil Engineering Analyst on Kimley-Horn’s Land Development team in the Chicago area, where she works on residential, commercial, educational, medical, retail, and mixed-use projects. She graduated from the University of Dayton in 2024 with a civil engineering degree focused on infrastructure and serves on the Scholarship Committee of Commercial Real Estate Women (CREW) Chicago. Outside of work, she explores the city’s food and architecture, stays active, travels, and catches up on shows and movies.</p>
     </div>
 <div class="media">
@@ -573,13 +712,13 @@ ol.steps{max-width:66ch;padding-left:1.3em}ol.steps li{margin-bottom:6px}
       <p>Overall, David’s high school years demonstrated what he is capable of when he is focused, motivated, and at his best. He showed discipline, initiative, emotional intelligence, curiosity, and analytical thinking. Not only did he demonstrate these qualities in only one area of his life, but he applied them consistently across academics, athletics, music, relationships, and his community. His ability to pursue his goals while remaining connected to and supportive to those around him was one of the clearest examples of David at his best.</p>
     </blockquote>
 </div>
-<div class="pics"><figure class="shot" data-loc="cbusdt" data-steps="car:cbusdt"><span class="frame"><img src="images/seniors_soccer.jpg" width="1200" height="1600" loading="lazy" alt="Four soccer players in black jerseys with their arms around each other on a field"></span><figcaption>With friends from my high school soccer team.</figcaption></figure><figure class="shot" data-loc="cbusdt" data-steps=""><span class="frame"><img src="images/david_dribbling.jpg" width="504" height="338" loading="lazy" alt="David in a Briggs jersey dribbling a soccer ball past a defender"></span><figcaption>Taking on a defender during a high school game.</figcaption></figure><figure class="shot" data-loc="osu" data-steps="car:osu"><span class="frame"><img src="images/award_typo.jpg" width="828" height="638" loading="lazy" alt="All-Star Award certificate presented to David for trumpet with the CAHS Jazz Ensemble at the 45th Annual Ohio State University Jazz Festival, March 26, 2022"></span><figcaption>My All-Star Award for trumpet from the 2022 Ohio State University Jazz Festival, typo in my name and all.</figcaption></figure></div>
+<div class="pics"><figure class="shot card" data-loc="cbusdt" data-trip="car:cahs-cbusdt" data-why="Memory lane: high school soccer"><span class="frame"><img src="images/seniors_soccer.jpg" width="1200" height="1600" loading="lazy" alt="Four soccer players in black jerseys with their arms around each other on a field"></span><span class="stamp" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#c-ball"/></svg></span><span class="postmark" aria-hidden="true">COLUMBUS OH</span><figcaption>With friends from my high school soccer team.</figcaption></figure><figure class="shot card" data-loc="cbusdt" data-trip="car:cahs-cbusdt" data-why="Memory lane: high school soccer"><span class="frame"><img src="images/david_dribbling.jpg" width="504" height="338" loading="lazy" alt="David in a Briggs jersey dribbling a soccer ball past a defender"></span><span class="stamp" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#c-ball"/></svg></span><span class="postmark" aria-hidden="true">COLUMBUS OH</span><figcaption>Taking on a defender during a high school game.</figcaption></figure><figure class="shot card" data-loc="osu" data-trip="car:columbus-osu" data-why="Memory lane: jazz festival"><span class="frame"><img src="images/award_typo.jpg" width="828" height="638" loading="lazy" alt="All-Star Award certificate presented to David for trumpet with the CAHS Jazz Ensemble at the 45th Annual Ohio State University Jazz Festival, March 26, 2022"></span><span class="stamp" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#c-trumpet"/></svg></span><span class="postmark" aria-hidden="true">COLUMBUS OH</span><figcaption>My All-Star Award for trumpet from the 2022 Ohio State University Jazz Festival, typo in my name and all.</figcaption></figure><figure class="shot card" data-loc="osu" data-trip="schoolbus:cahs-osu" data-why="Campus tour"><span class="frame"><img src="images/cahs_osu_tour.jpeg" width="1050" height="1400" loading="lazy" alt="David taking a selfie with a group of high school classmates on a campus tour"></span><span class="stamp" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#c-pin"/></svg></span><span class="postmark" aria-hidden="true">COLUMBUS OH</span><figcaption>A selfie with everyone during our high school tour of Ohio State.</figcaption></figure></div>
 </div>
   </div>
 
   <div class="story" id="story-1" role="tabpanel" aria-labelledby="tab-1" hidden>
     <div class="bio">
-      <figure class="shot" data-loc="jhu" data-steps="car:jhu"><span class="frame"><img src="images/mahmoud.png" width="598" height="678" alt="Close-up selfie of Mahmoud Radwan outdoors with trees and rocks behind him"></span><figcaption>My best friend, Mahmoud.</figcaption></figure>
+      <figure class="shot card" data-loc="jhu" data-trip="car:columbus-jhu" data-why="Back to Hopkins"><span class="frame"><img src="images/mahmoud.png" width="598" height="678" alt="Close-up selfie of Mahmoud Radwan outdoors with trees and rocks behind him"></span><span class="stamp" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#c-pin"/></svg></span><span class="postmark" aria-hidden="true">BALTIMORE MD</span><figcaption>My best friend, Mahmoud.</figcaption></figure>
       <p>Mahmoud is my best friend and a senior studying Electrical Engineering at Johns Hopkins. We are both members of our school’s chapter of the Society of Hispanic Professional Engineers (SHPE).</p>
     </div>
 <div class="media">
@@ -589,7 +728,7 @@ ol.steps{max-width:66ch;padding-left:1.3em}ol.steps li{margin-bottom:6px}
       <p>Once we were at the convention, I felt that David was super focused on getting done what he needed to get done, but especially outside convention time I felt that he was genuinely concerned about the people we were talking to. I also felt like he was supporting people in terms of his experience at the convention, but by also just being a positive presence. While we were waiting in lines during the company expos, David would talk with others and give them advice on how to succeed at the SHPE National convention, like how he did for me during my first time at last year’s convention.</p>
     </blockquote>
 </div>
-<div class="pics"><figure class="shot" data-loc="indy" data-steps="car:indy"><span class="frame"><img src="images/shpe_dinner.jpeg" width="1400" height="1050" loading="lazy" alt="Friends around a restaurant table smiling over plates of food"></span><figcaption>Dinner with fellow Hopkins SHPE members at the 2026 SHPE National Convention in Indianapolis.</figcaption></figure><figure class="shot" data-loc="indy" data-steps=""><span class="frame"><img src="images/shpe_group.jpeg" width="1050" height="1400" loading="lazy" alt="A large group of SHPE members in business attire posing in front of an industry partnership banner"></span><figcaption>A group picture at the convention center in Indianapolis.</figcaption></figure></div>
+<div class="pics"><figure class="shot card" data-loc="indy" data-trip="car:jhu-columbus,car:columbus-indy" data-why="SHPE Convention"><span class="frame"><img src="images/shpe_dinner.jpeg" width="1400" height="1050" loading="lazy" alt="Friends around a restaurant table smiling over plates of food"></span><span class="stamp" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#c-grad"/></svg></span><span class="postmark" aria-hidden="true">INDIANAPOLIS</span><figcaption>Dinner with fellow Hopkins SHPE members at the 2026 SHPE National Convention in Indianapolis.</figcaption></figure><figure class="shot card" data-loc="indy" data-trip="car:jhu-columbus,car:columbus-indy" data-why="SHPE Convention"><span class="frame"><img src="images/shpe_group.jpeg" width="1050" height="1400" loading="lazy" alt="A large group of SHPE members in business attire posing in front of an industry partnership banner"></span><span class="stamp" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#c-grad"/></svg></span><span class="postmark" aria-hidden="true">INDIANAPOLIS</span><figcaption>A group picture at the convention center in Indianapolis.</figcaption></figure><figure class="shot card" data-loc="indy" data-trip="car:jhu-columbus,car:columbus-indy" data-why="SHPE Convention"><span class="frame"><img src="images/micron_bunny_suit.jpeg" width="1050" height="1400" loading="lazy" alt="David in a suit taking a selfie beside a person in a white cleanroom bunny suit at a Micron booth"></span><span class="stamp" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#c-grad"/></svg></span><span class="postmark" aria-hidden="true">INDIANAPOLIS</span><figcaption>A selfie at Micron’s “Chip or Treat” booth during a conference in Indianapolis on Halloween.</figcaption></figure></div>
 </div>
   </div>
 
@@ -659,7 +798,7 @@ ol.steps{max-width:66ch;padding-left:1.3em}ol.steps li{margin-bottom:6px}
   </div>
   <details class="raw"><summary>View my original 16Personalities results</summary><figure class="shot"><span class="frame"><img src="images/16P_results.png" width="778" height="676" loading="lazy" alt="Screenshot of David’s 16Personalities results: 67% Extraverted, 61% Observant, 54% Feeling, 51% Judging, 51% Turbulent"></span><figcaption>My 16Personalities results, as shown on the 16Personalities site.<sup>1</sup></figcaption></figure></details>
 </div>
-<div class="pics"><figure class="shot" data-loc="milwaukee" data-steps="car:milwaukee"><span class="frame"><img src="images/brewers.jpeg" width="1050" height="1400" loading="lazy" alt="A large group of friends posing in the stands of a baseball stadium"></span><figcaption>A Brewers game in Milwaukee with my fellow interns.</figcaption></figure><figure class="shot" data-loc="newark" data-steps="car:newark"><span class="frame"><img src="images/concert.jpg" width="1200" height="1600" loading="lazy" alt="David and a friend standing on a city street at night"></span><figcaption>Leaving a Junior H concert, my favorite artist, with a friend in Newark, New Jersey.</figcaption></figure></div>
+<div class="pics"><figure class="shot card" data-loc="newark" data-trip="bus:jhu-newark" data-why="Junior H concert"><span class="frame"><img src="images/concert.jpg" width="1200" height="1600" loading="lazy" alt="David and a friend standing on a city street at night"></span><span class="stamp" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#c-music"/></svg></span><span class="postmark" aria-hidden="true">NEWARK NJ</span><figcaption>Leaving a Junior H concert, my favorite artist, with a friend in Newark, New Jersey.</figcaption></figure></div>
 </div>
 <div class="media flip">
 <div class="txt">
@@ -668,10 +807,21 @@ ol.steps{max-width:66ch;padding-left:1.3em}ol.steps li{margin-bottom:6px}
     <p>The work itself was harder. At almost every meeting, someone was missing or had made little progress. Even as the leader, I never called anyone out or got upset, because I didn’t want anyone to feel bad and I wanted to keep morale up. As the deadline closed in and the project still wasn’t finished, I completed it myself so we would have a working demo for the professor and avoid a bad grade. It worked, and our team got full credit.</p>
     <p>Looking back, every part of my personality played a role. Being extraverted helped me form the team and lead it, and being observant helped me build good relationships within it, because I knew each person’s strengths and weaknesses. Being Feeling made things harder: I prioritized everyone’s feelings over the team being productive, so I put more of the work on myself. Being Judging is what let us finish on time, since I set up scheduled meetings and deliverables for us, and being Turbulent drove my motivation to see it through.</p>
 </div>
-<div class="pics"><figure class="shot" data-loc="jhu" data-steps="car:jhu"><span class="frame"><img src="images/old_electrical_engineering_building.jpg" width="1200" height="1600" loading="lazy" alt="David with arms raised on the steps of a brick building with white columns"></span><figcaption>Doing a scavenger hunt at Hopkins during my Clark Scholars pre-orientation.</figcaption></figure></div>
+<div class="pics"><figure class="shot card" data-loc="jhu" data-trip="car:columbus-jhu" data-why="Pre-orientation"><span class="frame"><img src="images/old_electrical_engineering_building.jpg" width="1200" height="1600" loading="lazy" alt="David with arms raised on the steps of a brick building with white columns"></span><span class="stamp" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#c-pin"/></svg></span><span class="postmark" aria-hidden="true">BALTIMORE MD</span><figcaption>Doing a scavenger hunt at Hopkins during my Clark Scholars pre-orientation.</figcaption></figure></div>
 </div>
 <div class="media">
 <div class="txt">
+    <div class="owl" aria-hidden="true"><svg viewBox="0 0 80 88">
+  <path class="owl-wing l" d="M14 40 Q4 58 14 74 Q22 66 22 50Z" fill="#6b4423"/>
+  <path class="owl-wing r" d="M66 40 Q76 58 66 74 Q58 66 58 50Z" fill="#6b4423"/>
+  <path d="M16 20 L22 4 L32 16 Q40 13 48 16 L58 4 L64 20 Q70 34 66 56 Q62 80 40 82 Q18 80 14 56 Q10 34 16 20Z" fill="#8a5a2b"/>
+  <path d="M26 50 Q40 44 54 50 Q56 70 40 76 Q24 70 26 50Z" fill="#e8d3a8"/>
+  <path d="M30 56l3 3 3-3M38 60l3 3 3-3M46 56l3 3 3-3M34 66l3 3 3-3M42 66l3 3 3-3" stroke="#b08a55" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+  <circle cx="29" cy="32" r="11" fill="#f3efe4"/><circle cx="51" cy="32" r="11" fill="#f3efe4"/>
+  <g class="owl-eyes"><circle cx="29" cy="32" r="5.5" fill="#18211b"/><circle cx="51" cy="32" r="5.5" fill="#18211b"/><circle cx="31" cy="30" r="1.8" fill="#fff"/><circle cx="53" cy="30" r="1.8" fill="#fff"/></g>
+  <path d="M36 40 L40 48 L44 40Z" fill="#e8b923"/>
+  <path d="M30 82 l-3 5 M34 82 l0 5 M46 82 l0 5 M50 82 l3 5" stroke="#e8b923" stroke-width="2.4" stroke-linecap="round"/>
+</svg><span>Owl</span></div>
     <h3>Conflict assessment results</h3>
     <p>The conflict assessment measures how I respond to conflict along two dimensions: how much I care about reaching my own goals, and how much I care about keeping the relationship. Where someone falls on those two dimensions places them in one of five styles, each represented by an animal: the shark (competing), owl (collaborating), fox (compromising), turtle (avoiding), and teddy bear (accommodating).<sup>2</sup></p>
     <p>My highest conflict score is <strong>Collaborating</strong>, the “owl,” which describes someone who values both their goals and their relationships. Accommodating and Compromising are close behind. Accommodating fits my habit of putting others first. Accommodators tend to come across as agreeable and easygoing, but always putting others’ needs ahead of their own can build resentment, so they benefit from saying what they need.<sup>2</sup></p>
@@ -680,7 +830,7 @@ ol.steps{max-width:66ch;padding-left:1.3em}ol.steps li{margin-bottom:6px}
   <details class="raw"><summary>View my original conflict assessment result</summary><figure class="shot"><span class="frame"><img src="images/conflict_assessment_results.png" width="1213" height="280" loading="lazy" alt="Screenshot of David’s conflict assessment result: Owl, Collaborating. Owls highly value both their goals and their relationships."></span><figcaption>My conflict assessment result: the owl, or Collaborating style.</figcaption></figure></details>
     <p>Being an owl is fairly new for me. I used to be more of a shark who put goals ahead of relationships. In my family-centered Mexican household, relationships were simply there; I never had to work to build them. Leaving for college changed that. Building relationships on purpose taught me to value people as much as goals, and now I actively make time for the people in my life.</p>
 </div>
-<div class="pics"><figure class="shot" data-loc="jhu" data-steps=""><span class="frame"><img src="images/plant.jpeg" width="828" height="622" loading="lazy" alt="David with his arm around a friend at night"></span><figcaption>A good time with a friend from Hopkins.</figcaption></figure><figure class="shot" data-loc="cbusdt" data-steps="car:cbusdt"><span class="frame"><img src="images/formal.jpg" width="1600" height="1200" loading="lazy" alt="Four friends in formal clothes posing by a river at night"></span><figcaption>High school formal with friends in downtown Columbus.</figcaption></figure></div>
+<div class="pics"><figure class="shot card" data-loc="jhu" data-trip="" data-why="Time with friends"><span class="frame"><img src="images/plant.jpeg" width="828" height="622" loading="lazy" alt="David with his arm around a friend at night"></span><span class="stamp" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#c-pin"/></svg></span><span class="postmark" aria-hidden="true">BALTIMORE MD</span><figcaption>A good time with a friend from Hopkins.</figcaption></figure><figure class="shot card" data-loc="cbusdt" data-trip="car:cahs-cbusdt" data-why="High school formal"><span class="frame"><img src="images/formal.jpg" width="1600" height="1200" loading="lazy" alt="Four friends in formal clothes posing by a river at night"></span><span class="stamp" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#c-pin"/></svg></span><span class="postmark" aria-hidden="true">COLUMBUS OH</span><figcaption>High school formal with friends in downtown Columbus.</figcaption></figure></div>
 </div>
 <div class="media flip">
 <div class="txt">
@@ -688,7 +838,7 @@ ol.steps{max-width:66ch;padding-left:1.3em}ol.steps li{margin-bottom:6px}
     <p>Collaborating showed up this past semester at the SHPE National Convention in Indianapolis. The convention is built around professional development: networking, company workshops, and conversations with employers about jobs. As this year’s National Convention chair, I was the person Hopkins SHPE members turned to for advice on how to make the most of it.</p>
     <p>It was my third national convention, so before we left, I shared a roadmap of how I had landed my last two internships. At the convention, I balanced two goals. Mine was to land a full-time engineering role with one of the attending companies. The chapter’s was for every member to feel ready to approach recruiters and pitch themselves. I also passed what I had learned on to students from other schools I had just met. By the end, everyone in our chapter felt prepared and had a great time. That is what putting my goals and my relationships on equal footing looks like.</p>
 </div>
-<div class="pics"><figure class="shot" data-loc="philly" data-steps="car:philly"><span class="frame"><img src="images/shpe_big4.jpg" width="1400" height="1050" loading="lazy" alt="Five students in suits with convention badges standing in an expo hall"></span><figcaption>With friends from other schools’ SHPE chapters while waiting in the Apple line to talk to recruiters at the 2025 SHPE National Convention in Philadelphia.</figcaption></figure><figure class="shot" data-loc="anaheim" data-steps="plane:anaheim"><span class="frame"><img src="images/plane.jpeg" width="1400" height="1050" loading="lazy" alt="Two friends posing on top of a fighter jet monument at night"></span><figcaption>Posing with a friend on an airplane monument at the 2024 SHPE National Convention in Anaheim, California.</figcaption></figure><figure class="shot" data-loc="chicago" data-steps="plane:chicago"><span class="frame"><img src="images/NILA.jpeg" width="1050" height="1400" loading="lazy" alt="A group of students posing in front of a SHPE step-and-repeat backdrop"></span><figcaption>Region 4 (DMV area) leaders at SHPE’s NILA in Chicago.</figcaption></figure></div>
+<div class="pics"><figure class="shot card" data-loc="chicago" data-trip="car:milwaukee-chicago" data-why="SHPE NILA"><span class="frame"><img src="images/NILA.jpeg" width="1050" height="1400" loading="lazy" alt="A group of students posing in front of a SHPE step-and-repeat backdrop"></span><span class="stamp" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#c-grad"/></svg></span><span class="postmark" aria-hidden="true">CHICAGO IL</span><figcaption>Region 4 (DMV area) leaders at SHPE’s NILA in Chicago.</figcaption></figure><figure class="shot card" data-loc="philly" data-trip="car:jhu-philly" data-why="SHPE Convention"><span class="frame"><img src="images/shpe_big4.jpg" width="1400" height="1050" loading="lazy" alt="Five students in suits with convention badges standing in an expo hall"></span><span class="stamp" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#c-grad"/></svg></span><span class="postmark" aria-hidden="true">PHILADELPHIA</span><figcaption>With friends from other schools’ SHPE chapters while waiting in the Apple line to talk to recruiters at the 2025 SHPE National Convention in Philadelphia.</figcaption></figure></div>
 </div>
   <div class="refs"><h4>References</h4><ol><li>16Personalities. <a href="https://www.16personalities.com/">Theory and framework</a>.</li><li>Harvard Program on Negotiation. <a href="https://www.pon.harvard.edu/daily/conflict-resolution/conflict-management-styles-pitfalls-and-best-practices/">Conflict management styles, pitfalls, and best practices</a>.</li></ol></div>
 </div>
@@ -731,7 +881,7 @@ ol.steps{max-width:66ch;padding-left:1.3em}ol.steps li{margin-bottom:6px}
     <p>The theory also comes from my own project team, where I led by example but never built the accountability that would have made the team share the work.</p>
     <p><strong>What I want to be known for:</strong> someone who cares about the people around me, works hard, brings positive energy everywhere I go, and inspires people to be the best version of themselves.</p>
 </div>
-<div class="pics"><figure class="shot" data-loc="jhu" data-steps="plane:jhu"><span class="frame"><img src="images/soccer_solo.jpeg" width="1400" height="933" loading="lazy" alt="David running with the ball on a turf field at night"></span><figcaption>Playing intramural soccer at Hopkins.</figcaption></figure></div>
+<div class="pics"><figure class="shot card" data-loc="jhu" data-trip="" data-why="Intramural soccer"><span class="frame"><img src="images/soccer_solo.jpeg" width="1400" height="933" loading="lazy" alt="David running with the ball on a turf field at night"></span><span class="stamp" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#c-ball"/></svg></span><span class="postmark" aria-hidden="true">BALTIMORE MD</span><figcaption>Playing intramural soccer at Hopkins.</figcaption></figure></div>
 </div>
 <div class="media">
 <div class="txt">
@@ -739,7 +889,7 @@ ol.steps{max-width:66ch;padding-left:1.3em}ol.steps li{margin-bottom:6px}
     <h3>Why it’s needed</h3>
     <p>Research backs up the idea that a team’s atmosphere matters as much as its talent. In a study of 51 work teams at a manufacturing company, Harvard professor Amy Edmondson found that teams with more psychological safety, a shared belief that it is safe to take interpersonal risks like asking a question or admitting a mistake, engaged in more learning behavior, and that learning behavior led to better team performance.<sup>3</sup> Google reached a similar conclusion in Project Aristotle, a study of 180 of its own teams. Psychological safety ranked first among the five dynamics that set its effective teams apart, and how a team worked together mattered more than who was on it.<sup>4</sup> That is the pitch in my theory: without it, even a team of talented people can’t perform, which is part of what I saw on my own project team.</p>
 </div>
-<div class="pics"><figure class="shot" data-loc="mtbank" data-steps="car:mtbank"><span class="frame"><img src="images/mex_vs_col.jpeg" width="1400" height="1050" loading="lazy" alt="Friends in Mexico and Colombia jerseys cheering in a packed stadium"></span><figcaption>Watching Mexico vs. Colombia with friends at M&amp;T Bank Stadium.</figcaption></figure><figure class="shot" data-loc="anaheim" data-steps="plane:anaheim"><span class="frame"><img src="images/shpe_mexican_flag.jpg" width="1200" height="1600" loading="lazy" alt="David holding a large Mexican flag in a convention hall"></span><figcaption>Holding the Mexican flag at the 2024 SHPE National Convention in Anaheim, California.</figcaption></figure></div>
+<div class="pics"><figure class="shot card" data-loc="mtbank" data-trip="car:jhu-mtbank" data-why="Mexico vs. Colombia"><span class="frame"><img src="images/mex_vs_col.jpeg" width="1400" height="1050" loading="lazy" alt="Friends in Mexico and Colombia jerseys cheering in a packed stadium"></span><span class="stamp" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#c-ball"/></svg></span><span class="postmark" aria-hidden="true">BALTIMORE MD</span><figcaption>Watching Mexico vs. Colombia with friends at M&amp;T Bank Stadium.</figcaption></figure><figure class="shot card" data-loc="anaheim" data-trip="plane:bwi-anaheim" data-why="SHPE Convention"><span class="frame"><img src="images/shpe_mexican_flag.jpg" width="1200" height="1600" loading="lazy" alt="David holding a large Mexican flag in a convention hall"></span><span class="stamp" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#c-grad"/></svg></span><span class="postmark" aria-hidden="true">ANAHEIM CA</span><figcaption>Holding the Mexican flag at the 2024 SHPE National Convention in Anaheim, California.</figcaption></figure><figure class="shot card" data-loc="anaheim" data-trip="plane:bwi-anaheim" data-why="SHPE Convention"><span class="frame"><img src="images/plane.jpeg" width="1400" height="1050" loading="lazy" alt="Two friends posing on top of a fighter jet monument at night"></span><span class="stamp" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#c-grad"/></svg></span><span class="postmark" aria-hidden="true">ANAHEIM CA</span><figcaption>Posing with a friend on an airplane monument at the 2024 SHPE National Convention in Anaheim, California.</figcaption></figure></div>
 </div>
 <div class="media half flip">
 <div class="txt">
@@ -772,14 +922,14 @@ ol.steps{max-width:66ch;padding-left:1.3em}ol.steps li{margin-bottom:6px}
     <h3>Putting it into practice</h3>
     <ol class="steps"><li>Do your part first, and let the team see it.</li><li>Open each meeting with a quick check-in so everyone feels heard.</li><li>Match your style to each teammate: more direction for someone new, more trust for someone experienced.</li><li>Give kind, direct feedback early instead of absorbing the work yourself.</li><li>Celebrate progress out loud.</li></ol>
 </div>
-<div class="pics"><figure class="shot" data-loc="bsc" data-steps="plane:bsc"><span class="frame"><img src="images/dmv_shpe_speaker.jpeg" width="1400" height="933" loading="lazy" alt="David speaking into a microphone at a podium in a conference room"></span><figcaption>Speaking at the SHPE DMV alumni event I organized at the Bloomberg Student Center: a multi-chapter alumni-student mixer that brought together five SHPE chapters and 50+ attendees to build professional connections for Hispanics in STEM.</figcaption></figure></div>
+<div class="pics"><figure class="shot card" data-loc="bsc" data-trip="" data-why="SHPE DMV alumni event"><span class="frame"><img src="images/dmv_shpe_speaker.jpeg" width="1400" height="933" loading="lazy" alt="David speaking into a microphone at a podium in a conference room"></span><span class="stamp" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#c-grad"/></svg></span><span class="postmark" aria-hidden="true">BALTIMORE MD</span><figcaption>Speaking at the SHPE DMV alumni event I organized at the Bloomberg Student Center: a multi-chapter alumni-student mixer that brought together five SHPE chapters and 50+ attendees to build professional connections for Hispanics in STEM.</figcaption></figure></div>
 </div>
 <div class="media flip">
 <div class="txt">
     <h3>When to use it</h3>
     <p>The Positive Pitch works best on new, small teams of peers who share a goal, like student project groups, club boards, or intramural teams, where no one has formal authority and the leader has to earn buy-in by example. It fits the start of a team’s life, when teammates are still around M2 and need both direction and connection, and it adapts as the team matures by shifting toward a delegating style. It is less suited to emergencies or large organizations that need one person to make fast, top-down decisions.</p>
 </div>
-<div class="pics"><figure class="shot" data-loc="bsc" data-steps=""><span class="frame"><img src="images/shpe_dmv_group.jpeg" width="1400" height="542" loading="lazy" alt="A large group of students and alumni in business attire posing together at the front of a conference room"></span><figcaption>Everyone who came out to the SHPE DMV alumni event, a student-run event like the ones this theory is built for.</figcaption></figure></div>
+<div class="pics"><figure class="shot card" data-loc="bsc" data-trip="" data-why="SHPE DMV alumni event"><span class="frame"><img src="images/shpe_dmv_group.jpeg" width="1400" height="542" loading="lazy" alt="A large group of students and alumni in business attire posing together at the front of a conference room"></span><span class="stamp" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#c-grad"/></svg></span><span class="postmark" aria-hidden="true">BALTIMORE MD</span><figcaption>Everyone who came out to the SHPE DMV alumni event, a student-run event like the ones this theory is built for.</figcaption></figure></div>
 </div>
   <div class="media signrow">
 <div class="txt">
@@ -813,14 +963,14 @@ ol.steps{max-width:66ch;padding-left:1.3em}ol.steps li{margin-bottom:6px}
     <h3>One concrete behavior change</h3>
     <p>When a teammate hasn’t made progress by our weekly check-in, I will message them privately within 24 hours, ask what is blocking them, and agree on one specific task with a due date. I won’t take the task over unless we decide that together.</p>
 </div>
-<div class="pics"><figure class="shot" data-loc="hocking" data-steps="car:hocking"><span class="frame"><img src="images/zipline.jpeg" width="1050" height="1400" loading="lazy" alt="Friends in helmets reflected in a round mirror above autumn trees"></span><figcaption>A selfie before getting on the zipline at Hocking Hills.</figcaption></figure></div>
+<div class="pics"><figure class="shot card" data-loc="hocking" data-trip="car:columbus-hocking" data-why="Ziplining"><span class="frame"><img src="images/zipline.jpeg" width="1050" height="1400" loading="lazy" alt="Friends in helmets reflected in a round mirror above autumn trees"></span><span class="stamp" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#c-mountain"/></svg></span><span class="postmark" aria-hidden="true">LOGAN OH</span><figcaption>A selfie before getting on the zipline at Hocking Hills.</figcaption></figure></div>
 </div>
 <div class="media flip">
 <div class="txt">
     <h3>How this helps a current team</h3>
     <p>My current team is my final presentation group in EN.660.332 Leadership Theory. We all had different schedules and couldn’t meet in person, but we still found a way to work together, and we became close friends in the process. No one person did the whole presentation; we all contributed, and it turned out really well. This change would help a team like this one, because if someone started to fall behind, I would hold them accountable instead of staying quiet and picking up their part.</p>
 </div>
-<div class="pics"><figure class="shot" data-loc="osu" data-steps="car:osu"><span class="frame"><img src="images/cahs_osu_tour.jpeg" width="1050" height="1400" loading="lazy" alt="David taking a selfie with a group of high school classmates on a campus tour"></span><figcaption>A selfie with everyone during our high school tour of Ohio State.</figcaption></figure><figure class="shot" data-loc="harrisburg" data-steps="car:harrisburg"><span class="frame"><img src="images/snow_machine.jpeg" width="1050" height="1400" loading="lazy" alt="David in a winter jacket and snow pants standing in front of a large snow groomer"></span><figcaption>Next to a snow groomer on the Clark Scholars ski trip near Harrisburg, Pennsylvania.</figcaption></figure></div>
+<div class="pics"><figure class="shot card" data-loc="harrisburg" data-trip="shuttle:jhu-harrisburg" data-why="Ski trip"><span class="frame"><img src="images/snow_machine.jpeg" width="1050" height="1400" loading="lazy" alt="David in a winter jacket and snow pants standing in front of a large snow groomer"></span><span class="stamp" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#c-mountain"/></svg></span><span class="postmark" aria-hidden="true">HARRISBURG PA</span><figcaption>Next to a snow groomer on the Clark Scholars ski trip near Harrisburg, Pennsylvania.</figcaption></figure></div>
 </div>
 </div>
 <div class="road unknown" data-kind="unknown" data-name="Wherever the road takes me" data-where="Unknown" role="img" aria-label="The road keeps going toward an unknown destination">
@@ -833,17 +983,19 @@ ol.steps{max-width:66ch;padding-left:1.3em}ol.steps li{margin-bottom:6px}
 <p class="the-end">I don’t know exactly where this road goes next. What I do know is that I’ll enjoy the journey, and that’s what matters most.</p>
 </section>
 </main>
-<aside class="dash" id="dash" aria-label="Road trip dashboard">
-  <button class="dash-toggle" id="dashToggle" type="button" aria-expanded="true" aria-controls="tripMap">Hide map</button>
-  <div class="dash-map-wrap" style="position:relative"><div class="dash-map" id="tripMap" aria-hidden="true"></div><div class="dash-end" aria-hidden="true"><b>?</b><span>Wherever the road takes me</span></div></div>
+<aside class="dash" id="dash" aria-label="Trip progress">
+  <div class="dash-route">
+    <span class="dash-track"><span class="dash-done" id="dashDone"></span></span>
+    <span class="stop start" style="left:0%" aria-hidden="true"></span><a class="stop gas" href="#introduction" style="left:16.667%" title="Home Base" aria-label="Go to Home Base"></a><a class="stop site" href="#interviews" style="left:33.333%" title="Visiting Loved Ones" aria-label="Go to Visiting Loved Ones"></a><a class="stop site" href="#assessment" style="left:50.000%" title="Under the Hood" aria-label="Go to Under the Hood"></a><a class="stop gas" href="#theory" style="left:66.667%" title="Game Plan" aria-label="Go to Game Plan"></a><a class="stop site" href="#growth" style="left:83.333%" title="Room to Grow" aria-label="Go to Room to Grow"></a><span class="stop end" style="left:100%" aria-hidden="true">?</span>
+    <div class="dash-car" id="dashCar" aria-hidden="true"><svg viewBox="0 0 220 92"><use href="#crv"/></svg></div>
+  </div>
   <div class="dash-row">
-    <div class="odo"><span id="odo">0</span><small>mi</small></div>
     <div class="fuel"><svg class="ic" aria-hidden="true"><use href="#i-fuel"/></svg><span class="f-e">E</span><span class="fuel-bar"><span id="fuelFill"></span></span><span class="f-f">F</span></div>
     <span class="lite low" id="liteLow" title="Low fuel"><svg class="ic" aria-hidden="true"><use href="#i-fuel"/></svg></span>
     <span class="lite sig" id="liteSig" title="Turn signal"><svg class="ic" aria-hidden="true"><use href="#i-signal"/></svg></span>
   </div>
-  <p class="dash-here" id="dashHere">You are here: Home, Columbus, OH</p>
-  <p class="dash-next" id="dashNext">Next stop: Home Base</p>
+  <p class="dash-here">Currently: <b id="dashCur">Starting out</b></p>
+  <p class="dash-next">Next stop: <b id="dashNext">Home Base</b></p>
 </aside>
 
 
@@ -956,19 +1108,19 @@ ol.steps{max-width:66ch;padding-left:1.3em}ol.steps li{margin-bottom:6px}
 
   /* ---------- the journey: every photo is a real place, reached the way I really got there ---------- */
   var LOC={
-    columbus:[39.9612,-82.9988,'Home, Columbus, OH'], cbusdt:[39.9580,-82.9990,'Downtown Columbus, OH'], osu:[40.0076,-83.0300,'Ohio State, Columbus, OH'],
-    santiago:[-33.4489,-70.6693,'Santiago, Chile'], andes:[-33.3550,-70.2990,'Andes Mountains, Chile'], hocking:[39.5401,-82.4071,'Hocking Hills, Logan, OH'],
-    jamaica:[18.1096,-77.2975,'Jamaica'], cousins:[39.96145,-82.99835,'My cousins’ house, next door'], cerro:[-33.4253,-70.6331,'A hill overlooking Santiago, Chile'], miami:[25.7743,-80.1937,'Miami River, Miami, FL'], lowerfield:[39.9686,-83.0170,'Lower.com Field, Columbus, OH'],
-    bwi:[39.1754,-76.6683,'BWI Airport, Baltimore, MD'], scl:[-33.3930,-70.7858,'Santiago Airport, Chile'], bahai:[-33.4720,-70.5096,'Bahá’í Temple, Santiago, Chile'], dallas:[32.7767,-96.7970,'Dallas, TX'], milwaukee:[43.0389,-87.9065,'Milwaukee, WI'],
-    indy:[39.7684,-86.1581,'Indianapolis, IN'], chicago:[41.8781,-87.6298,'Chicago, IL'], jhu:[39.3299,-76.6205,'Johns Hopkins, Baltimore, MD'],
-    bsc:[39.3289,-76.6190,'Bloomberg Student Center, Johns Hopkins'], mtbank:[39.2780,-76.6227,'M&T Bank Stadium, Baltimore, MD'],
+    columbus:[39.9612,-82.9988,'Home, Columbus'], cbusdt:[39.9580,-82.9990,'Downtown Columbus'], cahs:[40.0161,-82.9638,'CAHS, Columbus'], osu:[40.0076,-83.0300,'Ohio State'],
+    santiago:[-33.4489,-70.6693,'Santiago, Chile'], andes:[-33.3550,-70.2990,'Andes, Chile'], hocking:[39.5401,-82.4071,'Logan, OH'],
+    jamaica:[17.9970,-76.7936,'Kingston, Jamaica'], katys:[32.7952,-96.8079,'Katy Trail, Dallas'], katy:[32.8336,-96.7856,'Katy Trail, Dallas'], cousins:[39.96145,-82.99835,'Cousins’ house'], cerro:[-33.4253,-70.6331,'Santiago, Chile'], miami:[25.7743,-80.1937,'Miami, FL'], lowerfield:[39.9686,-83.0170,'Lower.com Field'],
+    bwi:[39.1754,-76.6683,'BWI Airport'], mia:[25.7959,-80.2870,'Miami (MIA)'], kin:[17.9357,-76.7875,'Kingston (KIN)'], iah:[29.9902,-95.3368,'Houston (IAH)'], scl:[-33.3930,-70.7858,'Santiago, Chile'], bahai:[-33.4720,-70.5096,'Bahá’í Temple, Chile'], dallas:[32.7767,-96.7970,'Dallas, TX'], milwaukee:[43.0389,-87.9065,'Milwaukee, WI'],
+    indy:[39.7684,-86.1581,'Indianapolis, IN'], chicago:[41.8781,-87.6298,'Chicago, IL'], jhu:[39.3299,-76.6205,'Johns Hopkins'],
+    bsc:[39.3289,-76.6190,'Johns Hopkins'], mtbank:[39.2780,-76.6227,'M&T Bank Stadium'],
     philly:[39.9526,-75.1652,'Philadelphia, PA'], newark:[40.7357,-74.1724,'Newark, NJ'], anaheim:[33.8366,-117.9143,'Anaheim, CA'],
-    harrisburg:[40.2732,-76.8867,'Near Harrisburg, PA']
+    harrisburg:[40.2732,-76.8867,'Harrisburg, PA']
   };
-  var ROUTES={"columbus>lowerfield":[[39.961,-82.998],[39.96,-83.002],[39.966,-83.003],[39.968,-83.018]],"lowerfield>hocking":[[39.968,-83.018],[39.968,-83.01],[39.972,-83.01],[39.976,-82.996],[39.971,-82.984],[39.955,-82.981],[39.952,-82.945],[39.934,-82.934],[39.926,-82.923],[39.909,-82.917],[39.901,-82.898],[39.867,-82.849],[39.845,-82.793],[39.828,-82.722],[39.802,-82.71],[39.786,-82.692],[39.769,-82.691],[39.753,-82.678],[39.724,-82.678],[39.697,-82.666],[39.681,-82.654],[39.668,-82.616],[39.665,-82.564],[39.647,-82.556],[39.595,-82.546],[39.583,-82.526],[39.568,-82.514],[39.56,-82.503],[39.545,-82.45],[39.534,-82.432],[39.534,-82.405],[39.54,-82.407]],"cerro>bahai":[[-33.424,-70.633],[-33.42,-70.626],[-33.418,-70.629],[-33.413,-70.617],[-33.414,-70.615],[-33.416,-70.619],[-33.415,-70.618],[-33.421,-70.615],[-33.416,-70.609],[-33.418,-70.602],[-33.438,-70.573],[-33.463,-70.552],[-33.463,-70.54],[-33.472,-70.519],[-33.47,-70.518],[-33.472,-70.518],[-33.472,-70.51]],"miami>dallas":[[25.774,-80.194],[26.875,-80.129],[27.413,-80.402],[27.57,-80.798],[28.099,-81.276],[28.488,-81.456],[28.853,-82.087],[29.465,-82.272],[30.267,-82.753],[30.435,-83.47],[30.486,-84.415],[30.758,-85.284],[30.714,-86.695],[30.502,-87.172],[30.664,-87.96],[31.2,-88.985],[31.242,-89.324],[31.861,-89.726],[32.273,-90.157],[32.357,-90.411],[32.31,-90.898],[32.594,-93.316],[32.444,-93.935],[32.438,-95.122],[32.776,-96.797]],"dallas>milwaukee":[[32.776,-96.797],[33.275,-96.593],[33.78,-96.583],[34.136,-96.271],[34.947,-95.726],[35.695,-95.403],[36.275,-95.331],[36.607,-95.185],[36.732,-94.915],[36.891,-94.832],[37.044,-94.501],[37.074,-93.889],[37.187,-93.641],[37.275,-93.047],[37.75,-92.578],[37.786,-92.252],[37.941,-91.948],[38.047,-91.468],[38.165,-91.22],[38.482,-90.844],[38.508,-90.558],[38.719,-89.917],[39.233,-89.642],[39.91,-89.595],[40.177,-89.415],[40.187,-89.31],[40.4,-89.059],[40.537,-89.024],[40.617,-88.821],[40.905,-88.669],[41.313,-88.192],[41.636,-88.161],[41.76,-87.902],[42.109,-87.868],[42.467,-87.964],[43.039,-87.907]],"milwaukee>indy":[[43.039,-87.907],[43.035,-87.924],[42.97,-87.916],[42.963,-87.934],[42.839,-87.953],[42.485,-87.947],[42.467,-87.964],[42.383,-87.949],[42.326,-87.907],[42.227,-87.901],[42.15,-87.873],[42.137,-87.787],[42.087,-87.759],[42.028,-87.769],[41.964,-87.747],[41.888,-87.647],[41.778,-87.631],[41.702,-87.523],[41.633,-87.505],[41.611,-87.476],[41.598,-87.308],[41.579,-87.297],[41.385,-87.327],[41.15,-87.266],[41.002,-87.268],[40.948,-87.223],[40.814,-87.162],[40.674,-87.052],[40.493,-86.861],[40.319,-86.749],[40.199,-86.576],[40.134,-86.52],[40.044,-86.488],[39.948,-86.355],[39.843,-86.258],[39.811,-86.168],[39.768,-86.158]],"indy>chicago":[[39.768,-86.158],[39.811,-86.168],[39.843,-86.258],[39.949,-86.356],[40.045,-86.488],[40.133,-86.519],[40.173,-86.551],[40.269,-86.663],[40.319,-86.748],[40.446,-86.844],[40.492,-86.861],[40.503,-86.885],[40.674,-87.051],[40.815,-87.161],[40.949,-87.223],[41.008,-87.27],[41.152,-87.266],[41.218,-87.295],[41.321,-87.302],[41.386,-87.327],[41.517,-87.319],[41.578,-87.296],[41.598,-87.307],[41.608,-87.351],[41.617,-87.488],[41.653,-87.515],[41.703,-87.524],[41.779,-87.63],[41.878,-87.63]],"chicago>cbusdt":[[41.878,-87.63],[41.778,-87.631],[41.704,-87.526],[41.617,-87.489],[41.579,-87.297],[41.385,-87.327],[41.15,-87.266],[41.008,-87.271],[40.814,-87.162],[40.493,-86.861],[40.319,-86.749],[40.173,-86.551],[40.043,-86.486],[39.931,-86.341],[39.912,-86.081],[39.888,-86.048],[39.798,-86.036],[39.853,-85.48],[39.873,-84.882],[39.828,-84.806],[39.838,-84.448],[39.89,-83.735],[39.935,-83.668],[39.981,-83.247],[39.958,-82.999]],"cbusdt>osu":[[39.958,-82.999],[39.957,-83.018],[39.969,-83.022],[39.996,-83.025],[40.0,-83.03],[40.008,-83.031]],"osu>jhu":[[40.008,-83.031],[39.932,-82.929],[39.944,-81.992],[40.059,-81.304],[40.078,-80.936],[40.042,-80.61],[40.188,-80.244],[40.161,-80.194],[39.998,-80.189],[39.717,-80.061],[39.628,-79.956],[39.672,-79.855],[39.653,-79.439],[39.702,-79.307],[39.688,-78.977],[39.635,-78.943],[39.635,-78.833],[39.714,-78.613],[39.664,-78.423],[39.7,-78.382],[39.713,-78.19],[39.624,-78.009],[39.65,-77.853],[39.599,-77.662],[39.404,-77.462],[39.296,-76.854],[39.33,-76.621]],"jhu>indy":[[39.33,-76.621],[39.296,-76.853],[39.404,-77.463],[39.599,-77.661],[39.651,-77.852],[39.624,-78.009],[39.714,-78.189],[39.664,-78.423],[39.714,-78.613],[39.633,-78.915],[39.696,-79.135],[39.672,-79.855],[39.58,-79.976],[40.189,-80.245],[40.043,-80.609],[40.06,-81.305],[39.944,-81.992],[39.932,-82.929],[39.981,-83.243],[39.865,-83.997],[39.853,-85.478],[39.768,-86.158]],"milwaukee>newark":[[43.039,-87.907],[42.384,-87.949],[42.152,-87.874],[42.137,-87.787],[41.611,-87.476],[41.571,-86.984],[41.756,-86.459],[41.755,-85.126],[41.628,-84.811],[41.59,-83.64],[41.353,-82.875],[41.392,-82.124],[41.252,-81.584],[41.241,-80.993],[41.109,-80.83],[41.185,-80.515],[41.19,-79.214],[40.944,-77.728],[41.069,-77.409],[41.077,-76.931],[40.986,-76.718],[41.078,-75.512],[40.923,-75.063],[40.91,-74.506],[40.736,-74.172]],"newark>jhu":[[40.736,-74.172],[40.688,-74.193],[40.665,-74.183],[40.576,-74.248],[40.548,-74.281],[40.517,-74.364],[40.474,-74.409],[40.248,-74.52],[40.167,-74.647],[39.876,-75.013],[39.854,-75.102],[39.725,-75.323],[39.691,-75.417],[39.679,-75.487],[39.707,-75.596],[39.647,-75.739],[39.643,-75.934],[39.575,-76.134],[39.487,-76.244],[39.419,-76.407],[39.312,-76.542],[39.326,-76.552],[39.33,-76.621]],"jhu>cbusdt":[[39.33,-76.621],[39.296,-76.853],[39.404,-77.463],[39.599,-77.661],[39.651,-77.852],[39.624,-78.009],[39.714,-78.189],[39.7,-78.381],[39.664,-78.423],[39.714,-78.613],[39.635,-78.832],[39.635,-78.943],[39.688,-78.977],[39.702,-79.308],[39.654,-79.44],[39.672,-79.855],[39.629,-79.988],[39.918,-80.162],[40.162,-80.193],[40.189,-80.245],[40.042,-80.611],[40.078,-80.936],[40.06,-81.305],[39.944,-81.992],[39.958,-82.999]],"cbusdt>philly":[[39.958,-82.999],[39.944,-81.992],[40.059,-81.304],[40.042,-80.61],[40.188,-80.249],[40.107,-79.9],[40.225,-79.608],[40.108,-79.379],[40.129,-79.291],[40.001,-79.048],[39.955,-78.818],[40.051,-78.536],[39.985,-78.238],[40.158,-77.704],[40.227,-77.159],[40.197,-76.822],[40.246,-76.209],[40.065,-75.654],[40.072,-75.284],[39.953,-75.165]],"jhu>mtbank":[[39.33,-76.621],[39.334,-76.622],[39.331,-76.624],[39.325,-76.62],[39.302,-76.62],[39.297,-76.626],[39.282,-76.623],[39.277,-76.625],[39.277,-76.621]],"bsc>hocking":[[39.329,-76.619],[39.296,-76.853],[39.404,-77.463],[39.599,-77.664],[39.651,-77.852],[39.624,-78.007],[39.685,-78.102],[39.72,-78.284],[39.664,-78.422],[39.714,-78.613],[39.65,-78.757],[39.633,-78.915],[39.688,-78.976],[39.696,-79.135],[39.702,-79.309],[39.654,-79.44],[39.672,-79.856],[39.629,-79.959],[39.522,-80.011],[39.429,-80.195],[39.337,-80.223],[39.276,-80.3],[39.299,-80.752],[39.239,-81.459],[39.268,-81.497],[39.258,-81.642],[39.287,-81.646],[39.214,-81.847],[39.308,-81.942],[39.332,-82.082],[39.472,-82.23],[39.478,-82.313],[39.54,-82.407]],"hocking>osu":[[39.54,-82.407],[39.535,-82.407],[39.534,-82.433],[39.546,-82.45],[39.56,-82.503],[39.567,-82.513],[39.584,-82.526],[39.595,-82.546],[39.647,-82.556],[39.664,-82.563],[39.674,-82.638],[39.681,-82.653],[39.69,-82.661],[39.727,-82.678],[39.754,-82.678],[39.768,-82.691],[39.787,-82.692],[39.802,-82.709],[39.828,-82.722],[39.845,-82.793],[39.868,-82.851],[39.902,-82.897],[39.909,-82.917],[39.933,-82.926],[39.934,-82.933],[39.953,-82.946],[39.956,-82.983],[39.952,-83.017],[39.969,-83.022],[39.996,-83.025],[40.0,-83.03],[40.008,-83.031]],"osu>harrisburg":[[40.008,-83.031],[39.932,-82.929],[39.944,-81.992],[40.059,-81.304],[40.078,-80.936],[40.042,-80.61],[40.188,-80.247],[40.107,-79.9],[40.225,-79.608],[40.108,-79.379],[40.129,-79.291],[40.001,-79.048],[39.955,-78.818],[40.051,-78.536],[39.985,-78.238],[40.06,-78.094],[40.037,-77.996],[40.087,-77.829],[40.158,-77.704],[40.228,-77.152],[40.195,-76.98],[40.273,-76.887]],"osu>milwaukee":[[40.008,-83.031],[40.114,-83.034],[40.1,-83.17],[40.253,-83.366],[40.237,-83.405],[40.274,-83.531],[40.321,-83.581],[40.328,-83.675],[40.387,-83.77],[40.576,-83.849],[40.695,-83.981],[40.737,-84.102],[40.828,-84.136],[40.899,-84.642],[40.992,-84.788],[41.063,-84.987],[41.154,-85.02],[41.169,-85.105],[41.124,-85.187],[41.127,-85.379],[41.362,-86.296],[41.449,-87.018],[41.576,-87.046],[41.616,-87.487],[41.703,-87.524],[41.779,-87.63],[41.888,-87.647],[41.965,-87.746],[42.089,-87.759],[42.408,-87.938],[42.839,-87.952],[43.039,-87.907]]};
-  var roads=$$('.road'), dash=$('#dash'), odo=$('#odo'), fuelFill=$('#fuelFill'), fuelBar=fuelFill.parentNode,
-      dashHere=$('#dashHere'), dashNext=$('#dashNext'), liteLow=$('#liteLow'), liteSig=$('#liteSig'), rootEl=document.documentElement,
-      floaties=$$('.floaty'), dashToggle=$('#dashToggle');
+  var ROUTES={"katys>katy":[[32.7952,-96.8079],[32.7961,-96.8074],[32.7981,-96.8051],[32.7999,-96.8029],[32.8007,-96.8022],[32.8071,-96.8001],[32.8074,-96.8002],[32.8095,-96.7991],[32.8097,-96.7987],[32.8118,-96.7977],[32.8141,-96.7968],[32.8144,-96.7966],[32.8159,-96.7964],[32.8173,-96.7957],[32.8176,-96.7957],[32.8179,-96.7959],[32.8182,-96.7954],[32.822,-96.7941],[32.8231,-96.7934],[32.8237,-96.7926],[32.824,-96.7927],[32.8243,-96.7925],[32.8321,-96.7864],[32.833,-96.7858],[32.8336,-96.7856]],"columbus>lowerfield":[[39.961,-82.998],[39.96,-83.002],[39.966,-83.003],[39.968,-83.018]],"lowerfield>hocking":[[39.968,-83.018],[39.968,-83.01],[39.972,-83.01],[39.976,-82.996],[39.971,-82.984],[39.955,-82.981],[39.952,-82.945],[39.934,-82.934],[39.926,-82.923],[39.909,-82.917],[39.901,-82.898],[39.867,-82.849],[39.845,-82.793],[39.828,-82.722],[39.802,-82.71],[39.786,-82.692],[39.769,-82.691],[39.753,-82.678],[39.724,-82.678],[39.697,-82.666],[39.681,-82.654],[39.668,-82.616],[39.665,-82.564],[39.647,-82.556],[39.595,-82.546],[39.583,-82.526],[39.568,-82.514],[39.56,-82.503],[39.545,-82.45],[39.534,-82.432],[39.534,-82.405],[39.54,-82.407]],"cerro>bahai":[[-33.424,-70.633],[-33.42,-70.626],[-33.418,-70.629],[-33.413,-70.617],[-33.414,-70.615],[-33.416,-70.619],[-33.415,-70.618],[-33.421,-70.615],[-33.416,-70.609],[-33.418,-70.602],[-33.438,-70.573],[-33.463,-70.552],[-33.463,-70.54],[-33.472,-70.519],[-33.47,-70.518],[-33.472,-70.518],[-33.472,-70.51]],"columbus>chicago":[[39.961,-82.998],[39.981,-83.246],[39.935,-83.667],[39.891,-83.736],[39.838,-84.448],[39.829,-84.808],[39.873,-84.883],[39.8,-86.031],[39.889,-86.048],[39.912,-86.081],[39.932,-86.338],[40.042,-86.485],[40.173,-86.551],[40.319,-86.748],[40.492,-86.861],[40.815,-87.161],[41.008,-87.27],[41.152,-87.266],[41.386,-87.327],[41.578,-87.296],[41.608,-87.351],[41.617,-87.488],[41.703,-87.524],[41.779,-87.63],[41.878,-87.63]],"chicago>milwaukee":[[41.878,-87.63],[41.876,-87.645],[41.917,-87.669],[41.965,-87.746],[42.009,-87.749],[42.028,-87.769],[42.063,-87.755],[42.089,-87.759],[42.24,-87.862],[42.264,-87.863],[42.374,-87.897],[42.38,-87.917],[42.408,-87.938],[42.442,-87.938],[42.451,-87.945],[42.501,-87.951],[42.839,-87.952],[42.857,-87.938],[42.963,-87.934],[42.971,-87.915],[43.034,-87.922],[43.039,-87.907]],"milwaukee>columbus":[[43.039,-87.907],[42.839,-87.953],[42.467,-87.964],[42.152,-87.874],[42.137,-87.787],[41.964,-87.747],[41.888,-87.647],[41.778,-87.631],[41.704,-87.526],[41.617,-87.489],[41.579,-87.297],[41.385,-87.327],[41.15,-87.266],[41.008,-87.271],[40.815,-87.162],[40.493,-86.861],[40.319,-86.749],[40.199,-86.576],[40.044,-86.488],[39.932,-86.342],[39.912,-86.081],[39.888,-86.048],[39.798,-86.035],[39.873,-84.882],[39.828,-84.806],[39.838,-84.448],[39.89,-83.735],[39.935,-83.668],[39.981,-83.247],[39.961,-82.998]],"columbus>dallas":[[39.961,-82.998],[39.835,-83.097],[39.376,-84.243],[39.003,-84.647],[38.876,-84.627],[38.29,-85.645],[38.191,-85.732],[37.916,-85.687],[37.669,-85.853],[37.192,-85.94],[36.994,-86.382],[36.412,-86.722],[36.311,-86.703],[36.087,-86.944],[35.538,-89.252],[35.153,-89.884],[35.151,-90.402],[34.852,-91.341],[34.782,-92.163],[34.537,-92.675],[33.958,-93.223],[33.48,-93.985],[33.476,-94.445],[33.158,-95.037],[33.136,-96.073],[32.776,-96.797]],"dallas>chicago":[[32.776,-96.797],[32.987,-96.259],[33.136,-96.073],[33.158,-95.037],[33.475,-94.447],[33.481,-93.983],[33.958,-93.222],[34.184,-93.072],[34.537,-92.674],[34.718,-92.183],[34.781,-92.156],[34.851,-91.342],[35.13,-90.515],[35.17,-90.196],[35.387,-90.279],[35.916,-89.876],[36.023,-89.873],[36.126,-89.756],[36.386,-89.701],[36.648,-89.539],[36.87,-89.532],[36.909,-89.333],[37.066,-89.19],[37.433,-89.153],[37.58,-89.001],[37.773,-88.946],[38.188,-88.904],[38.683,-88.972],[38.995,-88.591],[39.133,-88.564],[39.466,-88.322],[39.777,-88.264],[40.126,-88.305],[40.225,-88.203],[40.864,-87.988],[41.089,-87.835],[41.22,-87.867],[41.409,-87.761],[41.574,-87.742],[41.719,-87.624],[41.878,-87.63]],"chicago>cbusdt":[[41.878,-87.63],[41.778,-87.631],[41.704,-87.526],[41.617,-87.489],[41.579,-87.297],[41.385,-87.327],[41.15,-87.266],[41.008,-87.271],[40.814,-87.162],[40.493,-86.861],[40.319,-86.749],[40.173,-86.551],[40.043,-86.486],[39.931,-86.341],[39.912,-86.081],[39.888,-86.048],[39.798,-86.036],[39.853,-85.48],[39.873,-84.882],[39.828,-84.806],[39.838,-84.448],[39.89,-83.735],[39.935,-83.668],[39.981,-83.247],[39.958,-82.999]],"cbusdt>osu":[[39.958,-82.999],[39.957,-83.018],[39.969,-83.022],[39.996,-83.025],[40.0,-83.03],[40.008,-83.031]],"osu>jhu":[[40.008,-83.031],[39.932,-82.929],[39.944,-81.992],[40.059,-81.304],[40.078,-80.936],[40.042,-80.61],[40.188,-80.244],[40.161,-80.194],[39.998,-80.189],[39.717,-80.061],[39.628,-79.956],[39.672,-79.855],[39.653,-79.439],[39.702,-79.307],[39.688,-78.977],[39.635,-78.943],[39.635,-78.833],[39.714,-78.613],[39.664,-78.423],[39.7,-78.382],[39.713,-78.19],[39.624,-78.009],[39.65,-77.853],[39.599,-77.662],[39.404,-77.462],[39.296,-76.854],[39.33,-76.621]],"jhu>indy":[[39.33,-76.621],[39.296,-76.853],[39.404,-77.463],[39.599,-77.661],[39.651,-77.852],[39.624,-78.009],[39.714,-78.189],[39.664,-78.423],[39.714,-78.613],[39.633,-78.915],[39.696,-79.135],[39.672,-79.855],[39.58,-79.976],[40.189,-80.245],[40.043,-80.609],[40.06,-81.305],[39.944,-81.992],[39.932,-82.929],[39.981,-83.243],[39.865,-83.997],[39.853,-85.478],[39.768,-86.158]],"indy>newark":[[39.768,-86.158],[39.853,-85.48],[39.865,-83.998],[39.981,-83.243],[39.944,-81.992],[40.059,-81.304],[40.042,-80.61],[40.188,-80.247],[40.107,-79.9],[40.225,-79.608],[39.957,-78.848],[40.051,-78.536],[39.984,-78.239],[40.571,-75.959],[40.554,-75.431],[40.677,-75.193],[40.647,-74.503],[40.736,-74.172]],"newark>jhu":[[40.736,-74.172],[40.688,-74.193],[40.665,-74.183],[40.576,-74.248],[40.548,-74.281],[40.517,-74.364],[40.474,-74.409],[40.248,-74.52],[40.167,-74.647],[39.876,-75.013],[39.854,-75.102],[39.725,-75.323],[39.691,-75.417],[39.679,-75.487],[39.707,-75.596],[39.647,-75.739],[39.643,-75.934],[39.575,-76.134],[39.487,-76.244],[39.419,-76.407],[39.312,-76.542],[39.326,-76.552],[39.33,-76.621]],"jhu>cbusdt":[[39.33,-76.621],[39.296,-76.853],[39.404,-77.463],[39.599,-77.661],[39.651,-77.852],[39.624,-78.009],[39.714,-78.189],[39.7,-78.381],[39.664,-78.423],[39.714,-78.613],[39.635,-78.832],[39.635,-78.943],[39.688,-78.977],[39.702,-79.308],[39.654,-79.44],[39.672,-79.855],[39.629,-79.988],[39.918,-80.162],[40.162,-80.193],[40.189,-80.245],[40.042,-80.611],[40.078,-80.936],[40.06,-81.305],[39.944,-81.992],[39.958,-82.999]],"cbusdt>philly":[[39.958,-82.999],[39.944,-81.992],[40.059,-81.304],[40.042,-80.61],[40.188,-80.249],[40.107,-79.9],[40.225,-79.608],[40.108,-79.379],[40.129,-79.291],[40.001,-79.048],[39.955,-78.818],[40.051,-78.536],[39.985,-78.238],[40.158,-77.704],[40.227,-77.159],[40.197,-76.822],[40.246,-76.209],[40.065,-75.654],[40.072,-75.284],[39.953,-75.165]],"jhu>mtbank":[[39.33,-76.621],[39.334,-76.622],[39.331,-76.624],[39.325,-76.62],[39.302,-76.62],[39.297,-76.626],[39.282,-76.623],[39.277,-76.625],[39.277,-76.621]],"bsc>hocking":[[39.329,-76.619],[39.296,-76.853],[39.404,-77.463],[39.599,-77.664],[39.651,-77.852],[39.624,-78.007],[39.685,-78.102],[39.72,-78.284],[39.664,-78.422],[39.714,-78.613],[39.65,-78.757],[39.633,-78.915],[39.688,-78.976],[39.696,-79.135],[39.702,-79.309],[39.654,-79.44],[39.672,-79.856],[39.629,-79.959],[39.522,-80.011],[39.429,-80.195],[39.337,-80.223],[39.276,-80.3],[39.299,-80.752],[39.239,-81.459],[39.268,-81.497],[39.258,-81.642],[39.287,-81.646],[39.214,-81.847],[39.308,-81.942],[39.332,-82.082],[39.472,-82.23],[39.478,-82.313],[39.54,-82.407]],"hocking>osu":[[39.54,-82.407],[39.535,-82.407],[39.534,-82.433],[39.546,-82.45],[39.56,-82.503],[39.567,-82.513],[39.584,-82.526],[39.595,-82.546],[39.647,-82.556],[39.664,-82.563],[39.674,-82.638],[39.681,-82.653],[39.69,-82.661],[39.727,-82.678],[39.754,-82.678],[39.768,-82.691],[39.787,-82.692],[39.802,-82.709],[39.828,-82.722],[39.845,-82.793],[39.868,-82.851],[39.902,-82.897],[39.909,-82.917],[39.933,-82.926],[39.934,-82.933],[39.953,-82.946],[39.956,-82.983],[39.952,-83.017],[39.969,-83.022],[39.996,-83.025],[40.0,-83.03],[40.008,-83.031]],"osu>harrisburg":[[40.008,-83.031],[39.932,-82.929],[39.944,-81.992],[40.059,-81.304],[40.078,-80.936],[40.042,-80.61],[40.188,-80.247],[40.107,-79.9],[40.225,-79.608],[40.108,-79.379],[40.129,-79.291],[40.001,-79.048],[39.955,-78.818],[40.051,-78.536],[39.985,-78.238],[40.06,-78.094],[40.037,-77.996],[40.087,-77.829],[40.158,-77.704],[40.228,-77.152],[40.195,-76.98],[40.273,-76.887]],"osu>newark":[[40.008,-83.031],[40.303,-82.922],[40.434,-82.812],[40.794,-82.402],[40.993,-82.026],[41.185,-80.517],[41.158,-78.825],[41.122,-78.557],[40.961,-78.105],[41.024,-77.913],[40.944,-77.728],[41.069,-77.409],[41.077,-76.931],[40.986,-76.718],[41.072,-75.417],[40.997,-75.145],[40.923,-75.063],[40.91,-74.506],[40.736,-74.172]],"jhu>columbus":[[39.33,-76.621],[39.296,-76.853],[39.404,-77.463],[39.599,-77.661],[39.651,-77.852],[39.624,-78.009],[39.714,-78.189],[39.7,-78.381],[39.664,-78.423],[39.714,-78.613],[39.635,-78.832],[39.635,-78.943],[39.688,-78.977],[39.702,-79.308],[39.654,-79.44],[39.672,-79.855],[39.629,-79.988],[39.918,-80.162],[40.162,-80.193],[40.189,-80.245],[40.042,-80.611],[40.078,-80.936],[40.06,-81.305],[39.944,-81.992],[39.932,-82.925],[39.961,-82.998]],"columbus>hocking":[[39.961,-82.998],[39.956,-82.999],[39.953,-82.996],[39.948,-82.945],[39.926,-82.923],[39.909,-82.917],[39.901,-82.898],[39.867,-82.849],[39.845,-82.793],[39.828,-82.722],[39.802,-82.71],[39.786,-82.692],[39.769,-82.691],[39.753,-82.678],[39.724,-82.678],[39.697,-82.666],[39.681,-82.654],[39.668,-82.616],[39.665,-82.564],[39.647,-82.556],[39.595,-82.546],[39.59,-82.541],[39.583,-82.526],[39.568,-82.514],[39.56,-82.503],[39.545,-82.45],[39.534,-82.432],[39.534,-82.405],[39.54,-82.407]],"scl>bahai":[[-33.393,-70.783],[-33.389,-70.784],[-33.394,-70.769],[-33.372,-70.742],[-33.374,-70.714],[-33.366,-70.697],[-33.367,-70.682],[-33.38,-70.646],[-33.4,-70.613],[-33.399,-70.607],[-33.392,-70.602],[-33.391,-70.596],[-33.398,-70.588],[-33.409,-70.587],[-33.428,-70.575],[-33.438,-70.573],[-33.463,-70.552],[-33.463,-70.54],[-33.472,-70.519],[-33.47,-70.518],[-33.472,-70.518],[-33.472,-70.51]],"columbus>cbusdt":[[39.961,-82.998],[39.958,-82.999]],"columbus>osu":[[39.961,-82.998],[39.957,-83.004],[39.957,-83.018],[39.969,-83.022],[39.996,-83.025],[40.0,-83.03],[40.008,-83.031]],"columbus>indy":[[39.961,-82.998],[39.948,-83.034],[39.974,-83.083],[39.981,-83.246],[39.942,-83.44],[39.935,-83.667],[39.891,-83.736],[39.894,-83.916],[39.865,-83.997],[39.857,-84.407],[39.838,-84.448],[39.829,-84.808],[39.873,-84.879],[39.853,-85.069],[39.853,-85.48],[39.826,-85.612],[39.807,-86.062],[39.768,-86.158]],"columbus>jhu":[[39.961,-82.998],[39.932,-82.929],[39.944,-81.992],[40.059,-81.304],[40.078,-80.936],[40.042,-80.61],[40.188,-80.244],[40.161,-80.194],[39.998,-80.189],[39.717,-80.061],[39.628,-79.956],[39.672,-79.855],[39.653,-79.439],[39.702,-79.307],[39.688,-78.977],[39.635,-78.943],[39.635,-78.833],[39.714,-78.613],[39.664,-78.423],[39.7,-78.382],[39.713,-78.19],[39.624,-78.009],[39.65,-77.853],[39.599,-77.662],[39.404,-77.462],[39.296,-76.854],[39.33,-76.621]],"jhu>philly":[[39.33,-76.621],[39.32,-76.572],[39.326,-76.552],[39.31,-76.541],[39.343,-76.512],[39.372,-76.457],[39.419,-76.406],[39.441,-76.37],[39.446,-76.331],[39.487,-76.244],[39.575,-76.131],[39.586,-76.076],[39.645,-75.925],[39.639,-75.787],[39.654,-75.706],[39.683,-75.66],[39.702,-75.591],[39.714,-75.582],[39.718,-75.544],[39.797,-75.453],[39.821,-75.447],[39.868,-75.343],[39.878,-75.25],[39.891,-75.237],[39.906,-75.194],[39.922,-75.191],[39.937,-75.199],[39.96,-75.18],[39.953,-75.165]],"jhu>harrisburg":[[39.33,-76.621],[39.34,-76.627],[39.347,-76.646],[39.367,-76.651],[39.394,-76.667],[39.413,-76.662],[39.42,-76.64],[39.436,-76.633],[39.449,-76.637],[39.468,-76.662],[39.498,-76.668],[39.526,-76.66],[39.538,-76.666],[39.56,-76.665],[39.579,-76.678],[39.593,-76.673],[39.606,-76.658],[39.635,-76.672],[39.65,-76.665],[39.659,-76.651],[39.701,-76.641],[39.729,-76.659],[39.858,-76.692],[39.869,-76.7],[39.888,-76.695],[39.899,-76.705],[39.918,-76.704],[39.946,-76.679],[39.978,-76.697],[39.98,-76.725],[39.987,-76.733],[40.071,-76.758],[40.129,-76.793],[40.148,-76.817],[40.185,-76.841],[40.209,-76.878],[40.238,-76.894],[40.252,-76.871],[40.26,-76.882],[40.263,-76.879],[40.273,-76.887]],"cahs>osu":[[40.016,-82.963],[40.014,-82.964],[40.015,-83.006],[40.014,-83.013],[40.006,-83.014],[40.008,-83.031]],"cahs>cbusdt":[[40.016,-82.963],[39.996,-82.98],[39.994,-82.986],[39.98,-82.986],[39.973,-82.999],[39.958,-82.999]]};
+  var roads=$$('.road'), dash=$('#dash'), fuelFill=$('#fuelFill'), fuelBar=fuelFill.parentNode, dashCur=$('#dashCur'), dashCar=$('#dashCar'), dashDone=$('#dashDone'), stopEls=$$('.dash .stop'),
+      dashNext=$('#dashNext'), liteLow=$('#liteLow'), liteSig=$('#liteSig'), rootEl=document.documentElement,
+      floaties=$$('.floaty');
   function hav(a,b){var R=3958.8,r=Math.PI/180,dl=(b[0]-a[0])*r,dg=(b[1]-a[1])*r,x=Math.sin(dl/2)*Math.sin(dl/2)+Math.cos(a[0]*r)*Math.cos(b[0]*r)*Math.sin(dg/2)*Math.sin(dg/2);return 2*R*Math.asin(Math.sqrt(x))}
   function arc(A,B,n){ /* great-circle flight path */
     var r=Math.PI/180,la1=A[0]*r,lo1=A[1]*r,la2=B[0]*r,lo2=B[1]*r;
@@ -983,120 +1135,151 @@ ol.steps{max-width:66ch;padding-left:1.3em}ol.steps li{margin-bottom:6px}
     var A=LOC[from],B=LOC[to];
     if(from===to)return [[A[0],A[1]],[B[0],B[1]]];
     if(mode==='plane')return arc(A,B,64);
-    if(mode==='walk')return [[A[0],A[1]],[B[0],B[1]]];
+    if(mode==='walk'||mode==='run'){var kk=from+'>'+to;if(ROUTES[kk])return ROUTES[kk];return [[A[0],A[1]],[B[0],B[1]]]}
     var k=from+'>'+to; if(ROUTES[k])return ROUTES[k];
     k=to+'>'+from; if(ROUTES[k])return ROUTES[k].slice().reverse();
     return [[A[0],A[1]],[B[0],B[1]]];
   }
-  var P=[], LL=[], SEG=[], STOPS=[], sig='';
-  function build(figs){
-    var cur='columbus', c=LOC.columbus;
-    P=[{d:0,s:0}]; LL=[[c[0],c[1]]]; SEG=[]; STOPS=[{d:0,loc:'columbus',f:null}];
-    figs.forEach(function(f){
-      (f.dataset.steps||'').split(',').filter(Boolean).forEach(function(st){
-        var m=st.split(':'), mode=m[0], to=m[1], g=geom(mode,cur,to), i0=LL.length-1;
-        for(var j=1;j<g.length;j++){var last=LL[LL.length-1];LL.push(g[j]);P.push({d:P[P.length-1].d+hav(last,g[j]),s:SEG.length})}
-        SEG.push({i0:i0,i1:LL.length-1,mode:mode,from:cur,to:to,z:null}); cur=to;
-      });
-      STOPS.push({d:P[P.length-1].d,loc:f.dataset.loc,f:f});
-    });
+  var map=null, veh=null, ghost=null, prog=null, fromM=null, toM=null, vehMode='', heading=0, LL=[], P=[], LEG=[], total=0, lastSec=-1;
+  var anim=0, t0=0, dur=0, token=0, hoverT=0, active=null, chipMi=null;
+  var HOW={car:'by car',plane:'by plane',bus:'by Greyhound bus',shuttle:'by shuttle',schoolbus:'by school bus',walk:'walked',run:'ran',stay:'right here'};
+  var SYM={car:['crv-top','0 0 40 80'],plane:['plane-top','0 0 40 66'],bus:['bus-top','0 0 40 80'],shuttle:['shuttle-top','0 0 40 80'],schoolbus:['school-top','0 0 40 80']};
+  var cm=document.createElement('div'); cm.className='card-map'; cm.setAttribute('aria-hidden','true');
+  cm.innerHTML='<div class="cm-map"></div><svg class="cm-scene" viewBox="0 0 200 200" preserveAspectRatio="xMidYMid slice"><rect width="200" height="200" fill="#1b221e"/><g fill="#f1f5ea" opacity=".55"><circle cx="20" cy="18" r="1"/><circle cx="64" cy="30" r="1.2"/><circle cx="108" cy="14" r="1"/><circle cx="152" cy="26" r="1.3"/><circle cx="186" cy="12" r="1"/><circle cx="40" cy="44" r=".9"/><circle cx="170" cy="48" r=".9"/></g><rect y="150" width="200" height="50" fill="#2b322e"/><path d="M0 176h200" stroke="#e8b923" stroke-width="2" stroke-dasharray="10 8"/><rect y="138" width="200" height="12" fill="#3a423d"/><g transform="translate(18,60)"><rect x="0" y="30" width="64" height="48" fill="#8a6a4a"/><path d="M-6 32 L32 4 L70 32Z" fill="#5b3a1e"/><rect x="26" y="56" width="12" height="22" fill="#2a1a0e"/><rect x="7" y="40" width="13" height="11" fill="#f5d76e"/><rect x="44" y="40" width="13" height="11" fill="#f5d76e"/></g><g transform="translate(118,60)"><rect x="0" y="30" width="64" height="48" fill="#56708f"/><path d="M-6 32 L32 4 L70 32Z" fill="#2f4258"/><rect x="26" y="56" width="12" height="22" fill="#1c2633"/><rect x="7" y="40" width="13" height="11" fill="#f5d76e"/><rect x="44" y="40" width="13" height="11" fill="#f5d76e"/><g class="sc-lights"><circle cx="0" cy="31" r="2" fill="#e5484d"/><circle cx="10" cy="24" r="2" fill="#3fa34d"/><circle cx="20" cy="16" r="2" fill="#e8b923"/><circle cx="32" cy="8" r="2" fill="#e5484d"/><circle cx="44" cy="16" r="2" fill="#3fa34d"/><circle cx="54" cy="24" r="2" fill="#e8b923"/><circle cx="64" cy="31" r="2" fill="#e5484d"/></g></g><text x="50" y="54" text-anchor="middle" class="sc-label">Home</text><text x="150" y="54" text-anchor="middle" class="sc-label">Cousins</text><path class="sc-ghost" d="M50 140 C80 147 120 147 150 140"/><path class="sc-path" d="M50 140 C80 147 120 147 150 140" pathLength="1"/><circle cx="50" cy="140" r="4.5" fill="#c9ec7f" stroke="#f1f5ea" stroke-width="1.5"/><g transform="translate(150,140)"><path d="M-5 -5 L5 5 M5 -5 L-5 5" stroke="#f1f5ea" stroke-width="5" stroke-linecap="round"/><path d="M-5 -5 L5 5 M5 -5 L-5 5" stroke="#e5484d" stroke-width="3" stroke-linecap="round"/></g><g transform="translate(50,140)"><g class="sc-walker"><g transform="translate(0,-26)" stroke="#f1f5ea" stroke-width="2.4" stroke-linecap="round" fill="none"><circle cx="0" cy="3" r="3.4" fill="#f1f5ea" stroke="none"/><path d="M0 7 V17"/><path class="sc-arm a" d="M0 9 L-4 15"/><path class="sc-arm b" d="M0 9 L4 15"/><path class="sc-leg a" d="M0 17 L-3 25"/><path class="sc-leg b" d="M0 17 L3 25"/></g></g></g></svg>';
+  function vehHTML(mode){
+    if(mode==='walk'||mode==='run')return '<div class="veh walk'+(mode==='run'?' run':'')+'"><svg viewBox="0 0 30 44"><use href="#walker"/></svg></div>';
+    var y=SYM[mode]||SYM.car; return '<div class="veh '+mode+'"><svg viewBox="'+y[1]+'"><use href="#'+y[0]+'"/></svg></div>';
   }
-  function at(D){ /* position along the journey at distance D (miles) */
-    var lo=0,hi=P.length-1; if(D<=0)return {k:0,t:0,lat:LL[0][0],lng:LL[0][1]};
-    if(D>=P[hi].d)return {k:hi-1<0?0:hi-1,t:1,lat:LL[hi][0],lng:LL[hi][1]};
+  function legsOf(f){
+    var legs=(f.dataset.trip||'').split(',').filter(Boolean).map(function(t){var m=t.split(':'),ft=m[1].split('-');return {mode:m[0],from:ft[0],to:ft[1]}});
+    return legs.length?legs:[{mode:'stay',from:f.dataset.loc,to:f.dataset.loc}];
+  }
+  function buildTrip(legs){
+    LL=[];P=[];LEG=[];
+    legs.forEach(function(lg,li){
+      var g=lg.mode==='stay'?[[LOC[lg.to][0],LOC[lg.to][1]]]:geom(lg.mode,lg.from,lg.to);
+      for(var j=0;j<g.length;j++){
+        if(LL.length&&j===0)continue;
+        var last=LL[LL.length-1]; LL.push([g[j][0],g[j][1]]); P.push({d:last?P[P.length-1].d+hav(last,g[j]):0,s:li});
+      }
+      LEG.push({mode:lg.mode,end:P[P.length-1].d});
+    });
+    total=P[P.length-1].d;
+  }
+  function at(D){
+    var lo=0,hi=P.length-1; if(hi<1||D<=0)return {k:0,lat:LL[0][0],lng:LL[0][1]};
+    if(D>=P[hi].d)return {k:hi-1,lat:LL[hi][0],lng:LL[hi][1]};
     while(hi-lo>1){var mid=(lo+hi)>>1;if(P[mid].d<=D)lo=mid;else hi=mid}
     var span=P[hi].d-P[lo].d, t=span>0?(D-P[lo].d)/span:0;
-    return {k:lo,t:t,lat:LL[lo][0]+(LL[hi][0]-LL[lo][0])*t,lng:LL[lo][1]+(LL[hi][1]-LL[lo][1])*t};
+    return {k:lo,lat:LL[lo][0]+(LL[hi][0]-LL[lo][0])*t,lng:LL[lo][1]+(LL[hi][1]-LL[lo][1])*t};
+  }
+  function legAt(D){for(var i=0;i<LEG.length;i++){if(D<=LEG[i].end+1e-9)return LEG[i]}return LEG[LEG.length-1]}
+  function allPlaces(){
+    var seen={}, out=[];
+    $$('main figure[data-loc]').forEach(function(f){legsOf(f).forEach(function(lg){[lg.from,lg.to].forEach(function(k){if(!seen[k]){seen[k]=1;out.push(k)}})})});
+    return out;
+  }
+  function initMap(){
+    if(!window.L||map)return;
+    map=L.map(cm.firstChild,{zoomControl:false,dragging:false,scrollWheelZoom:false,doubleClickZoom:false,boxZoom:false,keyboard:false,touchZoom:false,
+      zoomSnap:1,zoomAnimation:true,fadeAnimation:false,maxZoom:17,markerZoomAnimation:true,inertia:false,attributionControl:true}).setView([LOC.columbus[0],LOC.columbus[1]],5);
+    map.attributionControl.setPrefix(false);
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}',{maxZoom:17,maxNativeZoom:17,keepBuffer:4,attribution:'Esri'}).addTo(map);
+    var dots=L.layerGroup();
+    allPlaces().forEach(function(k){var c=LOC[k];L.circleMarker([c[0],c[1]],{radius:3,color:'#c9ec7f',weight:1.2,opacity:.7,fillColor:'#18211b',fillOpacity:.9,interactive:false}).addTo(dots)});
+    dots.addTo(map);
+    ghost=L.polyline([],{color:'#e4f7b5',weight:2,opacity:.4,dashArray:'4 6',interactive:false}).addTo(map);
+    prog=L.polyline([],{color:'#c9ec7f',weight:3,opacity:.95,interactive:false}).addTo(map);
   }
   function carX(p,st){
     if(p<.42)return -0.25+(st+0.25)*(1-Math.pow(1-p/.42,2));
     if(p<.58)return st;
     return st+(1.3-st)*Math.pow((p-.58)/.42,2);
   }
-  var map=null, veh=null, done=null, head=null, ghost=null, dots=null, lastK=-1, vehMode='', heading=0;
-  var Dshow=0, Dtarget=0, camLat=LOC.columbus[0], camLng=LOC.columbus[1], camZ=16, raf2=0, lastHere='', lastNext='', lastSec=-1;
-  function vehHTML(mode){
-    if(mode==='walk')return '<div class="veh walk"><svg viewBox="0 0 30 44"><use href="#walker"/></svg></div>';
-    return '<div class="veh '+mode+'"><svg viewBox="'+(mode==='plane'?'0 0 40 66':'0 0 40 80')+'"><use href="#'+(mode==='plane'?'plane-top':'crv-top')+'"/></svg></div>';
-  }
-  function drawRoute(){
-    if(!map)return;
-    if(ghost)map.removeLayer(ghost); if(dots)map.removeLayer(dots);
-    ghost=L.polyline(LL,{color:'#e4f7b5',weight:1.2,opacity:.08,dashArray:'3 5',interactive:false}).addTo(map);
-    dots=L.layerGroup(); var seen={};
-    STOPS.forEach(function(st){if(seen[st.loc])return;seen[st.loc]=1;var c=LOC[st.loc];L.circleMarker([c[0],c[1]],{radius:3,color:'#c9ec7f',weight:1,opacity:.6,fillColor:'#18211b',fillOpacity:.8,interactive:false}).addTo(dots)});
-    dots.addTo(map); lastK=-1;
-    if(veh){veh.remove();veh=null;vehMode=''}
-  }
-  function initMap(){
-    if(!window.L||map)return;
-    map=L.map('tripMap',{zoomControl:false,dragging:false,scrollWheelZoom:false,doubleClickZoom:false,boxZoom:false,keyboard:false,touchZoom:false,
-      zoomSnap:1,zoomAnimation:true,zoomAnimationThreshold:20,fadeAnimation:false,maxZoom:16,markerZoomAnimation:true,inertia:false,attributionControl:true}).setView([camLat,camLng],camZ);
-    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}',{maxZoom:16,maxNativeZoom:16,keepBuffer:10,updateWhenIdle:false,updateWhenZooming:false,attribution:'Tiles &copy; Esri'}).addTo(map);
-    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}',{maxZoom:16,maxNativeZoom:16,keepBuffer:10,updateWhenIdle:false,updateWhenZooming:false}).addTo(map);
-    done=L.polyline([],{color:'#c9ec7f',weight:2,opacity:.55,interactive:false}).addTo(map);
-    head=L.polyline([],{color:'#c9ec7f',weight:2,opacity:.55,interactive:false}).addTo(map);
-    drawRoute();
-  }
-  function segZoom(sg){ /* short trips zoom way in, long trips zoom way out */
-    if(sg.z!==null)return sg.z;
-    var pts=LL.slice(sg.i0,sg.i1+1), span=hav(pts[0],pts[pts.length-1]);
-    var z=span<0.15?16:Math.max(2,Math.min(15.5,map.getBoundsZoom(L.latLngBounds(pts),false,L.point(44,44))-.15));
-    if(isFinite(z))sg.z=z;
-    return z;
-  }
-  function render(){
-    var pos=at(Dshow), sg=SEG[Math.min(P[Math.min(pos.k+1,P.length-1)].s,SEG.length-1)]||{mode:'car',from:'columbus',to:'columbus',i0:0,i1:0};
-    odo.textContent=Dshow<10?Dshow.toFixed(Dshow<1?2:1):Math.round(Dshow).toLocaleString();
-    /* nearest stop: arrived or on the way? */
-    var near=null, tol=sg.mode==='walk'?0.002:0.6; for(var i=0;i<STOPS.length;i++){if(Math.abs(STOPS[i].d-Dshow)<tol){near=STOPS[i];break}}
-    if(dash.classList.contains('unknown')){liteSig.classList.remove('on');return}
-    var here=near?'You are here: '+LOC[near.loc][2]:({plane:'Flying to ',walk:'Walking to '}[sg.mode]||'Driving to ')+LOC[sg.to][2];
-    if(Dshow<0.001)here='Home Base: Columbus, OH';
-    if(here!==lastHere){dashHere.textContent=here;lastHere=here}
-    liteSig.classList.toggle('on',!near&&sg.mode==='car'&&sg.from!==sg.to);
-    if(!map||dash.classList.contains('mini'))return;
-    var sz=map.getSize(); if(!sz.x||!sz.y)return;
-    if(!isFinite(pos.lat)||!isFinite(pos.lng))return;
-    if(sg.mode!==vehMode||!veh){
+  function ease(u){return u<.5?4*u*u*u:1-Math.pow(-2*u+2,3)/2}
+  function setVeh(mode,ll){
+    if(mode==='stay'){if(veh){veh.remove();veh=null;vehMode=''}return}
+    if(!veh||vehMode!==mode){
       if(veh)veh.remove();
-      veh=L.marker([pos.lat,pos.lng],{icon:L.divIcon({className:'map-veh',html:vehHTML(sg.mode),iconSize:[48,48],iconAnchor:[24,24]}),interactive:false,keyboard:false}).addTo(map);
-      vehMode=sg.mode;
-    }
-    veh.setLatLng([pos.lat,pos.lng]);
-    if(pos.k!==lastK){done.setLatLngs(LL.slice(0,pos.k+1));lastK=pos.k}
-    head.setLatLngs([LL[pos.k],[pos.lat,pos.lng]]);
-    /* camera eases toward the vehicle */
-    /* whole zoom levels only, so city and landmark labels stay loaded while moving */
-    var zt=Math.min(16,Math.round(segZoom(sg))+(sg.mode==='car'?2:sg.mode==='plane'?1:0)), e=rm.matches?1:.14; if(!isFinite(zt))zt=Math.round(map.getZoom())||6;
-    if(!isFinite(camLat)||!isFinite(camLng)){camLat=pos.lat;camLng=pos.lng}
-    camLat+=(pos.lat-camLat)*e; camLng+=(pos.lng-camLng)*e;
-    if(!map._animatingZoom){
-      if(map.getZoom()!==zt)map.setView([camLat,camLng],zt,{animate:!rm.matches});
-      else map.setView([camLat,camLng],zt,{animate:false});
-    }
-    /* face the direction of travel */
-    var segLen=P[sg.i1].d-P[sg.i0].d, stepD=Math.max(segLen*.01,Math.min(.4,segLen*.2)), ahead=at(Dshow+stepD), back=at(Math.max(0,Dshow-stepD));
-    var p1=map.latLngToContainerPoint([back.lat,back.lng]), p2=map.latLngToContainerPoint([ahead.lat,ahead.lng]);
-    if(Math.hypot(p2.x-p1.x,p2.y-p1.y)>.5){var ang=Math.atan2(p2.x-p1.x,-(p2.y-p1.y))*180/Math.PI, diff=((ang-heading+540)%360)-180;heading+=rm.matches?diff:diff*.25}
-    var el=veh.getElement();
-    if(el&&el.firstChild){
-      if(sg.mode==='walk')el.firstChild.style.transform=(heading>180||heading<0&&heading>-180&&Math.sin(heading*Math.PI/180)<0||Math.sin(heading*Math.PI/180)<0)?'scaleX(-1)':'none';
-      else el.firstChild.style.transform='rotate('+heading.toFixed(1)+'deg)';
-      el.firstChild.classList.toggle('moving',!near);
-    }
+      veh=L.marker(ll,{icon:L.divIcon({className:'map-veh',html:vehHTML(mode),iconSize:[48,48],iconAnchor:[24,24]}),interactive:false,keyboard:false,zIndexOffset:500}).addTo(map);
+      vehMode=mode;
+    } else veh.setLatLng(ll);
   }
-  function tick(){
-    raf2=0;
-    var diff=Dtarget-Dshow; Dshow=rm.matches?Dtarget:(Math.abs(diff)<.05?Dtarget:Dshow+diff*.1);
-    render();
-    var camOff=map?Math.abs(map.getCenter().lat-at(Dshow).lat)+Math.abs(map.getCenter().lng-at(Dshow).lng):0;
-    if(Dshow!==Dtarget||camOff>.002||(map&&map._animatingZoom))raf2=requestAnimationFrame(tick);
+  function frame(now){
+    anim=0; if(!map||!active)return;
+    var u=dur?Math.min(1,(now-t0)/dur):1, D=ease(u)*total, pos=at(D), lg=legAt(Math.max(D,1e-6));
+    setVeh(lg.mode,[pos.lat,pos.lng]);
+    prog.setLatLngs(LL.slice(0,pos.k+1).concat([[pos.lat,pos.lng]]));
+    if(veh){
+      var st=Math.max(total*.004,1e-4), A=at(Math.max(0,D-st)), B=at(Math.min(total,D+st));
+      var p1=map.latLngToContainerPoint([A.lat,A.lng]), p2=map.latLngToContainerPoint([B.lat,B.lng]);
+      if(Math.hypot(p2.x-p1.x,p2.y-p1.y)>.3){var ang=Math.atan2(p2.x-p1.x,-(p2.y-p1.y))*180/Math.PI, diff=((ang-heading+540)%360)-180;heading+=u>=1||rm.matches?diff:diff*.3}
+      var el=veh.getElement();
+      if(el&&el.firstChild){
+        if(lg.mode==='walk'||lg.mode==='run')el.firstChild.style.transform=Math.sin(heading*Math.PI/180)<0?'scaleX(-1)':'none';
+        else el.firstChild.style.transform='rotate('+heading.toFixed(1)+'deg)';
+        el.firstChild.classList.toggle('moving',u<1);
+      }
+    }
+    if(u<1)anim=requestAnimationFrame(frame);
   }
-  function kick(){if(!raf2)raf2=requestAnimationFrame(tick)}
-  function setMini(on){dash.classList.toggle('mini',on);dashToggle.textContent=on?'Show map':'Hide map';dashToggle.setAttribute('aria-expanded',String(!on));try{localStorage.setItem('tripMini',on?'1':'0')}catch(e){}if(!on&&map)setTimeout(function(){map.invalidateSize();kick()},50)}
-  dashToggle.addEventListener('click',function(){setMini(!dash.classList.contains('mini'))});
-  try{if(localStorage.getItem('tripMini')==='1')setMini(true)}catch(e){}
+  function play(f){
+    if(f.dataset.scene){token++;if(anim){cancelAnimationFrame(anim);anim=0}cm.classList.add('scene');cm.classList.remove('play');void cm.offsetWidth;cm.classList.add('play');return}
+    cm.classList.remove('scene','play');
+    initMap(); if(!map)return;
+    map.invalidateSize(false);
+    var legs=legsOf(f), first=legs[0], lastL=legs[legs.length-1], A=LOC[first.from], B=LOC[lastL.to], stay=first.mode==='stay', my=++token;
+    buildTrip(legs);
+    if(anim){cancelAnimationFrame(anim);anim=0}
+    cm.classList.toggle('stay',stay);
+    if(fromM)map.removeLayer(fromM); if(toM)map.removeLayer(toM); if(veh){veh.remove();veh=null;vehMode=''}
+    fromM=stay?null:L.circleMarker([A[0],A[1]],{radius:6,color:'#f1f5ea',weight:2,fillColor:'#c9ec7f',fillOpacity:1,interactive:false}).addTo(map);
+    toM=L.marker([B[0],B[1]],{icon:L.divIcon({className:'pin-x',html:'<span></span>',iconSize:[20,20],iconAnchor:[10,10]}),interactive:false,keyboard:false,zIndexOffset:400}).addTo(map);
+    ghost.setLatLngs(stay?[]:LL); prog.setLatLngs([LL[0]]);
+    var sz=map.getSize(); if(!sz.x||!sz.y)return;
+    var bounds=L.latLngBounds(LL), walk=first.mode==='walk'||first.mode==='run';
+    var z=stay?14:map.getBoundsZoom(bounds,false,L.point(22,22)); z=Math.max(1,Math.min(walk?17:15,Math.floor(z)));
+    var ctr=stay?L.latLng(B[0],B[1]):bounds.getCenter();
+    dur=stay?0:Math.max(1300,Math.min(3000,900+Math.log10(1+total)*650));
+    /* open a little wide, then settle in on the trip and play it */
+    if(rm.matches){map.setView(ctr,z,{animate:false});t0=performance.now();anim=requestAnimationFrame(frame);return}
+    map.setView(ctr,Math.max(1,z-1),{animate:false});
+    setTimeout(function(){if(my!==token)return;map.setView(ctr,z,{animate:true})},140);
+    setTimeout(function(){if(my!==token)return;t0=performance.now();anim=requestAnimationFrame(frame)},520);
+  }
+  function enter(f){
+    clearTimeout(hoverT);
+    hoverT=setTimeout(function(){
+      if(active===f)return;
+      var host=f.classList.contains('runcard')?f:f.querySelector('.frame'); if(!host)return;
+      if(active)active.classList.remove('has-map');
+      active=f; f.classList.add('has-map'); cm.classList.remove('show'); host.appendChild(cm);
+      void cm.offsetWidth; cm.classList.add('show');
+      play(f);
+    },rm.matches?0:110);
+  }
+  function leave(f){
+    clearTimeout(hoverT);
+    if(active!==f)return;
+    f.classList.remove('has-map'); active=null; token++; if(anim){cancelAnimationFrame(anim);anim=0}
+    cm.classList.remove('show');
+  }
+  $$('main figure[data-loc]').forEach(function(f){
+    f.addEventListener('pointerenter',function(e){if(e.pointerType!=='touch')enter(f)});
+    f.addEventListener('pointerleave',function(e){if(e.pointerType!=='touch')leave(f)});
+    f.addEventListener('click',function(e){if(e.target.closest('video'))return;if(active===f)leave(f);else enter(f)});
+  });
+
+  /* the corner tracker: the car rolls from stop to stop and reaches the end at the bottom of the page */
+  var trackT=0, trackShow=0, trackRaf=0;
+  function trackTick(){
+    trackRaf=0;
+    var d=trackT-trackShow; trackShow=rm.matches||Math.abs(d)<.0005?trackT:trackShow+d*.12;
+    dashCar.style.left=(trackShow*100).toFixed(2)+'%'; dashDone.style.width=(trackShow*100).toFixed(2)+'%';
+    dashCar.classList.toggle('moving',trackShow!==trackT);
+    stopEls.forEach(function(el){el.classList.toggle('passed',trackShow>=parseFloat(el.style.left)/100-.004)});
+    if(trackShow!==trackT)trackRaf=requestAnimationFrame(trackTick);
+  }
   function measureTrip(){}
   function tripUpdate(){
     var y=scrollY, vh=innerHeight;
@@ -1109,21 +1292,9 @@ ol.steps{max-width:66ch;padding-left:1.3em}ol.steps li{margin-bottom:6px}
       var cx=r.classList.contains('unknown')?(rm.matches?.4:-0.25+1.55*p):(rm.matches?st:carX(p,st));
       car.style.transform='translate3d('+(cx*room)+'px,0,0)';
     });
+    if(!rm.matches)$$('.shot.card').forEach(function(c,i){var b=c.getBoundingClientRect();if(b.bottom<-50||b.top>vh+50)return;c.style.setProperty('--sw',(Math.sin((b.top+i*97)/170)*1.8).toFixed(2)+'deg')});
     if(!rm.matches)floaties.forEach(function(f){var b=f.getBoundingClientRect();if(b.bottom<-200||b.top>vh+200)return;f.style.setProperty('--py',((b.top+b.height/2-vh/2)*(+f.dataset.sp)).toFixed(1)+'px')});
-    /* rebuild the path if the visible photos changed (interview tabs) */
-    var figs=$$('main figure[data-loc]').filter(function(f){return !!f.offsetParent}), nsig=figs.map(function(f){return f.dataset.loc}).join('|');
-    if(nsig!==sig){sig=nsig;build(figs);drawRoute()}
-    /* scroll position -> distance along the journey */
-    var home=roads[0].getBoundingClientRect(), ys=[home.top+y+home.height/2-vh/2], raw=[], hs=[];
-    for(var i=1;i<STOPS.length;i++){var b=STOPS[i].f.getBoundingClientRect();raw.push(b.top+y+b.height/2-vh/2);hs.push(b.height)}
-    /* photos side by side in one row: spread their checkpoints down the row so each trip plays in turn */
-    for(var g=0;g<raw.length;){var e2=g;while(e2+1<raw.length&&Math.abs(raw[e2+1]-raw[g])<60)e2++;
-      var n=e2-g+1;if(n>1){var h=Math.max(hs[g],240),base=raw[g];for(var j=0;j<n;j++)raw[g+j]=base-h*.45+j*(h*.9/(n-1))}g=e2+1}
-    for(var i2=0;i2<raw.length;i2++)ys.push(Math.max(raw[i2],ys[ys.length-1]+1));
-    var yy=y+24, D=0;
-    if(yy>=ys[ys.length-1])D=STOPS[STOPS.length-1].d;
-    else if(yy>ys[0]){for(var k=0;k<ys.length-1;k++){if(yy<ys[k+1]){var t=(yy-ys[k])/(ys[k+1]-ys[k]);t=t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;D=STOPS[k].d+(STOPS[k+1].d-STOPS[k].d)*t;break}}}
-    Dtarget=D;
+    var yy=y+24;
     /* sections: fuel drains through each one and refills at the next stop */
     var sec=-1, segT=0;
     for(var q=0;q<roads.length;q++){var rb=roads[q].getBoundingClientRect();if(yy>=rb.top+y+rb.height/2-vh/2)sec=q}
@@ -1133,19 +1304,58 @@ ol.steps{max-width:66ch;padding-left:1.3em}ol.steps li{margin-bottom:6px}
     lastSec=sec;
     fuelFill.style.width=fuel.toFixed(1)+'%';
     liteLow.classList.toggle('on',fuel<28);
-    var nxt=roads[sec+1], cur=roads[sec], atStop=cur&&Math.abs(cur.getBoundingClientRect().top+cur.offsetHeight/2-vh/2)<vh*.2;
-    var next=atStop&&cur.dataset.kind!=='unknown'?(cur.dataset.kind==='gas'?'Gas stop: ':'Scenic stop: ')+cur.dataset.name+(cur.dataset.kind==='gas'?' · tank refilled':'')
-            :(nxt?'Next stop: '+nxt.dataset.name:'Next stop: wherever the road goes');
-    if(fuel<28&&!atStop)next='Low fuel · '+next;
-    var endBand=roads[roads.length-1], endMode=endBand.classList.contains('unknown')&&endBand.getBoundingClientRect().top<vh*.7;
-    dash.classList.toggle('unknown',endMode);
-    if(endMode){next='Next stop: ?';if(lastHere!=='end'){dashHere.textContent='Destination: unknown';lastHere='end'}}
-    else if(cur&&cur.dataset.kind==='unknown'){next='Next stop: ?'}
-    if(next!==lastNext){dashNext.textContent=next;lastNext=next}
+    var nxt=roads[sec+1], curName=sec<0?'Starting out':roads[sec].dataset.name, nextName=nxt?nxt.dataset.name:'Unknown';
+    if(dashCur.textContent!==curName)dashCur.textContent=curName;
+    if(dashNext.textContent!==nextName)dashNext.textContent=nextName;
+    stopEls.forEach(function(el,i){el.classList.toggle('cur',i-1===sec)});
+    liteSig.classList.toggle('on',!!nxt&&segT>.85);
+    /* car on the tracker: page top -> five stops -> the "?" at the very bottom */
+    var maxY=Math.max(1,document.documentElement.scrollHeight-vh), ys=[0];
+    for(var r=0;r<5&&r<roads.length;r++){var rr=roads[r].getBoundingClientRect();ys.push(clamp(rr.top+y+rr.height/2-vh/2,ys[ys.length-1]+1,maxY-(5-r)))}
+    ys.push(maxY);
+    var pt=1; for(var k=0;k<ys.length-1;k++){if(y<ys[k+1]){pt=(k+clamp((y-ys[k])/(ys[k+1]-ys[k]),0,1))/(ys.length-1);break}}
+    trackT=pt; if(!trackRaf)trackRaf=requestAnimationFrame(trackTick);
     dash.classList.toggle('show',y>vh*.5);
-    if(dash.classList.contains('show'))initMap();
-    kick();
   }
+
+  /* ---------- postcard sizing: as big as the text beside them allows ---------- */
+  var OPTS=[[340,1],[300,1],[250,1],[560,2],[500,2],[440,2],[400,2],[360,2],[330,2],[560,3],[520,3],[480,3],[400,3]];
+  function fitBlock(m){
+    var t=m.querySelector(':scope>.txt'), pc=m.querySelector(':scope>.pics'); if(!t||!pc)return;
+    var kids=Array.prototype.slice.call(pc.children);
+    if(!kids.length||kids.some(function(k){return !k.matches('.card,.runcard')}))return;
+    var cards=kids.filter(function(k){return k.matches('.card,.runcard')}).length;
+    if(innerWidth<900||!m.offsetParent){m.style.gridTemplateColumns='';pc.style.gridTemplateColumns='';delete pc.dataset.cols;delete pc.dataset.feature;return}
+    var flip=m.classList.contains('flip'), best=null;
+    var cap=Math.min(560,(m.clientWidth-72)*.5), opts=[];
+    [1,2,3].forEach(function(n){for(var w=Math.floor(cap/20)*20;w>=240;w-=40){var c=(w-18*(n-1))/n;if(c>=140&&(n>1||w<=340)&&n<=Math.max(1,cards))opts.push([w,n])}});
+    if(!opts.length)opts.push([Math.max(240,Math.floor(cap)),1]);
+    for(var i=0;i<opts.length;i++){
+      var w=opts[i][0], n=opts[i][1], ft=false;
+      if(ft&&(cards<3||cards%2===0))continue;
+      m.style.gridTemplateColumns=flip?w+'px minmax(0,1fr)':'minmax(0,1fr) '+w+'px';
+      pc.style.gridTemplateColumns='repeat('+n+',minmax(0,1fr))'; pc.dataset.cols=n;
+      if(ft)pc.dataset.feature='1';else delete pc.dataset.feature;
+      var ph=pc.offsetHeight, th=t.offsetHeight, cw=(w-18*(n-1))/n;
+      /* balance the two columns, lean toward bigger postcards, and avoid photos hanging far past the text */
+      var score=(ph>th?(ph-th)*1.3:(th-ph))+Math.max(0,300-cw)*.6+Math.max(0,cw-300)*1.5;
+      if(!best||score<best.score)best={w:w,n:n,ft:ft,score:score};
+    }
+    m.style.gridTemplateColumns=flip?best.w+'px minmax(0,1fr)':'minmax(0,1fr) '+best.w+'px';
+    pc.style.gridTemplateColumns='repeat('+best.n+',minmax(0,1fr))'; pc.dataset.cols=best.n;
+    if(best.ft)pc.dataset.feature='1';else delete pc.dataset.feature;
+  }
+  function fitAll(){$$('main .media:not(.signrow):not(.half)').forEach(fitBlock)}
+  fitAll();
+  addEventListener('load',fitAll); addEventListener('resize',fitAll);
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fitAll);
+  $$('.tabs button,[role="tab"]').forEach(function(b){b.addEventListener('click',function(){setTimeout(fitAll,30)})});
+
+  /* ---------- Katy Trail outline draws itself in ---------- */
+  $$('.runcard').forEach(function(c){
+    if(rm.matches||!('IntersectionObserver' in window)){c.classList.add('in');return}
+    new IntersectionObserver(function(es){es.forEach(function(e){c.classList.toggle('in',e.isIntersecting)})},{threshold:.35}).observe(c);
+  });
 
   /* ---------- game video: play while visible ---------- */
   $$('.shot video').forEach(function(v){
